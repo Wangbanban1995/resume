@@ -1,0 +1,7 @@
+Deduplication run: 2026-07-13T15:01:18.519506
+Input directory: tests/case04_three_db_aggregation
+Total input records parsed: 3
+Master (unique) records: 1
+Confirmed duplicates merged into master: 2
+Possible duplicates flagged (retained as separate master entries, NOT auto-merged, NOT auto-removed): 0
+Master records confirmed present in more than one source file/database: 1

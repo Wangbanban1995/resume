@@ -1,0 +1,14 @@
+TY  - JOUR
+TI  - A Very Long Synthetic Title That Wraps Across
+Multiple Physical Lines In The RIS Export Because
+Some Titles Exceed The Line Length A Database Interface Allows
+AU  - Wraptest, A.
+AB  - This synthetic abstract is deliberately written to span
+several continuation lines without a repeated AB tag, the way
+real Web of Science RIS exports often wrap long abstracts, and
+the parser must concatenate all of it without silently dropping
+any line.
+PY  - 2024
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.case02
+ER  -

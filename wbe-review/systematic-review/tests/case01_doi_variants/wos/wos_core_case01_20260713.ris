@@ -1,0 +1,26 @@
+TY  - JOUR
+TI  - Synthetic Case 1 Record A - Bare DOI
+AU  - Casetest, A.
+AB  - SYNTHETIC TEST RECORD for DOI-variant merging test case 1.
+PY  - 2025
+JO  - Journal of Synthetic Test Data
+DO  - 10.1016/j.watres.2025.124977
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Case 1 Record B - Full URL DOI
+AU  - Casetest, A.
+AB  - SYNTHETIC TEST RECORD for DOI-variant merging test case 1.
+PY  - 2025
+JO  - Journal of Synthetic Test Data
+DO  - https://doi.org/10.1016/j.watres.2025.124977
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Case 1 Record C - DOI Prefix With Trailing Period
+AU  - Casetest, A.
+AB  - SYNTHETIC TEST RECORD for DOI-variant merging test case 1.
+PY  - 2025
+JO  - Journal of Synthetic Test Data
+DO  - DOI: 10.1016/j.watres.2025.124977.
+ER  -

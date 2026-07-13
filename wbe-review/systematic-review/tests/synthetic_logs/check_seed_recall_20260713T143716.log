@@ -1,8 +1,0 @@
-2026-07-13 14:37:16,995 [INFO] Log file: tests/synthetic_logs/check_seed_recall_20260713T143716.log
-2026-07-13 14:37:16,995 [INFO] check_seed_recall.py starting
-2026-07-13 14:37:16,996 [INFO] Loaded 44 seed references from templates/seed_studies.csv
-2026-07-13 14:37:16,996 [INFO] Loaded 7 master records from tests/synthetic_output/master_records.csv
-2026-07-13 14:37:16,997 [INFO] Wrote tests/synthetic_output/reports/seed_recall_report.csv and tests/synthetic_output/reports/seed_recall_summary.md
-2026-07-13 14:37:16,997 [INFO] Recalled 1 / 29 testable seeds
-2026-07-13 14:37:16,997 [WARNING] 28 seed reference(s) were NOT recalled — see tests/synthetic_output/reports/seed_recall_summary.md for the list. Per Section 13 of the search strategy, revise and re-test the affected module string(s) before treating the search as final.
-2026-07-13 14:37:16,997 [INFO] check_seed_recall.py finished

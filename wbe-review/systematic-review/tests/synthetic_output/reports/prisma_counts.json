@@ -1,8 +1,8 @@
 {
   "status": "EXECUTED",
-  "generated_at": "2026-07-13T14:37:39.167927",
+  "generated_at": "2026-07-13T15:03:32.826533",
   "records_identified": 10,
-  "duplicates_removed": 2,
+  "duplicates_removed": 3,
   "records_screened": 3,
   "records_excluded_title_abstract": 1,
   "records_excluded_title_abstract_by_reason": {

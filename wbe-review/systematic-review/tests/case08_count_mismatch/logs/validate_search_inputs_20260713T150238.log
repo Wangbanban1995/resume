@@ -1,0 +1,5 @@
+2026-07-13 15:02:38,853 [INFO] Log file: tests/case08_count_mismatch/logs/validate_search_inputs_20260713T150238.log
+2026-07-13 15:02:38,853 [INFO] validate_search_inputs.py starting
+2026-07-13 15:02:38,855 [INFO] Wrote input_readiness_report.md/.csv to tests/case08_count_mismatch/reports
+2026-07-13 15:02:38,856 [INFO] STATUS: NOT_READY (23 blocking, 1 warnings)
+2026-07-13 15:02:38,856 [INFO] validate_search_inputs.py finished

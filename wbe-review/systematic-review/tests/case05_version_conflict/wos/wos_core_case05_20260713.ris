@@ -1,0 +1,17 @@
+TY  - JOUR
+TI  - Synthetic Identical Title Different Study Test
+AU  - Firstauthor, D.
+AB  - SYNTHETIC TEST RECORD, first version.
+PY  - 2018
+JO  - Journal of Synthetic Test Data
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Identical Title Different Study Test
+AU  - Secondauthor, E.
+AB  - SYNTHETIC TEST RECORD, second and different study that happens to share an
+      identical title with an unrelated 2018 paper by a different author -
+      must not be auto-merged.
+PY  - 2023
+JO  - Journal of Synthetic Test Data
+ER  -

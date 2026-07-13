@@ -16,13 +16,17 @@ The search strategy (one core search + seven complementary modules, eight search
 6. Fill in one row of `templates/search_log.csv` for this search **before moving to the next one** — the log is your record of what was actually run, since database interfaces can silently normalize or truncate a pasted query string.
 7. Repeat for all 8 searches × 3 databases = up to 24 export operations (fewer if a given module is judged not applicable to a particular database's syntax, which should still be logged as such).
 
-## 2. Recommended export formats per database
+## 2. Official production export format per database
 
-| Database | Recommended export format | Rationale |
+These are the **fixed, required** formats for real search execution — not a preference among interchangeable options:
+
+| Database | Required export format | Rationale |
 |---|---|---|
-| Web of Science | `.ris` (Tagged/RIS) or Fast5000/plain-text export with full record | RIS preserves author lists, abstract, DOI, and WoS accession number cleanly for downstream parsing |
-| Scopus | `.csv` (Scopus's own CSV export, "all available information") | Scopus's native CSV includes DOI, EID, and abstract in a stable column layout |
-| PubMed | `.nbib` (PubMed's own citation export format) | NBIB preserves PMID, MeSH terms, and abstract in a structured, parseable format; `.ris` also acceptable if `.nbib` is unavailable in your interface |
+| Web of Science | **RIS** (`.ris`, Tagged/RIS export with full record) | RIS preserves author lists, multi-line abstracts, DOI, and WoS accession number cleanly for downstream parsing; this toolkit's RIS parser is hardened against continuation lines, multiple DO fields, and files missing a terminal ER tag |
+| Scopus | **CSV** (`.csv`, Scopus's own "all available information" export) | Scopus's native CSV includes DOI, EID, and abstract in a stable column layout that this toolkit's CSV parser reads directly |
+| PubMed | **NBIB** (`.nbib`, PubMed's own citation export format) | NBIB preserves PMID, MeSH terms, and multi-paragraph abstracts in a structured, parseable format; this toolkit's NBIB parser is hardened against continuation lines and DOI recovery from AID/LID fields |
+
+**BibTeX (`.bib`) is supported only as a fallback/experimental parser, not the preferred production import format.** It exists for occasional one-off records exported from a reference manager, not as a substitute for RIS/CSV/NBIB when running the actual 8×3 search plan. The BibTeX parser in `scripts/deduplicate_records.py` uses a simple regex-based reader with no external dependency; it has known gaps (nested braces, multi-line unquoted field values, and unusual entry syntax are not guaranteed to parse correctly), and every BibTeX file processed is logged with an explicit warning identifying it as fallback/experimental output requiring manual verification. Do not treat successfully-parsed BibTeX records as having the same reliability as RIS/CSV/NBIB records without spot-checking them against the source.
 
 ## 3. File naming convention
 
@@ -67,10 +71,24 @@ data/raw/pubmed/    — all pubmed_*.nbib files
 
 At minimum, every exported record must retain: title, abstract, full author list, publication year, journal/source name, DOI (if assigned), PMID (PubMed records), and the database's own internal accession/record ID. Do not use an export option that strips the abstract or author list to save space — both are required for title/abstract screening (`templates/title_abstract_screening.csv`) and cannot be reconstructed later without re-fetching the record.
 
-## 6. How to run the deduplication script
+## 6. How to run the readiness check, then the deduplication script
+
+**Run `validate_search_inputs.py` first, every time**, before deduplication:
 
 ```bash
 cd systematic-review
+python3 scripts/validate_search_inputs.py --help
+python3 scripts/validate_search_inputs.py \
+    --search-log templates/search_log.csv \
+    --raw-dir data/raw \
+    --output-dir reports
+```
+
+This checks that all 8×3=24 searches are logged, filenames follow the naming convention, every logged export file actually exists and parses to roughly the count logged in `search_log.csv`, zero-hit searches have an explanatory note, and no unreferenced or duplicate files are sitting in `data/raw/`. It writes `reports/input_readiness_report.md`/`.csv` with a status of `READY`, `READY_WITH_WARNINGS`, or `NOT_READY`. **Do not proceed to deduplication while the status is `NOT_READY`** — resolve every blocking issue first, since a `NOT_READY` state usually means the deduplication counts that follow would be built on an incomplete or inconsistent input set.
+
+Then run the deduplication script:
+
+```bash
 python3 scripts/deduplicate_records.py --help
 python3 scripts/deduplicate_records.py \
     --input-dir data/raw \
@@ -78,7 +96,33 @@ python3 scripts/deduplicate_records.py \
     --log-dir logs
 ```
 
-The script reads every `.ris`, `.csv`, `.bib`, and `.nbib` file under `data/raw/{wos,scopus,pubmed}/`, normalizes them to a common schema, deduplicates by DOI → PMID → normalized title → title+year+first-author (in that priority order), and writes `master_records.csv`, `confirmed_duplicates.csv`, `possible_duplicates.csv`, `database_module_summary.csv`, and `deduplication_log.txt` into `data/processed/`. See Section 5 of `scripts/deduplicate_records.py`'s own `--help` output for full option documentation. The script refuses to run and exits with a clear message if `data/raw/` contains no real export files (it will not silently produce empty or synthetic-looking output framed as real).
+The script reads every `.ris`, `.csv`, `.nbib` (and, as a fallback/experimental parser only, `.bib`) file under `data/raw/{wos,scopus,pubmed}/`, normalizes them to a common schema, and deduplicates in this priority order:
+
+1. Canonical-DOI exact match (DOI strings are normalized for case, whitespace, `doi:`/URL prefixes, URL-encoding, trailing punctuation, and a trailing `[doi]` tag before comparison)
+2. Canonical-PMID exact match (a value is only treated as a PMID if, after stripping an optional `PMID:` prefix, it is purely numeric — a WoS accession number like `WOS:000123456789` is never misread as a PMID)
+3. Normalized title + publication year
+4. Normalized title + first-author surname
+5. Normalized title + publication year + first-author surname
+
+Matches found only via rules 3–5 (title-based, not DOI/PMID) are additionally screened for a likely **different-version pair** — a correction/erratum, a protocol vs. a results paper, a conference abstract vs. the eventual journal article, or a preprint vs. its published version — using title and journal/source-name heuristics. A detected version conflict downgrades what would otherwise be an automatic merge to a `possible_duplicate` entry instead, with `publication_version` and `possible_version_relation` recorded and `manual_duplicate_decision` left blank for a human reviewer to resolve — **the script never auto-decides which version to keep.** A record whose title exactly matches an existing record but whose year and first author **both** differ is, per the same rule, always treated as a `possible_duplicate`, never auto-merged.
+
+A record confirmed as a duplicate is merged into its master record's provenance rather than discarded: `master_records.csv` gains `database_sources`, `search_modules`, `source_files`, `duplicate_record_ids`, and `occurrence_count` columns that fully aggregate every database and module a given paper was actually found under (a paper retrieved by WoS/core, Scopus/module05, and PubMed/module07 shows all three, not just its first-seen source), plus empty-field backfill (if the first-seen copy is missing an abstract, DOI, etc. that a later duplicate has, the master record is filled in rather than left blank).
+
+Outputs written to `data/processed/`: `master_records.csv`, `confirmed_duplicates.csv`, `possible_duplicates.csv`, `database_module_summary.csv`, `deduplication_log.txt`, and `parsing_quality_report.csv` (per-source-file parse statistics — records parsed, missing-field counts, and prominent warnings for a file parsing to zero records, more than 5% of records missing a title, or an unrecognized database/module in the filename/directory). See `scripts/deduplicate_records.py --help` for full option documentation. The script refuses to run and exits with a clear message if `data/raw/` contains no real export files (it will not silently produce empty or synthetic-looking output framed as real).
+
+## 6b. How to check seed recall
+
+After deduplication, confirm the search actually recalled this review's own 44 already-known references before moving on to screening:
+
+```bash
+python3 scripts/check_seed_recall.py --help
+python3 scripts/check_seed_recall.py \
+    --seed-csv templates/seed_studies.csv \
+    --master-csv data/processed/master_records.csv \
+    --output-dir reports
+```
+
+Matching priority: (1) canonical DOI, (2) canonical PMID, (3) normalized title + year + first author, (4) normalized title alone — a title-only match is still reported as `RECALLED` but with `manual_confirmation_required=TRUE`, since a shared title alone is not sufficient to auto-confirm two records are the same paper. A seed is marked `UNTESTABLE` only when it has neither a DOI/PMID nor a usable title recorded in `seed_studies.csv` (in practice, none of the 44 real seeds fall into this category — all have titles). Outputs: `reports/seed_recall_report.csv` (per-seed detail, including `match_basis`, `matched_record_id`, `matched_title`, `matched_database_sources`, `matched_search_modules`) and `reports/seed_recall_summary.md`. Per Section 13 of the search strategy document, any seed marked `NOT_RECALLED` means the corresponding module's search string should be revised and re-tested before treating the search as final.
 
 ## 7. How to generate the screening tables
 
@@ -125,11 +169,17 @@ systematic-review/
 │   │   └── pubmed/
 │   ├── interim/                — intermediate working files produced by scripts
 │   └── processed/              — final merged/deduplicated/screened outputs
-├── templates/                  — empty CSV templates, ready to populate with real data
-├── scripts/                    — Python scripts (deduplication, seed recall, PRISMA counts)
-├── reports/                    — script-generated reports (seed recall, PRISMA counts)
-└── logs/                       — script run logs
+├── templates/                  — CSV templates (seed_studies.csv pre-populated with the
+│                                 review's 44 real seeds; all others header-only)
+├── scripts/                    — validate_search_inputs.py, deduplicate_records.py,
+│                                 check_seed_recall.py, generate_prisma_counts.py
+├── reports/                    — script-generated reports (readiness, seed recall, PRISMA)
+├── logs/                       — script run logs
+└── tests/                      — synthetic test fixtures and TEST_RESULTS.md; never
+                                  real data, kept fully separate from data/, reports/, logs/
 ```
+
+Run order, once real database access is available: `validate_search_inputs.py` → `deduplicate_records.py` → `check_seed_recall.py` → (screening, a manual step) → `generate_prisma_counts.py`.
 
 ## What this toolkit is not
 
