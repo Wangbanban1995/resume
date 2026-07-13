@@ -1,117 +1,420 @@
-# Systematic Search Strategy — WBE Review (drafted, NOT executed)
+# Systematic Search Strategy — WBE Review (revised, still NOT executed)
 
-**Status: this document specifies formal, ready-to-run search strategies for Web of Science, Scopus, and PubMed. It has not been executed. This session has no access to Web of Science, Scopus, or any bibliographic database API — see the "What could not be done and why" section at the end of this file for the specific, tested basis for that statement. These strategies are provided so that a person or system with institutional database access can run them and return the export files this review needs.**
+**Status.** This document specifies ready-to-run search strategies for Web of Science, Scopus, and PubMed, restructured this round into one core search plus eight module searches per instruction. It has not been executed. This session has no access to Web of Science, Scopus, or any bibliographic-database API, and WebFetch returns HTTP 403 for every publisher, PMC, and PubMed URL tested — see Section 12 for the tested basis of that statement. Someone with institutional database access must run these strategies and return the outputs listed in Section 13.
 
 ---
 
-## 1. Scope and PICO-style framing
+## 1. Why one core search plus eight modules, not one combined string
 
-This review spans five methodological domains (Chapters 3–8): source-to-sample signal formation and sewer transformation (Ch. 3–4); sampling and analytical methods (Ch. 5); normalization (Ch. 6); back-calculation/identifiability/validation (Ch. 7); and uncertainty propagation (Ch. 8). A single search strategy covering all five is used, with chapter-relevance taggable via the concept blocks below, rather than five independent searches — consistent with how the review itself is organized around one inverse-problem framework rather than five disconnected topics.
+The previous version of this document used a single string (`WBE core AND at least one methodological block`). That structure silently excludes any record that describes a mechanistic, chemical, or analytical WBE-relevant finding without using an explicit WBE label — for example, an in-sewer biofilm decay study, a drug-excretion pharmacokinetics paper, or a pre-2010s sewage chemistry paper that predates the term "wastewater-based epidemiology" entirely. Running nine separate searches (core + 8 modules) and merging afterward, rather than one narrow AND-combined string, is the correct way to avoid that recall failure. Each module below is self-contained: its own concept terms, its own Web of Science / Scopus / PubMed syntax, and its own hit-count row to be filled in by the person who executes it. Do not combine modules into a single string at execution time — run all nine, export all nine result sets, and deduplicate afterward (Section 10).
 
-- **Population/setting:** municipal or community wastewater/sewershed systems
-- **Exposure/method:** wastewater-based epidemiology, surveillance, or monitoring — sampling, analysis, normalization, back-calculation, or uncertainty quantification applied to it
-- **Outcome:** any of — signal fate/transport, sampling/analytical performance, normalization performance, back-calculation/reconstruction method, or uncertainty-propagation method
-- **Study types:** primary research articles, systematic reviews, and methodological/modelling studies; conference proceedings and non-peer-reviewed preprints included but flagged separately at screening
+---
 
-## 2. Concept blocks (used identically across all three databases, translated into each syntax below)
+## 2. Core search — WBE terminology and population inference
 
-- **Block A — WBE core:** wastewater-based epidemiology; wastewater surveillance; sewage epidemiology; environmental surveillance (wastewater-specific only)
-- **Block B — Signal/transport:** sewer transport; in-sewer decay; RNA/biomarker degradation; sewershed; catchment; combined sewer overflow; rainfall dilution; inflow infiltration
-- **Block C — Sampling/analytical:** grab sampling; composite sampling; recovery efficiency; PCR inhibition; limit of detection; limit of quantification; matrix effect
-- **Block D — Normalization:** flow normalization; population normalization; PMMoV; crAssphage; biomarker normalization; fecal indicator
-- **Block E — Back-calculation/identifiability:** back-calculation; deconvolution; shedding kernel; parameter identifiability; state-space model; Bayesian reconstruction; effective reproduction number wastewater
-- **Block F — Uncertainty:** uncertainty propagation; Monte Carlo; error propagation; sensitivity analysis; censored data; nondetect
+### 2.1 Expanded core synonym set
 
-A record is eligible if it matches Block A AND at least one of Blocks B–F.
+In addition to the terms already used in the previous version, the following were evaluated and are included below: *wastewater epidemiology; sewage-based epidemiology; sewer epidemiology; sewage surveillance; wastewater monitoring; community wastewater; municipal wastewater; wastewater biomarker; sewage biomarker;* and three compound phrases — *(wastewater analysis AND population); (wastewater AND community health); (wastewater AND population consumption); (wastewater AND infection incidence/prevalence)*.
 
-## 3. Web of Science (Core Collection) — full search string
+**"Environmental surveillance" is deliberately excluded as a standalone term.** Used alone it retrieves air, soil, and general environmental-monitoring literature far outside this review's scope. It is used only in the fixed phrase "wastewater environmental surveillance" or paired with wastewater/sewage/sewer, consistent with instruction.
 
-Field tags: TS = Topic (title, abstract, author keywords, Keywords Plus).
+### 2.2 Web of Science
 
 ```
-TS=("wastewater-based epidemiology" OR "wastewater surveillance" OR "sewage epidemiology"
-    OR "wastewater-based surveillance")
+TS=("wastewater-based epidemiology" OR "wastewater-based surveillance"
+     OR "wastewater surveillance" OR "wastewater epidemiology"
+     OR "sewage epidemiology" OR "sewage-based epidemiology"
+     OR "sewer epidemiology" OR "sewage surveillance"
+     OR "wastewater monitoring" OR "community wastewater"
+     OR "municipal wastewater" OR "wastewater biomarker*"
+     OR "sewage biomarker*"
+     OR (wastewater NEAR/3 (population OR "community health"
+         OR consumption OR incidence OR prevalence)))
+```
+
+### 2.3 Scopus
+
+```
+TITLE-ABS-KEY("wastewater-based epidemiology" OR "wastewater-based surveillance"
+     OR "wastewater surveillance" OR "wastewater epidemiology"
+     OR "sewage epidemiology" OR "sewage-based epidemiology"
+     OR "sewer epidemiology" OR "sewage surveillance"
+     OR "wastewater monitoring" OR "community wastewater"
+     OR "municipal wastewater" OR "wastewater biomarker*"
+     OR "sewage biomarker*"
+     OR (wastewater W/3 (population OR "community health"
+         OR consumption OR incidence OR prevalence)))
+```
+
+### 2.4 PubMed
+
+PubMed has no native proximity operator comparable to NEAR/W — phrase and MeSH combinations substitute for it, per instruction.
+
+```
+("wastewater-based epidemiology"[tiab] OR "wastewater-based surveillance"[tiab]
+ OR "wastewater surveillance"[tiab] OR "wastewater epidemiology"[tiab]
+ OR "sewage epidemiology"[tiab] OR "sewage-based epidemiology"[tiab]
+ OR "sewer epidemiology"[tiab] OR "sewage surveillance"[tiab]
+ OR "wastewater monitoring"[tiab] OR "community wastewater"[tiab]
+ OR "municipal wastewater"[tiab] OR "wastewater biomarker*"[tiab]
+ OR "sewage biomarker*"[tiab]
+ OR ("wastewater"[tiab] AND (population[tiab] OR "community health"[tiab]
+     OR consumption[tiab] OR incidence[tiab] OR prevalence[tiab]))
+ OR "Wastewater-Based Epidemiological Monitoring"[mh])
+```
+
+**This core search block is itself Module 1** (WBE core and population inference) — it is run and exported on its own, not only as a filter for the other eight.
+
+---
+
+## 3. Module 2 — Sewer transport and in-sewer transformation
+
+Built as an **independent** search that does not require a WBE label, per instruction — otherwise foundational sewer-process literature that never uses "wastewater-based epidemiology" is missed entirely.
+
+### Web of Science
+```
+TS=((sewer* OR "wastewater network*" OR "sewer system*")
+     NEAR/5 (biomarker* OR virus* OR pathogen* OR pharmaceutical* OR metabolite*))
 AND
-TS=("sewer transport" OR "in-sewer decay" OR "biomarker degradation" OR sewershed OR catchment
-    OR "combined sewer overflow" OR "rainfall dilution" OR "inflow and infiltration"
-    OR "grab sampling" OR "composite sampling" OR "recovery efficiency" OR "PCR inhibition"
-    OR "limit of detection" OR "limit of quantification" OR "matrix effect"
-    OR "flow normalization" OR "population normalization" OR PMMoV OR crAssphage
-    OR "biomarker normalization" OR "fecal indicator"
-    OR "back-calculation" OR deconvolution OR "shedding kernel" OR "parameter identifiability"
-    OR "state-space model" OR "Bayesian reconstruction" OR "effective reproduction number"
-    OR "uncertainty propagation" OR "Monte Carlo" OR "error propagation" OR "sensitivity analysis"
-    OR "censored data" OR nondetect)
+TS=(decay OR degradation OR transformation OR sorption OR partition*
+     OR sediment* OR resuspension OR biofilm* OR "residence time" OR "travel time")
 ```
 
-- **Refined by:** Document Types = Article OR Review Article OR Proceedings Paper OR Early Access
-- **Language:** English (with a documented, unsearched exclusion count for non-English records)
-- **Timespan:** 2000-01-01 to present (2026-07-13) — 2000 chosen as a conservative lower bound predating modern WBE's post-2010s growth, to avoid an artificial recency cutoff
-- **Database:** Web of Science Core Collection (SCI-EXPANDED, SSCI; Conference Proceedings Citation Index optional second pass)
-- **Search date field to record at execution:** exact run date/time, database version/coverage date, and the searcher's institution (coverage varies by subscription)
-
-## 4. Scopus — full search string
-
-Field tags: TITLE-ABS-KEY.
-
+### Scopus
 ```
-TITLE-ABS-KEY("wastewater-based epidemiology" OR "wastewater surveillance" OR "sewage epidemiology"
-    OR "wastewater-based surveillance")
+TITLE-ABS-KEY((sewer* OR "wastewater network*" OR "sewer system*")
+     W/5 (biomarker* OR virus* OR pathogen* OR pharmaceutical* OR metabolite*))
 AND
-TITLE-ABS-KEY("sewer transport" OR "in-sewer decay" OR "biomarker degradation" OR sewershed OR catchment
-    OR "combined sewer overflow" OR "rainfall dilution" OR "inflow and infiltration"
-    OR "grab sampling" OR "composite sampling" OR "recovery efficiency" OR "PCR inhibition"
-    OR "limit of detection" OR "limit of quantification" OR "matrix effect"
-    OR "flow normalization" OR "population normalization" OR PMMoV OR crAssphage
-    OR "biomarker normalization" OR "fecal indicator"
-    OR "back-calculation" OR deconvolution OR "shedding kernel" OR "parameter identifiability"
-    OR "state-space model" OR "Bayesian reconstruction" OR "effective reproduction number"
-    OR "uncertainty propagation" OR "Monte Carlo" OR "error propagation" OR "sensitivity analysis"
-    OR "censored data" OR nondetect)
-AND PUBYEAR > 1999
-AND (LIMIT-TO(DOCTYPE,"ar") OR LIMIT-TO(DOCTYPE,"re") OR LIMIT-TO(DOCTYPE,"cp"))
-AND (LIMIT-TO(LANGUAGE,"English"))
+TITLE-ABS-KEY(decay OR degradation OR transformation OR sorption OR partition*
+     OR sediment* OR resuspension OR biofilm* OR "residence time" OR "travel time")
 ```
 
-## 5. PubMed — full search string
-
-Field tags: [tiab] = title/abstract, [mh] = MeSH term.
-
+### PubMed
 ```
-("wastewater-based epidemiology"[tiab] OR "wastewater surveillance"[tiab] OR "sewage epidemiology"[tiab]
-    OR "wastewater-based surveillance"[tiab] OR "Wastewater-Based Epidemiological Monitoring"[mh])
+((sewer*[tiab] OR "wastewater network*"[tiab] OR "sewer system*"[tiab])
+ AND (biomarker*[tiab] OR virus*[tiab] OR pathogen*[tiab] OR pharmaceutical*[tiab] OR metabolite*[tiab]))
 AND
-("sewer transport"[tiab] OR "in-sewer decay"[tiab] OR "biomarker degradation"[tiab] OR sewershed[tiab]
-    OR catchment[tiab] OR "combined sewer overflow"[tiab] OR "rainfall dilution"[tiab]
-    OR "inflow and infiltration"[tiab] OR "grab sampling"[tiab] OR "composite sampling"[tiab]
-    OR "recovery efficiency"[tiab] OR "PCR inhibition"[tiab] OR "limit of detection"[tiab]
-    OR "limit of quantification"[tiab] OR "matrix effect"[tiab] OR "flow normalization"[tiab]
-    OR "population normalization"[tiab] OR PMMoV[tiab] OR crAssphage[tiab]
-    OR "biomarker normalization"[tiab] OR "fecal indicator"[tiab] OR "back-calculation"[tiab]
-    OR deconvolution[tiab] OR "shedding kernel"[tiab] OR "parameter identifiability"[tiab]
-    OR "state-space model"[tiab] OR "Bayesian reconstruction"[tiab]
-    OR "effective reproduction number"[tiab] OR "uncertainty propagation"[tiab]
-    OR "Monte Carlo"[tiab] OR "error propagation"[tiab] OR "sensitivity analysis"[tiab]
-    OR "censored data"[tiab] OR nondetect[tiab])
-AND ("2000/01/01"[dp] : "3000"[dp])
-AND (english[la])
-NOT (comment[pt] OR editorial[pt])
+(decay[tiab] OR degradation[tiab] OR transformation[tiab] OR sorption[tiab] OR partition*[tiab]
+ OR sediment*[tiab] OR resuspension[tiab] OR biofilm*[tiab] OR "residence time"[tiab] OR "travel time"[tiab])
 ```
 
-- **PubMed-specific note:** MeSH term "Wastewater-Based Epidemiological Monitoring" was introduced 2023 and will not tag pre-2023 records retrospectively in all cases — the [tiab] terms are the primary recall mechanism, MeSH is supplementary.
+Title/abstract screening decides relevance to WBE signal interpretation specifically — this module is intentionally broader than Chapters 3–4's scope at the search stage, per instruction, so genuine sewer-process studies are not pre-filtered out by requiring a WBE label they were never written with.
 
-## 6. What could not be done and why (tested this session, 2026-07-13)
+---
 
-This section states plainly what this review's environment can and cannot do, so the remediation plan below is built on a real, tested constraint rather than an assumption:
+## 4. Module 3 — Rainfall, infiltration/inflow, and CSO
 
-- **No Web of Science or Scopus access exists in this environment.** A tool-registry search for any Web of Science, Scopus, or bibliographic-database connector returned no such tool. There is no institutional login, API key, or MCP connector available to this session for either database. This is not a permissions issue that can be worked around — the capability simply is not present.
-- **PubMed's own search/E-utilities interface is not reachable either.** WebFetch — the only tool capable of retrieving a live web page's content — was re-tested against `pubmed.ncbi.nlm.nih.gov` and a DOI-resolved publisher link immediately before this document was written, and both returned HTTP 403 Forbidden, consistent with every attempt made throughout this entire project (Chapters 1–8). This means this session cannot execute the PubMed string above and retrieve a real hit count, cannot page through PubMed results, and cannot retrieve PubMed's structured XML/CSV export.
-- **Consequently, no genuine hit count, deduplication count, or PRISMA flow-diagram number can be produced for any of the three databases without fabricating it.** Per this review's standing rule against fabrication, no such numbers are presented here. Any document showing specific hit counts for these three searches, produced by this session, should be treated as unverified until someone with actual database access runs the strings above and reports the real numbers back.
-- **Full-text retrieval remains blocked for all 51 references already in this review**, for the same reason (WebFetch 403 on every publisher/PMC/DOI-resolver domain, retested this session). This means items 4–6 of the requested remediation (full-text verification table, paragraph-level claim audit against page numbers, and cell-level Table 3–6 evidence audit) cannot be produced with real page/table/figure citations by this session under current tool access.
+Standalone, and deliberately not limited to "rainfall dilution" — rainfall affects wastewater signals through multiple, distinct mechanisms (dilution, resuspension, network hydraulics, overflow bypass), not dilution alone.
 
-## 7. What this session can still do without database or full-text access
+### Web of Science
+```
+TS=(sewer* OR wastewater OR sewage)
+AND
+TS=(rainfall OR precipitation OR "wet weather" OR "storm event*" OR "first flush"
+     OR "infiltration and inflow" OR "inflow and infiltration"
+     OR "combined sewer overflow*" OR "sanitary sewer overflow*"
+     OR dilution OR "antecedent dry period" OR "hydraulic residence time")
+```
 
-- Maintain and refine the search strategy above so it is ready to execute the moment access exists.
-- Screen titles/abstracts of records if the user (or someone with access) supplies the raw export (RIS/CSV/BibTeX) from running the searches above — title/abstract screening does not require full-text access.
-- Continue flagging every quantitative claim in Chapters 1–8 as "pending full-text verification," which the review already does systematically via the Citation Verification Table and Pending Verification List.
-- Read and audit full text directly if the user supplies PDFs or pasted full text for specific papers — this session can do genuine page-level verification for any paper the user provides directly, even though it cannot fetch that paper itself.
+### Scopus
+```
+TITLE-ABS-KEY(sewer* OR wastewater OR sewage)
+AND
+TITLE-ABS-KEY(rainfall OR precipitation OR "wet weather" OR "storm event*" OR "first flush"
+     OR "infiltration and inflow" OR "inflow and infiltration"
+     OR "combined sewer overflow*" OR "sanitary sewer overflow*"
+     OR dilution OR "antecedent dry period" OR "hydraulic residence time")
+```
+
+### PubMed
+```
+(sewer*[tiab] OR wastewater[tiab] OR sewage[tiab])
+AND
+(rainfall[tiab] OR precipitation[tiab] OR "wet weather"[tiab] OR "storm event*"[tiab]
+ OR "first flush"[tiab] OR "infiltration and inflow"[tiab] OR "inflow and infiltration"[tiab]
+ OR "combined sewer overflow*"[tiab] OR "sanitary sewer overflow*"[tiab]
+ OR dilution[tiab] OR "antecedent dry period"[tiab] OR "hydraulic residence time"[tiab])
+```
+
+---
+
+## 5. Module 4 — Sampling and analytical uncertainty
+
+### Web of Science
+```
+TS=(wastewater OR sewage OR sewer*)
+AND
+TS=("grab sampl*" OR "composite sampl*" OR "recovery efficiency" OR "PCR inhibition"
+     OR "limit of detection" OR "limit of quantification" OR "matrix effect*"
+     OR "process control*" OR "extraction efficiency")
+```
+
+### Scopus
+```
+TITLE-ABS-KEY(wastewater OR sewage OR sewer*)
+AND
+TITLE-ABS-KEY("grab sampl*" OR "composite sampl*" OR "recovery efficiency" OR "PCR inhibition"
+     OR "limit of detection" OR "limit of quantification" OR "matrix effect*"
+     OR "process control*" OR "extraction efficiency")
+```
+
+### PubMed
+```
+(wastewater[tiab] OR sewage[tiab] OR sewer*[tiab])
+AND
+("grab sampl*"[tiab] OR "composite sampl*"[tiab] OR "recovery efficiency"[tiab] OR "PCR inhibition"[tiab]
+ OR "limit of detection"[tiab] OR "limit of quantification"[tiab] OR "matrix effect*"[tiab]
+ OR "process control*"[tiab] OR "extraction efficiency"[tiab])
+```
+
+---
+
+## 6. Module 5 — Normalization and population biomarkers
+
+### Web of Science
+```
+TS=(wastewater OR sewage)
+AND
+TS=("flow normaliz*" OR "population normaliz*" OR PMMoV OR crAssphage
+     OR "biomarker normaliz*" OR "fecal indicator*" OR "population biomarker*"
+     OR creatinine OR caffeine OR paraxanthine OR ammonia OR "dynamic population")
+```
+
+### Scopus
+```
+TITLE-ABS-KEY(wastewater OR sewage)
+AND
+TITLE-ABS-KEY("flow normaliz*" OR "population normaliz*" OR PMMoV OR crAssphage
+     OR "biomarker normaliz*" OR "fecal indicator*" OR "population biomarker*"
+     OR creatinine OR caffeine OR paraxanthine OR ammonia OR "dynamic population")
+```
+
+### PubMed
+```
+(wastewater[tiab] OR sewage[tiab])
+AND
+("flow normaliz*"[tiab] OR "population normaliz*"[tiab] OR PMMoV[tiab] OR crAssphage[tiab]
+ OR "biomarker normaliz*"[tiab] OR "fecal indicator*"[tiab] OR "population biomarker*"[tiab]
+ OR creatinine[tiab] OR caffeine[tiab] OR paraxanthine[tiab] OR ammonia[tiab] OR "dynamic population"[tiab])
+```
+
+---
+
+## 7. Module 6 — Chemical WBE and back-calculation
+
+### Web of Science
+```
+TS=(wastewater OR sewage)
+AND
+TS=("illicit drug*" OR pharmaceutical* OR "drug consumption" OR "human metabolite*"
+     OR "exposure biomarker*" OR "excretion factor*" OR "correction factor*"
+     OR "back calculation" OR "back-calculation" OR "mass balance"
+     OR "population size estimation")
+```
+
+### Scopus
+```
+TITLE-ABS-KEY(wastewater OR sewage)
+AND
+TITLE-ABS-KEY("illicit drug*" OR pharmaceutical* OR "drug consumption" OR "human metabolite*"
+     OR "exposure biomarker*" OR "excretion factor*" OR "correction factor*"
+     OR "back calculation" OR "back-calculation" OR "mass balance"
+     OR "population size estimation")
+```
+
+### PubMed
+```
+(wastewater[tiab] OR sewage[tiab])
+AND
+("illicit drug*"[tiab] OR pharmaceutical*[tiab] OR "drug consumption"[tiab] OR "human metabolite*"[tiab]
+ OR "exposure biomarker*"[tiab] OR "excretion factor*"[tiab] OR "correction factor*"[tiab]
+ OR "back calculation"[tiab] OR "back-calculation"[tiab] OR "mass balance"[tiab]
+ OR "population size estimation"[tiab])
+```
+
+---
+
+## 8. Module 7 — Pathogen reconstruction and epidemiological modelling
+
+### Web of Science
+```
+TS=(wastewater OR sewage)
+AND
+TS=("pathogen shedding" OR "viral shedding" OR "fecal shedding"
+     OR "shedding distribution" OR "shedding kernel" OR "incidence estimation"
+     OR "prevalence estimation" OR deconvolution OR "reproduction number"
+     OR nowcast* OR "state-space" OR "compartmental model*" OR SEIR
+     OR "latent infection state")
+```
+
+### Scopus
+```
+TITLE-ABS-KEY(wastewater OR sewage)
+AND
+TITLE-ABS-KEY("pathogen shedding" OR "viral shedding" OR "fecal shedding"
+     OR "shedding distribution" OR "shedding kernel" OR "incidence estimation"
+     OR "prevalence estimation" OR deconvolution OR "reproduction number"
+     OR nowcast* OR "state-space" OR "compartmental model*" OR SEIR
+     OR "latent infection state")
+```
+
+### PubMed
+```
+(wastewater[tiab] OR sewage[tiab])
+AND
+("pathogen shedding"[tiab] OR "viral shedding"[tiab] OR "fecal shedding"[tiab]
+ OR "shedding distribution"[tiab] OR "shedding kernel"[tiab] OR "incidence estimation"[tiab]
+ OR "prevalence estimation"[tiab] OR deconvolution[tiab] OR "reproduction number"[tiab]
+ OR nowcast*[tiab] OR "state-space"[tiab] OR "compartmental model*"[tiab] OR SEIR[tiab]
+ OR "latent infection state"[tiab])
+```
+
+---
+
+## 9. Module 8 — Uncertainty, identifiability, and validation
+
+### Web of Science
+```
+TS=(wastewater OR sewage)
+AND
+TS=("uncertainty propagat*" OR "Monte Carlo" OR "error propagat*" OR "sensitivity analysis"
+     OR "censored data" OR nondetect OR "parameter identifiability"
+     OR "structural identifiability" OR "practical identifiability"
+     OR "state observability" OR validation)
+```
+
+### Scopus
+```
+TITLE-ABS-KEY(wastewater OR sewage)
+AND
+TITLE-ABS-KEY("uncertainty propagat*" OR "Monte Carlo" OR "error propagat*" OR "sensitivity analysis"
+     OR "censored data" OR nondetect OR "parameter identifiability"
+     OR "structural identifiability" OR "practical identifiability"
+     OR "state observability" OR validation)
+```
+
+### PubMed
+```
+(wastewater[tiab] OR sewage[tiab])
+AND
+("uncertainty propagat*"[tiab] OR "Monte Carlo"[tiab] OR "error propagat*"[tiab] OR "sensitivity analysis"[tiab]
+ OR "censored data"[tiab] OR nondetect[tiab] OR "parameter identifiability"[tiab]
+ OR "structural identifiability"[tiab] OR "practical identifiability"[tiab]
+ OR "state observability"[tiab] OR validation[tiab])
+```
+
+---
+
+## 10. Proximity operators — database-specific syntax used above
+
+| Concept | Web of Science | Scopus | PubMed substitute |
+|---|---|---|---|
+| Sewer transport terms near degradation terms | `NEAR/5` | `W/5` | phrase + AND (no native proximity) |
+| Population near normalization | `NEAR/3` | `W/3` | `"population normaliz*"` as a fixed phrase instead |
+| Wastewater near back-calculation | not used directly — Module 6 uses plain AND | not used directly | plain AND |
+| Uncertainty near propagation | folded into fixed phrase `"uncertainty propagat*"` | same | same |
+
+Truncation (`*`) is used throughout for word-ending variants (e.g., `sewer*` = sewer/sewers/sewershed; `pharmaceutical*` = pharmaceutical/pharmaceuticals). No module relies on a single, fully-fixed phrase alone — every module combines at least 6–10 term variants per concept to avoid the narrow-single-phrase failure mode flagged in the review of the prior version.
+
+---
+
+## 11. Date and language scope — sensitivity check required at execution
+
+The previous version fixed 2000–present, English-only, without testing that choice. At execution, run in this order:
+
+1. **First, run each module with no date restriction ("earliest available" to present)** and record the year of the earliest 20 hits for each module.
+2. **Inspect whether pre-2000 records include substantively relevant environmental-monitoring or wastewater-inference studies** (e.g., early poliovirus environmental surveillance, pre-1990s sewage chemistry). If yes, lower the date floor accordingly rather than assuming 2000 is safe.
+3. **Record the non-English hit count separately** for every module (Web of Science and Scopus both support a language facet without excluding at query time; PubMed's `[la]` filter can be run as a second, comparison query). Do not discard this count — report it.
+4. **If non-English records are ultimately excluded from full-text review**, state this explicitly as a documented **language bias** in the review's limitations section, with the excluded count named, not merely implied.
+
+---
+
+## 12. Preprint and conference-paper stratification
+
+Do not merge these three evidence tiers when reporting search results or building the final citation set:
+
+- **Peer-reviewed journal articles** — eligible for the review's primary evidence base without further flagging beyond this review's existing evidence-type classification (primary WBE study / systematic review / general methodology).
+- **Preprints** (arXiv, medRxiv, bioRxiv, SSRN, ChemRxiv) — tag separately at export. At screening, search for a subsequently published peer-reviewed version by title and author list; if found, use the published version and drop the preprint from the counted total (retain a note of the correspondence, as this review already does for [27] Hsu et al.'s possible medRxiv counterpart and [22] Zafeiriadou et al.'s SSRN-to-published-version correction). If no published version exists, retain the preprint but keep its "preprint, not peer-reviewed" tag through every downstream table — this review already does this for [37], [39], and [45].
+- **Conference proceedings papers** — treat as method-discovery sources only (i.e., useful for finding that a technique exists or a group is working on a problem), not as standalone support for a specific quantitative or comparative finding in the main text, consistent with how this review already treats non-primary sources.
+
+---
+
+## 13. Citation tracking (backward, forward, and seed recall)
+
+Formal database searching alone is not sufficient and must be paired with:
+
+- **Backward citation searching**: pull the reference lists of the review's existing systematic reviews already in evidence ([2] Boogaerts et al., [12] Punch et al., [17] Zhu et al., [34] Ahmed et al., [40] Wang et al.) and check their cited primary studies against the search results — any primary study cited by an existing systematic review that the new search did not retrieve is a specific, checkable recall failure.
+- **Forward citation searching ("cited by")**: for the same five reviews plus the highest-value primary studies ([13] Rainey et al., [35] Huisman et al., [44] Dai et al.), pull papers that cite them and screen for relevance.
+- **Seed-recall check against this review's existing 51 references**: run the finished search strategy and confirm it retrieves the peer-reviewed/preprint items already cited in this review. Institutional/policy/news sources ([1], [4], [5], [11], [14], [15]) and one institutional program report ([7]) are excluded from this check since they are not indexed journal records a bibliographic-database search would be expected to return.
+
+**Recall test set (45 of 51 references; 6 institutional/policy sources excluded per above), tagged by primary module:**
+
+| Module | Seed references to confirm are recalled |
+|---|---|
+| 1 — WBE core | [2] Boogaerts et al. (2024); [12] Punch et al. (2025); [17] Zhu et al. (2025); [25] Chen et al. (2024); [34] Ahmed et al. (2026) |
+| 2 — Sewer transport | [6] Guo et al. (2023); [9] Jung et al. (2026); [10] Miura et al. (2021); [16] Zhang et al. (2023) |
+| 3 — Rainfall/CSO | [3] Darling et al. (2025); [8] Janssens et al. (2022) |
+| 4 — Sampling/analytical | [18] Ahmed et al. (2022); [19] Cha et al. (2023); [20] Kim et al. (2022); [21] Williams et al. (2024); [22] Zafeiriadou et al. (2024); [23] Elbait et al. (2024); [24] Pecson et al. (2021) |
+| 5 — Normalization | [26] Langeveld et al. (2022); [27] Hsu et al. (2022); [28] Maal-Bared et al. (2023); [29] Dhiyebi et al. (2023); [30] Chen et al. (2014); [31] Been et al. (2014); [32] Baz-Lomba et al. (2019); [32b] Thomas et al. (2017); [33] Chettleburgh et al. (2023) |
+| 6 — Chemical back-calculation | [36] Ramin et al. (2017); [41] Zuccato et al. (2008); [46] Jones et al. (2014); [49] Pei et al. (2016); [50] Croft et al. (2020) |
+| 7 — Pathogen reconstruction | [35] Huisman et al. (2022); [38] Ai et al. (2022); [40] Wang et al. (2026); [42] McMahan et al. (2021); [43] Schoen et al. (2022); [44] Dai et al. (2024); [45] Alhassan et al. (2025) |
+| 8 — Uncertainty/identifiability | [37] Deva et al. (2021); [39] Liyanage et al. (2025); [47] Yang et al. (2024); [48] Safford et al. (2022) |
+
+**If any of the 45 seed references above is not retrieved by its assigned module's search string, the string must be revised and re-tested before the search is considered final** — a formal search strategy that fails to recall its own review's already-identified core evidence is not fit for use, regardless of how comprehensive its terminology otherwise looks on paper.
+
+---
+
+## 14. Peer review of the search strategy (PRESS)
+
+Before execution, the strategy above should be checked by at least one person familiar with systematic-review search methodology (a research librarian or equivalent), against the **PRESS** (Peer Review of Electronic Search Strategies) checklist:
+
+- Concept coverage — are all 8 modules' concept blocks complete relative to the review's actual scope (Chapters 3–8)?
+- Boolean and proximity logic — correct nesting, no unintended AND/OR precedence errors
+- Spelling and truncation — correct truncation symbols per database (`*` here; confirm no database-specific deviation, e.g., Ovid platforms use different wildcard characters if PubMed is later run via Ovid MEDLINE instead of PubMed directly)
+- Line/syntax translation — correct field-tag translation across the three databases (Section 10's table)
+- Over-restriction — no unnecessary limits beyond Section 11's date/language plan
+- Missed limiters — check whether document-type or subject-area limiters are silently over- or under-inclusive
+- **Seed recall** — confirm Section 13's 45-reference recall check was actually run and passed, not merely planned
+
+This review does not have a research librarian available in-session; this checklist is provided so the eventual executor (or their institution) can apply it before results are treated as final.
+
+---
+
+## 15. Merging, deduplication, and PRISMA (to be performed after execution, not now)
+
+1. Export all 9 module result sets (Section 2 core + Modules 2–8) separately, in RIS or CSV, each retaining its module tag.
+2. Merge into one master list; deduplicate first by DOI, then by normalized title+year+first-author for records lacking a DOI.
+3. Record, per module: raw hit count, and post-dedup unique contribution (i.e., how many records that module uniquely contributed that no other module also retrieved) — this quantifies whether the 8-module restructuring actually captured records the single-string approach would have missed, which is the entire point of this round's revision.
+4. Only after deduplication does formal PRISMA counting begin (identified → duplicates removed → title/abstract screened → full texts sought → full texts assessed → included), with exclusion reasons logged at each stage.
+5. **No PRISMA numbers are produced by this document or by this session** — Section 16 states why.
+
+---
+
+## 16. What could not be done and why (tested this session)
+
+This section states plainly what this review's environment can and cannot do:
+
+- **No Web of Science or Scopus access exists in this environment.** A tool-registry search for any such connector returned none. There is no institutional login, API key, or MCP connector available to this session for either database.
+- **PubMed's own search interface is not reachable either.** WebFetch was re-tested against `pubmed.ncbi.nlm.nih.gov` and a DOI-resolved publisher link and returned HTTP 403 Forbidden both times, consistent with every attempt made throughout this project across Chapters 1–8.
+- **Consequently, no genuine hit count, deduplication count, or PRISMA number can be produced without fabricating it**, and none is presented in this document. Any hit-count or PRISMA figure attributed to this session should be treated as unverified.
+- **Full-text retrieval remains blocked for all 51 existing references**, for the same reason.
+
+## 17. What this session can still do without database or full-text access
+
+- Maintain and further refine this strategy so it is ready to execute the moment access exists.
+- Screen titles/abstracts if the user or an executor supplies the raw RIS/CSV/BibTeX export from running Sections 2–9 above.
+- Perform the seed-recall check in Section 13 manually against a supplied export.
+- Read and audit full text directly for any paper the user supplies as a PDF or pasted text — this session can do genuine page-level verification for anything provided directly, even though it cannot fetch it independently.
+
+---
+
+## 18. Deliverables expected back from whoever executes this strategy
+
+- Raw export files (RIS, BibTeX, or CSV) for the core search and all 8 modules, kept separate before merging
+- Per-module raw hit count and post-dedup unique-contribution count (Section 15.3)
+- Full search history log or screenshots showing the exact string executed per database (query strings can silently auto-correct or truncate in some database interfaces — a log confirms what was actually run, not just what was intended)
+- Pre- and post-deduplication total record counts
+- Confirmation of the Section 13 seed-recall check outcome (pass/fail per module, with any string revisions made in response)
+- A list of records for which full text could not be obtained even with institutional access, and why (paywall beyond subscription, retracted, no digital copy, etc.)
+
+Until these are returned, per instruction: Chapters 1–8 remain frozen, Chapter 9 does not start, no further Word/layout work is performed, no hypothetical PRISMA numbers are generated, and the Evidence Freeze Audit continues to report the true 0/51 full-text-verification state.
