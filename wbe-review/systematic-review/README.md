@@ -96,19 +96,19 @@ python3 scripts/deduplicate_records.py \
     --log-dir logs
 ```
 
-The script reads every `.ris`, `.csv`, `.nbib` (and, as a fallback/experimental parser only, `.bib`) file under `data/raw/{wos,scopus,pubmed}/`, normalizes them to a common schema, and deduplicates in this priority order:
+The script reads every `.ris`, `.csv`, `.nbib` (and, as a fallback/experimental parser only, `.bib`) file under `data/raw/{wos,scopus,pubmed}/`, normalizes them to a common schema, and applies **only three auto-merge rules** — everything else is left for human review, never silently merged:
 
-1. Canonical-DOI exact match (DOI strings are normalized for case, whitespace, `doi:`/URL prefixes, URL-encoding, trailing punctuation, and a trailing `[doi]` tag before comparison)
-2. Canonical-PMID exact match (a value is only treated as a PMID if, after stripping an optional `PMID:` prefix, it is purely numeric — a WoS accession number like `WOS:000123456789` is never misread as a PMID)
-3. Normalized title + publication year
-4. Normalized title + first-author surname
-5. Normalized title + publication year + first-author surname
+1. **Canonical-DOI exact match → confirmed duplicate, always merged.** DOI strings are normalized for case, whitespace, `doi:`/URL prefixes, URL-encoding, trailing punctuation, and a trailing `[doi]` tag before comparison. If the merged pair's titles differ, a metadata-discrepancy note is logged, but the merge still proceeds — DOI is authoritative.
+2. **Canonical-PMID exact match → confirmed duplicate, always merged**, on the same basis. A value is only ever treated as a PMID if it comes from an explicit `PMID`/`PM` tag (RIS) or a `PMID:`-prefixed value — a plain numeric RIS `AN` field (a database accession number, not a PMID) is never misread as one; see `wos_accession_number`/`scopus_eid`/`source_accession_id` below.
+3. **Normalized title + publication year + first-author surname exact match → confirmed duplicate, but only if two further checks both pass:** (a) **no identifier conflict** — if both records carry a non-empty DOI or PMID and those values differ, the match is downgraded to `possible_duplicate` with `possible_version_relation=conflicting_persistent_identifiers`, never merged; (b) **no version conflict** — if one record's title/journal suggests a correction/erratum, protocol, preprint, or conference abstract while the other looks like a primary/journal record, the match is downgraded to `possible_duplicate` (e.g. `primary_or_unclassified_vs_preprint`), never merged.
 
-Matches found only via rules 3–5 (title-based, not DOI/PMID) are additionally screened for a likely **different-version pair** — a correction/erratum, a protocol vs. a results paper, a conference abstract vs. the eventual journal article, or a preprint vs. its published version — using title and journal/source-name heuristics. A detected version conflict downgrades what would otherwise be an automatic merge to a `possible_duplicate` entry instead, with `publication_version` and `possible_version_relation` recorded and `manual_duplicate_decision` left blank for a human reviewer to resolve — **the script never auto-decides which version to keep.** A record whose title exactly matches an existing record but whose year and first author **both** differ is, per the same rule, always treated as a `possible_duplicate`, never auto-merged.
+**Everything weaker than rule 3 is possible-duplicate-only and is never auto-merged**, each producing its own separate master record flagged against its closest candidate: title+year alone (author missing or different), title+first-author alone (year missing or different), title alone with insufficient other metadata, and finally a fuzzy title-overlap fallback (Jaccard token overlap ≥ 0.8, same year). A title that exactly matches an existing record but whose year and first author **both** differ is always `possible_duplicate`, never merged, regardless of how it was found. All of these route to `templates/manual_duplicate_review.csv` for a human decision — **no script in this toolkit ever automatically applies a decision from that file**; doing so would require a separate, explicit, auditable "apply" step that does not currently exist.
 
-A record confirmed as a duplicate is merged into its master record's provenance rather than discarded: `master_records.csv` gains `database_sources`, `search_modules`, `source_files`, `duplicate_record_ids`, and `occurrence_count` columns that fully aggregate every database and module a given paper was actually found under (a paper retrieved by WoS/core, Scopus/module05, and PubMed/module07 shows all three, not just its first-seen source), plus empty-field backfill (if the first-seen copy is missing an abstract, DOI, etc. that a later duplicate has, the master record is filled in rather than left blank).
+A confirmed duplicate is merged into its master record's provenance rather than discarded: `master_records.csv` gains `database_sources`, `search_modules`, `source_files`, `duplicate_record_ids`, and `occurrence_count` columns that fully aggregate every database and module a given paper was actually found under, plus empty-field backfill (if the first-seen copy is missing an abstract, DOI, etc. that a later duplicate has, the master record is filled in). **After every backfill, the master record is re-indexed** so a later, still-unprocessed record can chain-match it via a newly-available DOI/PMID/title/author — e.g., record A (no DOI) merges with record B (same title/year/author, has a DOI) via rule 3, backfilling the DOI onto the shared master; record C (a differently-worded title, but the same DOI as B) then matches that master via rule 1, arriving at one master record with `occurrence_count=3`.
 
-Outputs written to `data/processed/`: `master_records.csv`, `confirmed_duplicates.csv`, `possible_duplicates.csv`, `database_module_summary.csv`, `deduplication_log.txt`, and `parsing_quality_report.csv` (per-source-file parse statistics — records parsed, missing-field counts, and prominent warnings for a file parsing to zero records, more than 5% of records missing a title, or an unrecognized database/module in the filename/directory). See `scripts/deduplicate_records.py --help` for full option documentation. The script refuses to run and exits with a clear message if `data/raw/` contains no real export files (it will not silently produce empty or synthetic-looking output framed as real).
+Multiple DOI-like values on a single record (multiple RIS `DO` tags, or multiple NBIB `AID`/`LID` `[doi]` values) are canonicalized, deduplicated, and checked against the standard DOI pattern (`^10\.\d{4,9}/\S+$`); if two or more **distinct, valid** DOIs remain, the record's `DOI` field is left blank (never silently guessed), `multiple_conflicting_dois=TRUE`, and all candidates are retained in `doi_candidates` for manual review, with a prominent warning in both the log and `parsing_quality_report.csv`.
+
+Outputs written to `data/processed/`: `master_records.csv`, `confirmed_duplicates.csv`, `possible_duplicates.csv`, `database_module_summary.csv` (derived from the *original input records*, each counted exactly once, to avoid double-counting a record that both contributed to a master's aggregated provenance and has its own confirmed-duplicate row), `deduplication_log.txt`, `parsing_quality_report.csv`, and **`deduplication_integrity_report.md`/`.csv`** — an automatic post-run consistency check (input records = master + confirmed duplicates; every input record accounted for exactly once; no duplicate points to a nonexistent or chained master; each master's `occurrence_count` matches its aggregated sources; the database/module summary reconciles with the original input) that reports `PASS`, `PASS_WITH_WARNINGS`, or `FAIL`. **A `FAIL` status makes the script exit with a non-zero status code, and that output must not be used for screening or PRISMA counting until resolved.** See `scripts/deduplicate_records.py --help` for full option documentation. The script refuses to run and exits with a clear message if `data/raw/` contains no real export files.
 
 ## 6b. How to check seed recall
 
@@ -122,7 +122,19 @@ python3 scripts/check_seed_recall.py \
     --output-dir reports
 ```
 
-Matching priority: (1) canonical DOI, (2) canonical PMID, (3) normalized title + year + first author, (4) normalized title alone — a title-only match is still reported as `RECALLED` but with `manual_confirmation_required=TRUE`, since a shared title alone is not sufficient to auto-confirm two records are the same paper. A seed is marked `UNTESTABLE` only when it has neither a DOI/PMID nor a usable title recorded in `seed_studies.csv` (in practice, none of the 44 real seeds fall into this category — all have titles). Outputs: `reports/seed_recall_report.csv` (per-seed detail, including `match_basis`, `matched_record_id`, `matched_title`, `matched_database_sources`, `matched_search_modules`) and `reports/seed_recall_summary.md`. Per Section 13 of the search strategy document, any seed marked `NOT_RECALLED` means the corresponding module's search string should be revised and re-tested before treating the search as final.
+Four status categories, and **two recall rates that must not be conflated**:
+
+- **`RECALLED_CONFIRMED`** — matched by canonical DOI, canonical PMID, or normalized title+year+first-author, **and** resolved to exactly one master record. If a "confirmed-tier" basis still resolves to more than one distinct master record (e.g. a genuine DOI collision), it is *not* auto-resolved to the first — it is downgraded to `POSSIBLE_RECALL_MULTIPLE_MATCHES` instead.
+- **`POSSIBLE_RECALL`** (including `POSSIBLE_RECALL_MULTIPLE_MATCHES`) — matched by title alone, by a fuzzy title match, or matched to more than one candidate record. **Never counted as confirmed** — every match is listed in full (`matched_record_ids`, `matched_titles`), never silently narrowed to "the first one."
+- **`NOT_RECALLED`** — no match on any basis.
+- **`UNTESTABLE`** — the seed itself has neither a DOI/PMID nor a usable title (in practice, none of the 44 real seeds fall into this category).
+
+Two rates are reported in `reports/seed_recall_summary.md`, and only one of them may be quoted as "the search recalled this literature":
+
+- **`confirmed_recall_rate = RECALLED_CONFIRMED / testable seeds`** — the only rate safe to cite without further manual work.
+- `provisional_recall_rate = (RECALLED_CONFIRMED + POSSIBLE_RECALL) / testable seeds` — includes unconfirmed candidates; useful for gauging how much manual-review work remains, not as a recall figure.
+
+Outputs: `reports/seed_recall_report.csv` (per-seed detail, including `match_basis`, `matched_record_ids`, `matched_titles`, `matched_database_sources`, `matched_search_modules`, `manual_confirmation_required`) and `reports/seed_recall_summary.md`. Every `POSSIBLE_RECALL*` seed should be transferred into `templates/manual_duplicate_review.csv` for a human decision. Per Section 13 of the search strategy document, any seed marked `NOT_RECALLED` means the corresponding module's search string should be revised and re-tested before treating the search as final.
 
 ## 7. How to generate the screening tables
 
@@ -168,9 +180,13 @@ systematic-review/
 │   │   ├── scopus/
 │   │   └── pubmed/
 │   ├── interim/                — intermediate working files produced by scripts
-│   └── processed/              — final merged/deduplicated/screened outputs
+│   └── processed/              — master_records.csv, confirmed/possible_duplicates.csv,
+│                                 parsing_quality_report.csv, and
+│                                 deduplication_integrity_report.md/.csv
 ├── templates/                  — CSV templates (seed_studies.csv pre-populated with the
-│                                 review's 44 real seeds; all others header-only)
+│                                 review's 44 real seeds; manual_duplicate_review.csv for
+│                                 human resolution of every possible_duplicate; all others
+│                                 header-only) plus CONTROLLED_VOCABULARIES.md
 ├── scripts/                    — validate_search_inputs.py, deduplicate_records.py,
 │                                 check_seed_recall.py, generate_prisma_counts.py
 ├── reports/                    — script-generated reports (readiness, seed recall, PRISMA)
@@ -179,7 +195,7 @@ systematic-review/
                                   real data, kept fully separate from data/, reports/, logs/
 ```
 
-Run order, once real database access is available: `validate_search_inputs.py` → `deduplicate_records.py` → `check_seed_recall.py` → (screening, a manual step) → `generate_prisma_counts.py`.
+Run order, once real database access is available: `validate_search_inputs.py` (must not be `NOT_READY`) → `deduplicate_records.py` (check `deduplication_integrity_report.md` is `PASS`/`PASS_WITH_WARNINGS`, never proceed past a `FAIL`) → `check_seed_recall.py` → resolve every `possible_duplicate`/`POSSIBLE_RECALL*` entry in `templates/manual_duplicate_review.csv` (manual step) → title/abstract and full-text screening (manual steps) → `generate_prisma_counts.py`.
 
 ## What this toolkit is not
 

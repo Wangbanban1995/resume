@@ -1,16 +1,21 @@
 # Seed Recall Summary
 
-Run date: 2026-07-13T15:01:51.002258
+Run date: 2026-07-13T15:29:52.991297
 
 - Total seed references: 44
 - Untestable (no DOI/PMID/title recorded for the seed itself): 0
 - Testable: 44
-- Recalled: 1 (of which 0 matched by title alone and require manual confirmation)
-- Not recalled: 43
-- Recall rate (of testable seeds): 2.3%
+
+- confirmed_recalled (RECALLED_CONFIRMED): 1
+- possible_recalled (POSSIBLE_RECALL, incl. multi-match): 0 (of which 0 have multiple candidate matches requiring manual resolution)
+- not_recalled (NOT_RECALLED): 43
+- untestable (UNTESTABLE): 0
+
+- **confirmed_recall_rate = 1/44 = 2.3%** (only DOI/PMID/title+year+author matches — the only rate that may be quoted as "recalled" without further manual confirmation)
+- provisional_recall_rate = (1+0)/44 = 2.3% (includes unconfirmed title-only/fuzzy/multi-match candidates — NOT a confirmed figure)
 
 
-## Seeds not recalled — revise the corresponding module search string
+## Not recalled — revise the corresponding module search string
 
 - [2] (expected module: core): Boogaerts, T., Van Wichelen, N., Quireyns, M., Burgard, D., Bijlsma, L., Delputte, P., Gys, C., Cova
 - [3] (expected module: module03): Darling, A., Davis, B. C., Byrne, T., Deck, M., Maldonado Rivera, G. E., Price, S., Amaral-Torres, A

@@ -1,0 +1,12 @@
+2026-07-13 15:29:43,505 [INFO] Log file: tests/case10_title_year_diff_author/logs/deduplicate_records_20260713T152943.log
+2026-07-13 15:29:43,505 [INFO] deduplicate_records.py starting
+2026-07-13 15:29:43,505 [INFO] input-dir=tests/case10_title_year_diff_author output-dir=tests/case10_title_year_diff_author/output
+2026-07-13 15:29:43,506 [INFO] Parsed 2 record(s) from tests/case10_title_year_diff_author/wos/wos_core_case10_20260713.ris (database=wos, module=core)
+2026-07-13 15:29:43,507 [INFO] Deduplication complete: 2 input records -> 2 master, 0 confirmed duplicates merged, 1 flagged possible duplicates (retained as separate master entries, NOT auto-merged)
+2026-07-13 15:29:43,507 [INFO] Integrity check status: PASS (0 fail, 0 warning)
+2026-07-13 15:29:43,507 [INFO] Wrote outputs to tests/case10_title_year_diff_author/output
+2026-07-13 15:29:43,507 [INFO] master_records.csv: 2 rows
+2026-07-13 15:29:43,508 [INFO] confirmed_duplicates.csv: 0 rows
+2026-07-13 15:29:43,508 [INFO] possible_duplicates.csv: 1 rows (flagged only, retained, not auto-merged)
+2026-07-13 15:29:43,508 [INFO] parsing_quality_report.csv written for 1 source file(s)
+2026-07-13 15:29:43,508 [INFO] deduplicate_records.py finished successfully

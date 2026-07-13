@@ -1,8 +1,0 @@
-2026-07-13 15:01:50,999 [INFO] Log file: tests/case06_title_year_author_recall/logs/check_seed_recall_20260713T150150.log
-2026-07-13 15:01:50,999 [INFO] check_seed_recall.py starting
-2026-07-13 15:01:51,000 [INFO] Loaded 44 seed references from templates/seed_studies.csv
-2026-07-13 15:01:51,000 [INFO] Loaded 1 master records from tests/case06_title_year_author_recall/seed_master.csv
-2026-07-13 15:01:51,002 [INFO] Wrote tests/case06_title_year_author_recall/reports/seed_recall_report.csv and tests/case06_title_year_author_recall/reports/seed_recall_summary.md
-2026-07-13 15:01:51,002 [INFO] Recalled 1 / 44 testable seeds (0 require manual confirmation)
-2026-07-13 15:01:51,002 [WARNING] 43 seed reference(s) were NOT recalled — see tests/case06_title_year_author_recall/reports/seed_recall_summary.md. Per Section 13 of the search strategy, revise and re-test the affected module string(s) before treating the search as final.
-2026-07-13 15:01:51,002 [INFO] check_seed_recall.py finished

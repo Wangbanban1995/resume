@@ -1,0 +1,13 @@
+2026-07-13 15:29:43,677 [INFO] Log file: tests/case13_tya_doi_conflict/logs/deduplicate_records_20260713T152943.log
+2026-07-13 15:29:43,678 [INFO] deduplicate_records.py starting
+2026-07-13 15:29:43,678 [INFO] input-dir=tests/case13_tya_doi_conflict output-dir=tests/case13_tya_doi_conflict/output
+2026-07-13 15:29:43,679 [INFO] Parsed 2 record(s) from tests/case13_tya_doi_conflict/wos/wos_core_case13_20260713.ris (database=wos, module=core)
+2026-07-13 15:29:43,679 [WARNING] Title+year+author match blocked by identifier conflict (conflicting DOI: '10.9999/synthetic.test.case13b' vs '10.9999/synthetic.test.case13a') between incoming record and master c476cee3effd — flagged possible_duplicate, not merged.
+2026-07-13 15:29:43,679 [INFO] Deduplication complete: 2 input records -> 2 master, 0 confirmed duplicates merged, 1 flagged possible duplicates (retained as separate master entries, NOT auto-merged)
+2026-07-13 15:29:43,679 [INFO] Integrity check status: PASS (0 fail, 0 warning)
+2026-07-13 15:29:43,680 [INFO] Wrote outputs to tests/case13_tya_doi_conflict/output
+2026-07-13 15:29:43,680 [INFO] master_records.csv: 2 rows
+2026-07-13 15:29:43,680 [INFO] confirmed_duplicates.csv: 0 rows
+2026-07-13 15:29:43,680 [INFO] possible_duplicates.csv: 1 rows (flagged only, retained, not auto-merged)
+2026-07-13 15:29:43,680 [INFO] parsing_quality_report.csv written for 1 source file(s)
+2026-07-13 15:29:43,680 [INFO] deduplicate_records.py finished successfully

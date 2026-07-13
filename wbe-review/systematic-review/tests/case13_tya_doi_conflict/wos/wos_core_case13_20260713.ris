@@ -1,0 +1,15 @@
+TY  - JOUR
+TI  - Synthetic Title Year Author Match But DOI Conflict Test
+AU  - Doiconflict, L.
+PY  - 2020
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.case13a
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Title Year Author Match But DOI Conflict Test
+AU  - Doiconflict, L.
+PY  - 2020
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.case13b
+ER  -

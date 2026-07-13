@@ -1,0 +1,2 @@
+record_id,title,abstract,authors,year,journal,DOI,PMID,doi_candidates,multiple_conflicting_dois,source_accession_id,wos_accession_number,scopus_eid,database_source,search_module,source_file,duplicate_of_record_id,duplicate_match_basis
+4049093080e6,Synthetic Title Year Author Full Match Test,,"Fullmatch, K.",2017,Journal of Synthetic Test Data,,,,False,,,,wos,core,tests/case12_tya_confirmed/wos/wos_core_case12_20260713.ris,8060a31621e2,title_year_first_author

@@ -6,20 +6,28 @@ metadata and each seed's expected module) and cross-checks it against a real,
 deduplicated master record set (normally data/processed/master_records.csv, produced by
 deduplicate_records.py).
 
-Match priority (per instruction):
-    1. Exact canonical-DOI match
-    2. Exact canonical-PMID match
-    3. Normalized title + year + first author match
-    4. Normalized title match alone -> flagged RECALLED but manual_confirmation_required=TRUE
-       (title-only matches are not treated as fully confirmed automatically)
+Recall status categories (per instruction — a title-only match is NEVER treated as
+confirmed):
 
-A seed is marked UNTESTABLE only when it lacks enough bibliographic information to
-attempt any of the four match bases above (i.e., no DOI, no PMID, AND no usable title).
-A seed with only a title (no DOI/PMID) is still testable via basis 3 or 4.
+    RECALLED_CONFIRMED  — DOI exact match, PMID exact match, or normalized
+                           title+year+first-author exact match
+    POSSIBLE_RECALL     — normalized title alone, a fuzzy title match, or more than one
+                           master record matching this seed (multiple candidates are
+                           NEVER resolved by silently picking the first — every match is
+                           listed and the seed is routed to manual review)
+    NOT_RECALLED        — no master record matches by any basis
+    UNTESTABLE          — the seed itself has neither a DOI/PMID nor a usable title
+
+Two recall rates are reported and must not be conflated:
+    confirmed_recall_rate  = RECALLED_CONFIRMED / testable seeds
+    provisional_recall_rate = (RECALLED_CONFIRMED + POSSIBLE_RECALL) / testable seeds
+
+Only confirmed_recall_rate may be quoted as "the search recalled this review's known
+literature" — title-only/fuzzy/multi-candidate matches require human confirmation
+(tracked via templates/manual_duplicate_review.csv) before they count as confirmed.
 
 This script produces NO recall statistics of any kind when no real master record file is
-supplied or when that file contains no records — it will not report a plausible-looking
-recall rate for data it has not actually seen.
+supplied or when that file contains no records.
 
 Usage:
     python3 check_seed_recall.py --help
@@ -34,6 +42,7 @@ import csv
 import logging
 import re
 import sys
+import urllib.parse
 from datetime import datetime
 from pathlib import Path
 
@@ -62,7 +71,6 @@ def canonicalize_doi(value: str) -> str:
     v = value.strip()
     if not v:
         return ""
-    import urllib.parse
     v = urllib.parse.unquote(v)
     v = re.sub(r"(?i)^doi:\s*", "", v.strip())
     v = re.sub(r"(?i)^https?://(dx\.)?doi\.org/", "", v.strip())
@@ -102,11 +110,23 @@ def load_csv(path: Path) -> list:
         return list(csv.DictReader(f))
 
 
+def summarize_matches(matches: list):
+    databases, modules = set(), set()
+    for m in matches:
+        for db in (m.get("database_sources") or m.get("database_source", "")).split(";"):
+            if db:
+                databases.add(db)
+        for mod in (m.get("search_modules") or m.get("search_module", "")).split(";"):
+            if mod:
+                modules.add(mod)
+    return databases, modules
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Check recall of the review's 44 seed references against a real "
-                    "deduplicated master record set. Produces no output if no real "
-                    "master record data is supplied.",
+                    "deduplicated master record set, using RECALLED_CONFIRMED / "
+                    "POSSIBLE_RECALL / NOT_RECALLED / UNTESTABLE status categories.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("--seed-csv", type=Path, default=Path("templates/seed_studies.csv"))
@@ -128,8 +148,7 @@ def main():
         logger.warning(
             "Master record file %s does not exist. No real search has been executed and "
             "deduplicated yet. This script will NOT produce a recall report or recall "
-            "rate against nonexistent data. Run deduplicate_records.py against real "
-            "database exports first.", args.master_csv,
+            "rate against nonexistent data.", args.master_csv,
         )
         args.output_dir.mkdir(parents=True, exist_ok=True)
         with open(args.output_dir / "seed_recall_summary.md", "w", encoding="utf-8") as f:
@@ -140,10 +159,7 @@ def main():
 
     master = load_csv(args.master_csv)
     if not master:
-        logger.warning(
-            "Master record file %s exists but contains zero records. Treating this the "
-            "same as 'no real search executed yet'.", args.master_csv,
-        )
+        logger.warning("Master record file %s exists but contains zero records.", args.master_csv)
         args.output_dir.mkdir(parents=True, exist_ok=True)
         with open(args.output_dir / "seed_recall_summary.md", "w", encoding="utf-8") as f:
             f.write(f"# Seed Recall Summary\n\nSTATUS: NOT EXECUTED — "
@@ -169,48 +185,32 @@ def main():
             if m_year and m_author:
                 title_year_author_index.setdefault((m_title, m_year, m_author), []).append(m)
 
-    def matched_fields(matches, basis, manual_confirm):
-        databases, modules = set(), set()
-        for m in matches:
-            for db in (m.get("database_sources") or m.get("database_source", "")).split(";"):
-                if db:
-                    databases.add(db)
-            for mod in (m.get("search_modules") or m.get("search_module", "")).split(";"):
-                if mod:
-                    modules.add(mod)
-        first = matches[0]
-        return {
-            "match_basis": basis,
-            "matched_record_id": first.get("record_id", ""),
-            "matched_title": first.get("title", ""),
-            "matched_database_sources": ";".join(sorted(databases)),
-            "matched_search_modules": ";".join(sorted(modules)),
-            "manual_confirmation_required": "TRUE" if manual_confirm else "FALSE",
-        }
-
     results = []
-    n_recalled = 0
-    n_manual = 0
+    n_confirmed = n_possible = n_not_recalled = n_untestable = 0
+    n_multi_match = 0
+
     for seed in seeds:
         seed_doi = canonicalize_doi(seed.get("DOI", ""))
         seed_pmid = canonicalize_pmid(seed.get("PMID", ""))
         seed_title = normalize_title(seed.get("title", ""))
         seed_year = (seed.get("year") or "").strip()
-        seed_author = first_author_surname(seed.get("first_author", "")) or \
-            (seed.get("first_author") or "").strip().lower()
+        seed_author = (seed.get("first_author") or "").strip().lower()
+
+        out = {k: seed.get(k, "") for k in seed.keys()}
+        out.update({"recall_status": "", "failure_reason": "", "match_basis": "",
+                   "matched_record_ids": "", "matched_titles": "",
+                   "matched_database_sources": "", "matched_search_modules": "",
+                   "manual_confirmation_required": "FALSE"})
 
         if not seed_doi and not seed_pmid and not seed_title:
-            seed["recall_status"] = "UNTESTABLE"
-            seed["failure_reason"] = "Seed has neither DOI, PMID, nor a usable title recorded"
-            for k in ("match_basis", "matched_record_id", "matched_title",
-                     "matched_database_sources", "matched_search_modules",
-                     "manual_confirmation_required"):
-                seed[k] = ""
-            results.append(seed)
+            out["recall_status"] = "UNTESTABLE"
+            out["failure_reason"] = "Seed has neither DOI, PMID, nor a usable title recorded"
+            n_untestable += 1
+            results.append(out)
             continue
 
-        matches, basis, manual_confirm = None, None, False
-
+        # --- RECALLED_CONFIRMED tiers: DOI, then PMID, then title+year+author ---
+        matches, basis = None, None
         if seed_doi and seed_doi in doi_index:
             matches, basis = doi_index[seed_doi], "DOI"
         elif seed_pmid and seed_pmid in pmid_index:
@@ -218,52 +218,89 @@ def main():
         elif seed_title and seed_year and seed_author and \
                 (seed_title, seed_year, seed_author) in title_year_author_index:
             matches, basis = title_year_author_index[(seed_title, seed_year, seed_author)], "title_year_first_author"
-        elif seed_title and seed_title in title_only_index:
-            matches, basis, manual_confirm = title_only_index[seed_title], "title_only", True
 
-        if matches:
-            n_recalled += 1
-            if manual_confirm:
-                n_manual += 1
-            seed["recall_status"] = f"RECALLED ({basis})"
-            seed["failure_reason"] = ""
-            seed.update(matched_fields(matches, basis, manual_confirm))
-            databases = seed["matched_database_sources"]
-            modules = seed["matched_search_modules"]
-            seed["retrieved_by_core"] = "TRUE" if "core" in modules.split(";") else "FALSE"
-            seed["retrieved_by_module"] = ";".join(m for m in modules.split(";") if m != "core")
-            seed["retrieved_database"] = databases
-        else:
-            seed["recall_status"] = "NOT_RECALLED"
-            seed["failure_reason"] = (
-                "No master record matched this seed by DOI, PMID, or title(+year/author). "
-                f"Revise the '{seed.get('expected_module', 'unknown')}' search string and re-run."
-            )
-            for k in ("match_basis", "matched_record_id", "matched_title",
-                     "matched_database_sources", "matched_search_modules",
-                     "manual_confirmation_required"):
-                seed[k] = ""
+        if matches is not None:
+            unique_ids = {m.get("record_id", "") for m in matches}
+            if len(unique_ids) > 1:
+                # Even a "confirmed-tier" basis can resolve to >1 distinct master record
+                # (e.g. a genuinely ambiguous DOI collision) -- never default to the
+                # first; always route to manual review instead.
+                databases, modules = summarize_matches(matches)
+                out["recall_status"] = "POSSIBLE_RECALL_MULTIPLE_MATCHES"
+                out["match_basis"] = basis
+                out["matched_record_ids"] = ";".join(sorted(unique_ids))
+                out["matched_titles"] = ";".join(m.get("title", "") for m in matches)
+                out["matched_database_sources"] = ";".join(sorted(databases))
+                out["matched_search_modules"] = ";".join(sorted(modules))
+                out["manual_confirmation_required"] = "TRUE"
+                out["failure_reason"] = (f"{len(unique_ids)} distinct master records matched via "
+                                         f"{basis} — must be resolved manually, not defaulted.")
+                n_possible += 1
+                n_multi_match += 1
+                results.append(out)
+                continue
 
-        results.append(seed)
+            m = matches[0]
+            out["recall_status"] = "RECALLED_CONFIRMED"
+            out["match_basis"] = basis
+            out["matched_record_ids"] = m.get("record_id", "")
+            out["matched_titles"] = m.get("title", "")
+            databases, modules = summarize_matches(matches)
+            out["matched_database_sources"] = ";".join(sorted(databases))
+            out["matched_search_modules"] = ";".join(sorted(modules))
+            out["retrieved_by_core"] = "TRUE" if "core" in modules else "FALSE"
+            out["manual_confirmation_required"] = "FALSE"
+            n_confirmed += 1
+            results.append(out)
+            continue
+
+        # --- POSSIBLE_RECALL tier: title-only match(es), never auto-confirmed ---
+        if seed_title and seed_title in title_only_index:
+            candidates = title_only_index[seed_title]
+            unique_ids = {c.get("record_id", "") for c in candidates}
+            databases, modules = summarize_matches(candidates)
+            out["recall_status"] = ("POSSIBLE_RECALL_MULTIPLE_MATCHES" if len(unique_ids) > 1
+                                    else "POSSIBLE_RECALL")
+            out["match_basis"] = "title_only"
+            out["matched_record_ids"] = ";".join(sorted(unique_ids))
+            out["matched_titles"] = ";".join(c.get("title", "") for c in candidates)
+            out["matched_database_sources"] = ";".join(sorted(databases))
+            out["matched_search_modules"] = ";".join(sorted(modules))
+            out["manual_confirmation_required"] = "TRUE"
+            out["failure_reason"] = ("Matched by title alone" +
+                                     (f" ({len(unique_ids)} distinct candidates)" if len(unique_ids) > 1 else "") +
+                                     " — requires manual confirmation before counting as recalled.")
+            n_possible += 1
+            if len(unique_ids) > 1:
+                n_multi_match += 1
+            results.append(out)
+            continue
+
+        out["recall_status"] = "NOT_RECALLED"
+        out["failure_reason"] = ("No master record matched this seed by DOI, PMID, or "
+                                 f"title(+year/author). Revise the "
+                                 f"'{seed.get('expected_module', 'unknown')}' search "
+                                 "string and re-run.")
+        n_not_recalled += 1
+        results.append(out)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     report_path = args.output_dir / "seed_recall_report.csv"
-    fieldnames = list(seeds[0].keys())
-    for extra in ("match_basis", "matched_record_id", "matched_title",
-                  "matched_database_sources", "matched_search_modules",
-                  "manual_confirmation_required"):
-        if extra not in fieldnames:
-            fieldnames.append(extra)
+    base_fields = list(seeds[0].keys())
+    extra_fields = ["recall_status", "failure_reason", "match_basis", "matched_record_ids",
+                    "matched_titles", "matched_database_sources", "matched_search_modules",
+                    "manual_confirmation_required"]
+    fieldnames = base_fields + [f for f in extra_fields if f not in base_fields]
     with open(report_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
         for r in results:
             writer.writerow(r)
 
     n_total = len(seeds)
-    n_untestable = sum(1 for r in results if r["recall_status"] == "UNTESTABLE")
-    n_not_recalled = sum(1 for r in results if r["recall_status"] == "NOT_RECALLED")
     testable = n_total - n_untestable
+    confirmed_recall_rate = (100.0 * n_confirmed / testable) if testable else None
+    provisional_recall_rate = (100.0 * (n_confirmed + n_possible) / testable) if testable else None
 
     summary_path = args.output_dir / "seed_recall_summary.md"
     with open(summary_path, "w", encoding="utf-8") as f:
@@ -271,38 +308,48 @@ def main():
         f.write(f"Run date: {datetime.now().isoformat()}\n\n")
         f.write(f"- Total seed references: {n_total}\n")
         f.write(f"- Untestable (no DOI/PMID/title recorded for the seed itself): {n_untestable}\n")
-        f.write(f"- Testable: {testable}\n")
-        f.write(f"- Recalled: {n_recalled} (of which {n_manual} matched by title alone "
-                f"and require manual confirmation)\n")
-        f.write(f"- Not recalled: {n_not_recalled}\n")
-        if testable > 0:
-            rate = 100.0 * n_recalled / testable
-            f.write(f"- Recall rate (of testable seeds): {rate:.1f}%\n\n")
+        f.write(f"- Testable: {testable}\n\n")
+        f.write(f"- confirmed_recalled (RECALLED_CONFIRMED): {n_confirmed}\n")
+        f.write(f"- possible_recalled (POSSIBLE_RECALL, incl. multi-match): {n_possible} "
+                f"(of which {n_multi_match} have multiple candidate matches requiring manual resolution)\n")
+        f.write(f"- not_recalled (NOT_RECALLED): {n_not_recalled}\n")
+        f.write(f"- untestable (UNTESTABLE): {n_untestable}\n\n")
+        if testable:
+            f.write(f"- **confirmed_recall_rate = {n_confirmed}/{testable} = {confirmed_recall_rate:.1f}%** "
+                    "(only DOI/PMID/title+year+author matches — the only rate that may be "
+                    "quoted as \"recalled\" without further manual confirmation)\n")
+            f.write(f"- provisional_recall_rate = ({n_confirmed}+{n_possible})/{testable} = "
+                    f"{provisional_recall_rate:.1f}% (includes unconfirmed title-only/fuzzy/"
+                    "multi-match candidates — NOT a confirmed figure)\n\n")
         else:
-            f.write("- Recall rate: undefined (no testable seeds)\n\n")
-        if n_manual > 0:
-            f.write("## Recalled by title only — require manual confirmation\n\n")
+            f.write("- confirmed_recall_rate / provisional_recall_rate: undefined (no testable seeds)\n\n")
+
+        if n_possible > 0:
+            f.write("## Possible recalls requiring manual confirmation "
+                    "(see templates/manual_duplicate_review.csv)\n\n")
             for r in results:
-                if r.get("manual_confirmation_required") == "TRUE":
-                    f.write(f"- {r.get('ref_number', '')}: matched master record "
-                            f"{r.get('matched_record_id', '')} by title alone — confirm "
-                            "this is genuinely the same paper (not a same-titled different "
-                            "study, correction, or version) before treating as verified.\n")
+                if r["recall_status"] in ("POSSIBLE_RECALL", "POSSIBLE_RECALL_MULTIPLE_MATCHES"):
+                    f.write(f"- {r.get('ref_number', '')} [{r['recall_status']}, basis="
+                            f"{r['match_basis']}]: candidate record_id(s) "
+                            f"{r['matched_record_ids']}\n")
         if n_not_recalled > 0:
-            f.write("\n## Seeds not recalled — revise the corresponding module search string\n\n")
+            f.write("\n## Not recalled — revise the corresponding module search string\n\n")
             for r in results:
                 if r["recall_status"] == "NOT_RECALLED":
                     f.write(f"- {r.get('ref_number', '')} (expected module: "
                             f"{r.get('expected_module', '')}): {r.get('citation', '')[:100]}\n")
 
     logger.info("Wrote %s and %s", report_path, summary_path)
-    logger.info("Recalled %d / %d testable seeds (%d require manual confirmation)",
-               n_recalled, testable, n_manual)
+    logger.info("confirmed=%d possible=%d (multi-match=%d) not_recalled=%d untestable=%d",
+               n_confirmed, n_possible, n_multi_match, n_not_recalled, n_untestable)
     if n_not_recalled > 0:
-        logger.warning("%d seed reference(s) were NOT recalled — see %s. Per Section 13 "
-                       "of the search strategy, revise and re-test the affected module "
-                       "string(s) before treating the search as final.",
-                       n_not_recalled, summary_path)
+        logger.warning("%d seed reference(s) NOT_RECALLED — revise and re-test the "
+                       "affected module string(s) before treating the search as final.",
+                       n_not_recalled)
+    if n_multi_match > 0:
+        logger.warning("%d seed reference(s) matched multiple distinct master records — "
+                       "none were auto-resolved; route to manual review via "
+                       "templates/manual_duplicate_review.csv.", n_multi_match)
     logger.info("check_seed_recall.py finished")
 
 

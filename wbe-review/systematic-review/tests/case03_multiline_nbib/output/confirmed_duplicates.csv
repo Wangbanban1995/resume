@@ -1,1 +1,1 @@
-record_id,title,abstract,authors,year,journal,DOI,PMID,database_source,search_module,source_file,duplicate_of_record_id,duplicate_match_basis
+record_id,title,abstract,authors,year,journal,DOI,PMID,doi_candidates,multiple_conflicting_dois,source_accession_id,wos_accession_number,scopus_eid,database_source,search_module,source_file,duplicate_of_record_id,duplicate_match_basis

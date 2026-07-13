@@ -1,5 +1,5 @@
-source_file,database,search_module,records_parsed,missing_title,missing_abstract,missing_authors,missing_year,missing_DOI,missing_PMID,unknown_database,unknown_module,parser_warnings,parse_status
-tests/synthetic_fixtures/pubmed/pubmed_module07_synthetic_20260713.nbib,pubmed,module07,2,0,0,0,0,0,0,False,False,,ok
-tests/synthetic_fixtures/scopus/scopus_module05_synthetic_20260713.csv,scopus,module05,3,0,0,0,0,2,3,False,False,,ok
-tests/synthetic_fixtures/wos/bibtex_sample_synthetic_20260713.bib,wos,unknown,1,0,1,0,0,0,1,False,True,"tests/synthetic_fixtures/wos/bibtex_sample_synthetic_20260713.bib: parsed with the fallback/experimental BibTeX parser, not a preferred production format — verify output manually",ok
-tests/synthetic_fixtures/wos/wos_core_synthetic_20260713.ris,wos,core,3,0,0,0,0,0,3,False,False,,ok
+source_file,database,search_module,records_parsed,missing_title,missing_abstract,missing_authors,missing_year,missing_DOI,missing_PMID,multiple_conflicting_dois_count,unknown_database,unknown_module,parser_warnings,parse_status
+tests/synthetic_fixtures/pubmed/pubmed_module07_synthetic_20260713.nbib,pubmed,module07,2,0,0,0,0,0,0,0,False,False,,ok
+tests/synthetic_fixtures/scopus/scopus_module05_synthetic_20260713.csv,scopus,module05,3,0,0,0,0,2,3,0,False,False,,ok
+tests/synthetic_fixtures/wos/bibtex_sample_synthetic_20260713.bib,wos,unknown,1,0,1,0,0,0,1,0,False,True,"tests/synthetic_fixtures/wos/bibtex_sample_synthetic_20260713.bib: parsed with the fallback/experimental BibTeX parser, not a preferred production format — verify output manually",ok
+tests/synthetic_fixtures/wos/wos_core_synthetic_20260713.ris,wos,core,3,0,0,0,0,0,3,0,False,False,,ok

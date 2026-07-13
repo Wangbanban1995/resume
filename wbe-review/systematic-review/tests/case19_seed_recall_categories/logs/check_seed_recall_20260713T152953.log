@@ -1,0 +1,9 @@
+2026-07-13 15:29:53,122 [INFO] Log file: tests/case19_seed_recall_categories/logs/check_seed_recall_20260713T152953.log
+2026-07-13 15:29:53,122 [INFO] check_seed_recall.py starting
+2026-07-13 15:29:53,123 [INFO] Loaded 44 seed references from templates/seed_studies.csv
+2026-07-13 15:29:53,123 [INFO] Loaded 3 master records from tests/case19_seed_recall_categories/master.csv
+2026-07-13 15:29:53,125 [INFO] Wrote tests/case19_seed_recall_categories/reports/seed_recall_report.csv and tests/case19_seed_recall_categories/reports/seed_recall_summary.md
+2026-07-13 15:29:53,126 [INFO] confirmed=1 possible=1 (multi-match=1) not_recalled=42 untestable=0
+2026-07-13 15:29:53,126 [WARNING] 42 seed reference(s) NOT_RECALLED — revise and re-test the affected module string(s) before treating the search as final.
+2026-07-13 15:29:53,126 [WARNING] 1 seed reference(s) matched multiple distinct master records — none were auto-resolved; route to manual review via templates/manual_duplicate_review.csv.
+2026-07-13 15:29:53,126 [INFO] check_seed_recall.py finished

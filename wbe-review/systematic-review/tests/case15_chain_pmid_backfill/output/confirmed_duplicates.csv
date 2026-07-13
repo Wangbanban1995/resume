@@ -1,0 +1,3 @@
+record_id,title,abstract,authors,year,journal,DOI,PMID,doi_candidates,multiple_conflicting_dois,source_accession_id,wos_accession_number,scopus_eid,database_source,search_module,source_file,duplicate_of_record_id,duplicate_match_basis
+7f7fc4aca430,Synthetic PMID Chain Backfill Test Paper Slightly Reworded,,"Differentname, P.",2005,Journal of Synthetic Test Data,,55555555,,False,,,,pubmed,core,tests/case15_chain_pmid_backfill/pubmed/pubmed_core_case15c_20260713.nbib,725f76eaf94c,PMID
+dfe8d72bf6b2,Synthetic PMID Chain Backfill Test Paper,,"Pmidchain, O.",2013,Journal of Synthetic Test Data,,,,False,,,,wos,core,tests/case15_chain_pmid_backfill/wos/wos_core_case15_20260713.ris,725f76eaf94c,title_year_first_author

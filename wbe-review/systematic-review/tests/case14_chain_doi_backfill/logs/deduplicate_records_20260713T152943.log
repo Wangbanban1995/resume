@@ -1,0 +1,13 @@
+2026-07-13 15:29:43,735 [INFO] Log file: tests/case14_chain_doi_backfill/logs/deduplicate_records_20260713T152943.log
+2026-07-13 15:29:43,735 [INFO] deduplicate_records.py starting
+2026-07-13 15:29:43,735 [INFO] input-dir=tests/case14_chain_doi_backfill output-dir=tests/case14_chain_doi_backfill/output
+2026-07-13 15:29:43,736 [INFO] Parsed 3 record(s) from tests/case14_chain_doi_backfill/wos/wos_core_case14_20260713.ris (database=wos, module=core)
+2026-07-13 15:29:43,737 [WARNING] Metadata discrepancy: merged via DOI but titles differ — master='Synthetic Chain Backfill Test Paper A' vs incoming='Synthetic Chain Backfill Test Paper A Slightly Different' (record 52ca96c9a5d9 into 43a7a4b79e48)
+2026-07-13 15:29:43,737 [INFO] Deduplication complete: 3 input records -> 1 master, 2 confirmed duplicates merged, 0 flagged possible duplicates (retained as separate master entries, NOT auto-merged)
+2026-07-13 15:29:43,737 [INFO] Integrity check status: PASS (0 fail, 0 warning)
+2026-07-13 15:29:43,737 [INFO] Wrote outputs to tests/case14_chain_doi_backfill/output
+2026-07-13 15:29:43,737 [INFO] master_records.csv: 1 rows
+2026-07-13 15:29:43,737 [INFO] confirmed_duplicates.csv: 2 rows
+2026-07-13 15:29:43,737 [INFO] possible_duplicates.csv: 0 rows (flagged only, retained, not auto-merged)
+2026-07-13 15:29:43,737 [INFO] parsing_quality_report.csv written for 1 source file(s)
+2026-07-13 15:29:43,737 [INFO] deduplicate_records.py finished successfully

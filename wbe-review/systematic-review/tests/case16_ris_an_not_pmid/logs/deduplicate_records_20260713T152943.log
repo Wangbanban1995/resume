@@ -1,0 +1,12 @@
+2026-07-13 15:29:43,854 [INFO] Log file: tests/case16_ris_an_not_pmid/logs/deduplicate_records_20260713T152943.log
+2026-07-13 15:29:43,855 [INFO] deduplicate_records.py starting
+2026-07-13 15:29:43,855 [INFO] input-dir=tests/case16_ris_an_not_pmid output-dir=tests/case16_ris_an_not_pmid/output
+2026-07-13 15:29:43,855 [INFO] Parsed 4 record(s) from tests/case16_ris_an_not_pmid/wos/wos_core_case16_20260713.ris (database=wos, module=core)
+2026-07-13 15:29:43,856 [INFO] Deduplication complete: 4 input records -> 4 master, 0 confirmed duplicates merged, 0 flagged possible duplicates (retained as separate master entries, NOT auto-merged)
+2026-07-13 15:29:43,856 [INFO] Integrity check status: PASS (0 fail, 0 warning)
+2026-07-13 15:29:43,856 [INFO] Wrote outputs to tests/case16_ris_an_not_pmid/output
+2026-07-13 15:29:43,856 [INFO] master_records.csv: 4 rows
+2026-07-13 15:29:43,856 [INFO] confirmed_duplicates.csv: 0 rows
+2026-07-13 15:29:43,857 [INFO] possible_duplicates.csv: 0 rows (flagged only, retained, not auto-merged)
+2026-07-13 15:29:43,857 [INFO] parsing_quality_report.csv written for 1 source file(s)
+2026-07-13 15:29:43,857 [INFO] deduplicate_records.py finished successfully

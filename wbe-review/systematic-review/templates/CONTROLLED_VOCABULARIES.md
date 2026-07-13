@@ -2,6 +2,18 @@
 
 These are the fixed value sets to use when filling in the templates in this directory. Do not invent new values without updating this file first, so every reviewer uses the same terms.
 
+## `manual_duplicate_review.csv` — `final_decision`
+
+Populated by a human reviewer for every `possible_duplicate` group flagged by `deduplicate_records.py` (rules 4–7: title+year alone, title+author alone, title alone, or fuzzy title match) or by `check_seed_recall.py` (title-only or multi-candidate seed matches). Options:
+
+- `same_record_merge` — the two records are genuinely the same publication; they should be merged (record which `preferred_record_id` to keep as the canonical entry)
+- `related_version_keep_both` — related but legitimately distinct records (e.g., a preprint and its published version, both worth citing for different reasons) — keep both, but note the relationship in `decision_reason`
+- `superseded_version` — one record supersedes the other (e.g., a correction supersedes the original, or a published version supersedes its preprint) — `preferred_record_id` names the one to keep as primary; the other is retained in the record set but flagged, not deleted
+- `distinct_records` — coincidentally similar title/metadata but genuinely different studies — keep both, no relationship implied
+- `uncertain` — cannot be resolved from title/abstract alone; requires full-text comparison before a decision can be made
+
+**No script in this toolkit automatically applies any decision recorded in this file.** `deduplicate_records.py` and `check_seed_recall.py` only ever flag candidates into this template — reading a `final_decision` back out and acting on it (e.g., actually merging two master records, or removing a superseded one from the citation set) is a separate, explicit, auditable step that does not yet exist in this toolkit and must be added deliberately (with its own before/after diff and log) if and when it is needed, not silently folded into the deduplication script's normal run.
+
 ## `title_abstract_screening.csv` and `full_text_screening.csv`
 
 `reviewer_1_decision`, `reviewer_2_decision`, `final_decision` (title/abstract stage only — full-text stage uses the same three-way decision for `reviewer_1_decision`/`reviewer_2_decision`/`final_decision` as well):

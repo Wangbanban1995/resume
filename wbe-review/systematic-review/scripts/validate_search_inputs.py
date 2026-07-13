@@ -86,7 +86,7 @@ def parse_export_file(path: Path, database: str, module: str, logger: logging.Lo
         if path.suffix.lower() == ".bib":
             return len(parse_bibtex(text, str(path), database, module, warnings))
         if path.suffix.lower() == ".csv":
-            return len(parse_csv_export(path, text, str(path), database, module, logger))
+            return len(parse_csv_export(path, text, str(path), database, module, logger, warnings))
     except Exception as exc:  # noqa: BLE001
         logger.error("Failed to parse %s for readiness count: %s", path, exc)
     return -1  # signals "could not determine"
