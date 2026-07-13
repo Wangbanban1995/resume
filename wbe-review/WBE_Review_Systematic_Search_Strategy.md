@@ -1,12 +1,12 @@
 # Systematic Search Strategy — WBE Review (revised, still NOT executed)
 
-**Status.** This document specifies ready-to-run search strategies for Web of Science, Scopus, and PubMed, restructured this round into one core search plus eight module searches per instruction. It has not been executed. This session has no access to Web of Science, Scopus, or any bibliographic-database API, and WebFetch returns HTTP 403 for every publisher, PMC, and PubMed URL tested — see Section 12 for the tested basis of that statement. Someone with institutional database access must run these strategies and return the outputs listed in Section 13.
+**Status.** This document specifies ready-to-run search strategies for Web of Science, Scopus, and PubMed, restructured this round into one core search plus seven complementary module searches (eight searches total) per instruction. It has not been executed. This session has no access to Web of Science, Scopus, or any bibliographic-database API, and WebFetch returns HTTP 403 for every publisher, PMC, and PubMed URL tested — see Section 12 for the tested basis of that statement. Someone with institutional database access must run these strategies and return the outputs listed in Section 13.
 
 ---
 
-## 1. Why one core search plus eight modules, not one combined string
+## 1. Why one core search plus seven complementary modules, not one combined string
 
-The previous version of this document used a single string (`WBE core AND at least one methodological block`). That structure silently excludes any record that describes a mechanistic, chemical, or analytical WBE-relevant finding without using an explicit WBE label — for example, an in-sewer biofilm decay study, a drug-excretion pharmacokinetics paper, or a pre-2010s sewage chemistry paper that predates the term "wastewater-based epidemiology" entirely. Running nine separate searches (core + 8 modules) and merging afterward, rather than one narrow AND-combined string, is the correct way to avoid that recall failure. Each module below is self-contained: its own concept terms, its own Web of Science / Scopus / PubMed syntax, and its own hit-count row to be filled in by the person who executes it. Do not combine modules into a single string at execution time — run all nine, export all nine result sets, and deduplicate afterward (Section 10).
+The previous version of this document used a single string (`WBE core AND at least one methodological block`). That structure silently excludes any record that describes a mechanistic, chemical, or analytical WBE-relevant finding without using an explicit WBE label — for example, an in-sewer biofilm decay study, a drug-excretion pharmacokinetics paper, or a pre-2010s sewage chemistry paper that predates the term "wastewater-based epidemiology" entirely. Running eight separate searches (one core search plus seven complementary modules) and merging afterward, rather than one narrow AND-combined string, is the correct way to avoid that recall failure. Each module below is self-contained: its own concept terms, its own Web of Science / Scopus / PubMed syntax, and its own hit-count row to be filled in by the person who executes it. Do not combine modules into a single string at execution time — run all eight, export all eight result sets, and deduplicate afterward (Section 10).
 
 ---
 
@@ -347,7 +347,7 @@ Formal database searching alone is not sufficient and must be paired with:
 - **Forward citation searching ("cited by")**: for the same five reviews plus the highest-value primary studies ([13] Rainey et al., [35] Huisman et al., [44] Dai et al.), pull papers that cite them and screen for relevance.
 - **Seed-recall check against this review's existing 51 references**: run the finished search strategy and confirm it retrieves the peer-reviewed/preprint items already cited in this review. Institutional/policy/news sources ([1], [4], [5], [11], [14], [15]) and one institutional program report ([7]) are excluded from this check since they are not indexed journal records a bibliographic-database search would be expected to return.
 
-**Recall test set (45 of 51 references; 6 institutional/policy sources excluded per above), tagged by primary module:**
+**Recall test set (44 of 51 references; 7 institutional/policy/program-report sources excluded per above), tagged by primary module.** This table is also machine-readable as `systematic-review/templates/seed_studies.csv`, which is the authoritative, executable version of this list — use the CSV with `scripts/check_seed_recall.py`, not manual transcription from this table.
 
 | Module | Seed references to confirm are recalled |
 |---|---|
@@ -355,10 +355,12 @@ Formal database searching alone is not sufficient and must be paired with:
 | 2 — Sewer transport | [6] Guo et al. (2023); [9] Jung et al. (2026); [10] Miura et al. (2021); [16] Zhang et al. (2023) |
 | 3 — Rainfall/CSO | [3] Darling et al. (2025); [8] Janssens et al. (2022) |
 | 4 — Sampling/analytical | [18] Ahmed et al. (2022); [19] Cha et al. (2023); [20] Kim et al. (2022); [21] Williams et al. (2024); [22] Zafeiriadou et al. (2024); [23] Elbait et al. (2024); [24] Pecson et al. (2021) |
-| 5 — Normalization | [26] Langeveld et al. (2022); [27] Hsu et al. (2022); [28] Maal-Bared et al. (2023); [29] Dhiyebi et al. (2023); [30] Chen et al. (2014); [31] Been et al. (2014); [32] Baz-Lomba et al. (2019); [32b] Thomas et al. (2017); [33] Chettleburgh et al. (2023) |
+| 5 — Normalization | [13] Rainey et al. (2023); [26] Langeveld et al. (2022); [27] Hsu et al. (2022); [28] Maal-Bared et al. (2023); [29] Dhiyebi et al. (2023); [30] Chen et al. (2014); [31] Been et al. (2014); [32] Baz-Lomba et al. (2019); [32b] Thomas et al. (2017); [33] Chettleburgh et al. (2023) |
 | 6 — Chemical back-calculation | [36] Ramin et al. (2017); [41] Zuccato et al. (2008); [46] Jones et al. (2014); [49] Pei et al. (2016); [50] Croft et al. (2020) |
 | 7 — Pathogen reconstruction | [35] Huisman et al. (2022); [38] Ai et al. (2022); [40] Wang et al. (2026); [42] McMahan et al. (2021); [43] Schoen et al. (2022); [44] Dai et al. (2024); [45] Alhassan et al. (2025) |
 | 8 — Uncertainty/identifiability | [37] Deva et al. (2021); [39] Liyanage et al. (2025); [47] Yang et al. (2024); [48] Safford et al. (2022) |
+
+**Correction (this round):** [13] Rainey et al. (2023) — a flow-vs-biomarker normalization comparison across 182 U.S. communities, this review's strongest-corroborated normalization finding — was omitted from this table in the prior version despite clearly belonging to Module 5. It is added here and in `seed_studies.csv`, bringing the normalization module's seed count from 9 to 10 and the total from the previously-miscounted "45 of 51" to the correct **44 of 51** (51 total − 7 excluded institutional/policy/program-report sources, not 6 — the prose above already named 7: six institutional/policy/news sources plus [7], one institutional program report).
 
 **If any of the 45 seed references above is not retrieved by its assigned module's search string, the string must be revised and re-tested before the search is considered final** — a formal search strategy that fails to recall its own review's already-identified core evidence is not fit for use, regardless of how comprehensive its terminology otherwise looks on paper.
 
@@ -368,7 +370,7 @@ Formal database searching alone is not sufficient and must be paired with:
 
 Before execution, the strategy above should be checked by at least one person familiar with systematic-review search methodology (a research librarian or equivalent), against the **PRESS** (Peer Review of Electronic Search Strategies) checklist:
 
-- Concept coverage — are all 8 modules' concept blocks complete relative to the review's actual scope (Chapters 3–8)?
+- Concept coverage — are the core search's and all 7 complementary modules' concept blocks complete relative to the review's actual scope (Chapters 3–8)?
 - Boolean and proximity logic — correct nesting, no unintended AND/OR precedence errors
 - Spelling and truncation — correct truncation symbols per database (`*` here; confirm no database-specific deviation, e.g., Ovid platforms use different wildcard characters if PubMed is later run via Ovid MEDLINE instead of PubMed directly)
 - Line/syntax translation — correct field-tag translation across the three databases (Section 10's table)
@@ -382,7 +384,7 @@ This review does not have a research librarian available in-session; this checkl
 
 ## 15. Merging, deduplication, and PRISMA (to be performed after execution, not now)
 
-1. Export all 9 module result sets (Section 2 core + Modules 2–8) separately, in RIS or CSV, each retaining its module tag.
+1. Export all 8 search result sets (Section 2 core search + Modules 2–8 complementary searches) separately, in RIS or CSV, each retaining its module tag.
 2. Merge into one master list; deduplicate first by DOI, then by normalized title+year+first-author for records lacking a DOI.
 3. Record, per module: raw hit count, and post-dedup unique contribution (i.e., how many records that module uniquely contributed that no other module also retrieved) — this quantifies whether the 8-module restructuring actually captured records the single-string approach would have missed, which is the entire point of this round's revision.
 4. Only after deduplication does formal PRISMA counting begin (identified → duplicates removed → title/abstract screened → full texts sought → full texts assessed → included), with exclusion reasons logged at each stage.
@@ -410,7 +412,7 @@ This section states plainly what this review's environment can and cannot do:
 
 ## 18. Deliverables expected back from whoever executes this strategy
 
-- Raw export files (RIS, BibTeX, or CSV) for the core search and all 8 modules, kept separate before merging
+- Raw export files (RIS, BibTeX, or CSV) for the core search and all 7 complementary modules (8 searches total), kept separate before merging
 - Per-module raw hit count and post-dedup unique-contribution count (Section 15.3)
 - Full search history log or screenshots showing the exact string executed per database (query strings can silently auto-correct or truncate in some database interfaces — a log confirms what was actually run, not just what was intended)
 - Pre- and post-deduplication total record counts

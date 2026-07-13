@@ -1,0 +1,17 @@
+PMID- 99999999
+TI  - Synthetic PubMed Test Record for Pathogen Reconstruction Module
+FAU - Nbibtest, E.
+FAU - Formatcheck, F.
+AB  - SYNTHETIC TEST RECORD. Fictitious PubMed-format record used only to test the NBIB
+      parser's continuation-line handling. Not a real study.
+DP  - 2023
+JT  - Journal of Synthetic Test Data
+AID - 10.9999/synthetic.test.0002 [doi]
+
+PMID- 88888888
+TI  - Second Synthetic PubMed Test Record, Unique
+FAU - Nbibtest, E.
+AB  - SYNTHETIC TEST RECORD with a PMID that does not match any real seed reference.
+DP  - 2019
+JT  - Journal of Synthetic Test Data
+AID - 10.9999/synthetic.test.0003 [doi]

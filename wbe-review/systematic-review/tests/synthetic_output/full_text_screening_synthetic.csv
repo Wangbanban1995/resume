@@ -1,0 +1,3 @@
+record_id,citation,DOI,full_text_sought,full_text_obtained,acquisition_source,reviewer_1_decision,reviewer_2_decision,conflict,final_decision,primary_exclusion_reason,secondary_exclusion_reason,exclusion_detail,full_text_filename,notes
+dd3f7aa3f89f,Synthetic Example Study (2021),10.9999/synthetic.test.0001,TRUE,TRUE,synthetic_test_library,include,include,FALSE,include,,,,synthetic_test.pdf,SYNTHETIC TEST ROW
+838c620ea4d3,Statistical and computational methods (2022),10.1021/acsestwater.2c00053,TRUE,FALSE,synthetic_test_library,uncertain,uncertain,TRUE,exclude,full_text_unavailable,,SYNTHETIC: paywalled in this fake test scenario,,SYNTHETIC TEST ROW

@@ -1,0 +1,18 @@
+{
+  "status": "EXECUTED",
+  "generated_at": "2026-07-13T14:37:39.167927",
+  "records_identified": 10,
+  "duplicates_removed": 2,
+  "records_screened": 3,
+  "records_excluded_title_abstract": 1,
+  "records_excluded_title_abstract_by_reason": {
+    "not_WBE": 1
+  },
+  "reports_sought": 2,
+  "reports_not_retrieved": 1,
+  "reports_assessed": 1,
+  "reports_excluded_by_reason": {
+    "full_text_unavailable": 1
+  },
+  "studies_included": 1
+}

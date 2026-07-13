@@ -1,0 +1,4 @@
+2026-07-13 14:37:39,166 [INFO] Log file: tests/synthetic_logs/generate_prisma_counts_20260713T143739.log
+2026-07-13 14:37:39,166 [INFO] generate_prisma_counts.py starting
+2026-07-13 14:37:39,168 [INFO] Wrote real PRISMA counts to tests/synthetic_output/reports
+2026-07-13 14:37:39,169 [INFO] generate_prisma_counts.py finished
