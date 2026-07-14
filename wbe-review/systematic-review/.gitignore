@@ -1,0 +1,37 @@
+# Real bibliographic data (this project's search/import inputs and outputs)
+# must never be committed to this public repository. Only script code,
+# synthetic regression fixtures under tests/ (all clearly labeled SYNTHETIC/
+# Casetest/Pilottest/etc.), and abstract-free summary reports may be tracked.
+#
+# tests/case*/ fixtures are exempt below because they are synthetic-only, not
+# because this file trusts anything under data/ or reports/ by path alone.
+
+# Real database export files (RIS/NBIB/CSV/BibTeX), any module, any round.
+data/raw/**
+!data/raw/**/.gitkeep
+
+# Real, filled-in search logs. templates/search_log.csv itself is a blank
+# template and stays tracked; any *filled* copy of it is real data.
+data/interim/pilot_search_log.csv
+data/interim/*_search_log_filled*.csv
+
+# Full parsed/deduplicated records and the manual-duplicate-review table
+# carry real titles, abstracts, authors, journals, and DOIs.
+data/interim/pilot_parsed_records.csv
+data/interim/pilot_manual_duplicate_review.csv
+data/processed/pilot_*.csv
+
+# Manual spot-check audit records real title/abstract snippets side-by-side
+# against the original export for verification purposes only.
+reports/pilot_manual_parse_audit.csv
+
+# Same rules for a future full (non-pilot) production import.
+data/processed/master_records.csv
+data/processed/confirmed_duplicates.csv
+data/processed/possible_duplicates.csv
+data/interim/manual_duplicate_review.csv
+templates/manual_duplicate_review_filled*.csv
+
+# Python cache
+__pycache__/
+*.pyc
