@@ -1,8 +1,44 @@
 # Test Results — Systematic Review Execution Toolkit
 
-**Latest round: 2026-07-13, final deduplication safety patch.** This document supersedes the previous round's report; §1–§4 below are this round's new/re-verified results, §5 briefly retains the prior round's still-valid coverage for continuity. All fixtures under `tests/` are explicitly synthetic (fabricated for script-testing purposes only, clearly labeled `SYNTHETIC TEST RECORD`/`Casetest`/etc.) and must never be treated as, or quoted as, a real search result. The only real data used anywhere in this test suite is the 44-row `templates/seed_studies.csv` metadata (title/year/author/DOI/PMID), used strictly to test whether the *matching logic* recognizes a real seed against synthetic master records — never to claim a real recall rate.
+**Latest round: 2026-07-14, pilot-mode CLI addition (first real database import trial run).** This document supersedes the previous round's report; §0 below is this round's new coverage, §1–§5 retain the 2026-07-13 "final deduplication safety patch" round's results for continuity (all still valid and re-verified — see §0.3). All fixtures under `tests/` are explicitly synthetic (fabricated for script-testing purposes only, clearly labeled `SYNTHETIC TEST RECORD`/`Casetest`/`Pilottest`/etc.) and must never be treated as, or quoted as, a real search result. The only real data used anywhere in this test suite is the 44-row `templates/seed_studies.csv` metadata (title/year/author/DOI/PMID), used strictly to test whether the *matching logic* recognizes a real seed against synthetic master records — never to claim a real recall rate.
 
-**Status after this round: the toolkit is ready for its first real database import**, subject to the known limitations in §6.
+**Status after this round: as of 2026-07-14, an actual pilot readiness check was run against the real (empty) `data/raw/` and `templates/search_log.csv` — see §0.4. No real pilot files (PubMed core NBIB, WoS Module 2 RIS, Scopus Module 5 CSV) have been supplied to this toolkit yet; Sections 4–9 of the pilot import workflow (manual spot-check, pilot dedup, pilot manual-duplicate-review pre-fill, pilot seed recall, `pilot_import_report.md`) remain not started, pending those real files.**
+
+---
+
+## 0. This round (2026-07-14): pilot-mode CLI for `validate_search_inputs.py` and `deduplicate_records.py`
+
+### 0.1 `validate_search_inputs.py --mode pilot`
+
+New `--mode {production,pilot}` (default `production`, unchanged behavior) and repeatable `--expected-search DATABASE_SEARCHID` arguments (`tests/case20_pilot_mode/`).
+
+| # | Test | Expected | Actual | Status |
+|---|---|---|---|---|
+| 1 | **Complete pilot fixture (3/3 files + search log rows present)** — `pubmed_core`, `wos_module02`, `scopus_module05` synthetic exports | `PILOT_READY` / `PRODUCTION_NOT_READY`, exit 0, `logs/pilot_raw_file_checksums.csv` has 3 real SHA-256 rows | Exactly as expected; checksums independently verified against `sha256sum` | PASS |
+| 2 | **One pilot combination missing from search log** (`wos_module02` row removed) | `PILOT_NOT_READY`, exit 1, a `blocking` issue naming the missing combination, the other 21 non-pilot combinations reported as non-blocking `info` only | Exactly as expected (`tests/case20_pilot_mode/search_log_missing_wos.csv`) | PASS |
+| 3 | **`--mode pilot` with no `--expected-search`** | Clear error, `PILOT_NOT_READY`/`PRODUCTION_NOT_READY` printed, exit 2 | Exactly as expected | PASS |
+| 4 | **`--mode pilot --expected-search notadatabase_core`** (malformed combo) | Clear error naming the invalid value, exit 2 | Exactly as expected | PASS |
+| 5 | **Production mode (default, no `--mode` flag) unchanged** — reran against the existing `case07_missing_files` fixture | Same blocking-issue count (24) as the original 2026-07-13 recorded run | Exactly matched (24 blocking in both runs); the only difference was warning count, traced to this ad hoc rerun pointing `--raw-dir` at a differently-populated directory than the original run, not a code change — confirmed by inspecting the actual code path, which is untouched for `--mode production` | PASS |
+
+### 0.2 `deduplicate_records.py --mode pilot --parse-only`
+
+New `--mode {production,pilot}`, `--parse-only`, `--search-log`, and `--interim-dir` arguments. Parses real files without ever calling `deduplicate()`.
+
+| # | Test | Expected | Actual | Status |
+|---|---|---|---|---|
+| 6 | **Complete pilot fixture, 3 files, 4 records total** | `data/interim/pilot_parsed_records.csv` (4 rows, real `record_id`s), `pilot_parsing_quality_report.csv` with `exported_records` from the search log matching `records_parsed` (`diff=0` for all 3 files), `logs/pilot_parse_log.txt` states "NO DEDUPLICATION HAS BEEN RUN" | Exactly as expected | PASS |
+| 7 | **`unknown_fields` detection** — ad hoc probe fixture with an unrecognized RIS tag (`C1`) and two unrecognized CSV columns (`Funding Details`, `Cited by`) | `unknown_fields` column lists exactly the unrecognized tag/column names, `unknown_fields_count` correct | Exactly as expected (`C1` for RIS; `Cited by;Funding Details` for CSV) | PASS |
+| 8 | **No search log at all** (nonexistent `--search-log` path) | `exported_records` and `diff_parsed_minus_exported` left blank (not fabricated), parsing still succeeds | Exactly as expected | PASS |
+| 9 | **`--mode pilot` without `--parse-only`** | Clear error explaining pilot deduplication is a separate, later, human-gated step; exit 2; `deduplicate()` never called | Exactly as expected | PASS |
+| 10 | **Production mode (default) regression** — reran all of `case01`–`case18` (excluding the `validate_search_inputs.py`-only cases) against clean copies of their original fixtures | Field-for-field identical output to the 2026-07-13 recorded runs (record_id and any embedded duplicate_record_ids necessarily differ, since that hash is derived from the full file path and this rerun used a different temp path — confirmed by direct inspection that this is the *only* difference in every case) | Confirmed identical on titles/abstracts/authors/years/DOIs/PMIDs/merge decisions/`duplicate_match_basis`/`occurrence_count` for all 15 re-run cases; integrity status `PASS` in every case that produces one | PASS |
+
+### 0.3 Regression re-verification
+
+All of §1–§5 below (the 2026-07-13 round's 11 named test cases plus the general smoke test) were re-run against this round's code with the new `--mode`/`--parse-only`/`unknown_fields`-tracking additions in place, confirming zero behavioral change to the default (production) code path — see test 5 and test 10 above for the verification method.
+
+### 0.4 Real pilot readiness check against actual repository state (2026-07-14)
+
+Per this round's task, `validate_search_inputs.py --mode pilot --expected-search pubmed_core --expected-search wos_module02 --expected-search scopus_module05` was run against the **real** `data/raw/` and `templates/search_log.csv` (no synthetic substitution). Result: `PILOT_NOT_READY` / `PRODUCTION_NOT_READY`, exit 1. `data/raw/{wos,scopus,pubmed}/` contain only `.gitkeep`; `templates/search_log.csv` has zero populated rows; all 3 named pilot combinations are reported as blocking (`no corresponding row in templates/search_log.csv`). `logs/pilot_raw_file_checksums.csv` was written with 0 rows (header only) — no files existed to checksum. This is the genuine, un-fabricated Section-1 stop condition: **no real pilot files have been supplied to this toolkit yet.** See `reports/pilot_input_readiness_report.md` for the full issue list.
 
 ---
 
@@ -65,6 +101,7 @@ Full detail in git history; summary: DOI/PMID canonicalization unit tests (11 ca
 
 ## Exact run order for real data import (updated this round)
 
+0. **Optional pilot trial** (recommended for the very first real files received, e.g. before all 24 searches are done): see `README.md` §6c — `validate_search_inputs.py --mode pilot --expected-search ...` then `deduplicate_records.py --mode pilot --parse-only`. Stops automatically (non-zero exit / explanatory error) rather than proceeding on missing or unreviewed input, per Sections 1–3 of the pilot import workflow.
 1. Place raw exports into `data/raw/{wos,scopus,pubmed}/` following the naming convention in `README.md` §3, and fill in every row of `templates/search_log.csv`.
 2. Run `python3 scripts/validate_search_inputs.py` — do not proceed while the status is `NOT_READY`.
 3. Run `python3 scripts/deduplicate_records.py` — **check `data/processed/deduplication_integrity_report.md` is `PASS` or `PASS_WITH_WARNINGS`, never proceed past a `FAIL`** (the script itself exits non-zero on `FAIL`). Also inspect `parsing_quality_report.csv` for zero-record or high-missing-title warnings, and check for any `multiple_conflicting_dois` records needing manual resolution.

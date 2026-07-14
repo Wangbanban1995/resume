@@ -1,0 +1,11 @@
+TY  - JOUR
+TI  - Synthetic Pilot-Mode Test Record for Web of Science Module 2 (Sewer Processes)
+AU  - Sewertest, C.
+AU  - Pilotfixture, D.
+AB  - SYNTHETIC TEST RECORD. Fictitious paper created only to test --mode pilot readiness
+      checking for validate_search_inputs.py against a WoS Module 2 export. Not a real
+      study.
+PY  - 2022
+JO  - Journal of Synthetic Pilot Test Data
+DO  - 10.9999/synthetic.pilot.0003
+ER  -

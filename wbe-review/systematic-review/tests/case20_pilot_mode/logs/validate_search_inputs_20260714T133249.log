@@ -1,0 +1,5 @@
+2026-07-14 13:32:49,630 [INFO] Log file: tests/case20_pilot_mode/logs/validate_search_inputs_20260714T133249.log
+2026-07-14 13:32:49,630 [INFO] validate_search_inputs.py starting (mode=pilot)
+2026-07-14 13:32:49,633 [INFO] Wrote pilot_input_readiness_report.md/.csv to tests/case20_pilot_mode/reports
+2026-07-14 13:32:49,633 [INFO] PILOT STATUS: PILOT_READY (0 blocking, 0 warnings) | PRODUCTION STATUS: PRODUCTION_NOT_READY
+2026-07-14 13:32:49,633 [INFO] validate_search_inputs.py finished

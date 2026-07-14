@@ -136,6 +136,35 @@ Two rates are reported in `reports/seed_recall_summary.md`, and only one of them
 
 Outputs: `reports/seed_recall_report.csv` (per-seed detail, including `match_basis`, `matched_record_ids`, `matched_titles`, `matched_database_sources`, `matched_search_modules`, `manual_confirmation_required`) and `reports/seed_recall_summary.md`. Every `POSSIBLE_RECALL*` seed should be transferred into `templates/manual_duplicate_review.csv` for a human decision. Per Section 13 of the search strategy document, any seed marked `NOT_RECALLED` means the corresponding module's search string should be revised and re-tested before treating the search as final.
 
+## 6c. Pilot mode: a partial trial run before the full 24-search import
+
+Both `validate_search_inputs.py` and `deduplicate_records.py` support `--mode pilot`, for trialing the toolkit against a small named subset of the full 8×3=24-search plan (e.g. the first 3 real files received) **without** treating the other, not-yet-provided searches as blocking. This is a deliberately partial, human-gated trial — it never substitutes for the full production run in §6/§6b, and its outputs are always written under pilot-specific filenames so they can never be mistaken for, or silently overwrite, a real production output.
+
+**Step 1 — readiness check**, naming exactly the (database, search_id) combinations to check this round:
+
+```bash
+python3 scripts/validate_search_inputs.py \
+    --mode pilot \
+    --expected-search pubmed_core \
+    --expected-search wos_module02 \
+    --expected-search scopus_module05
+```
+
+Prints two independent status lines: `PILOT_READY`/`PILOT_NOT_READY` (readiness of only the named combinations) and `PRODUCTION_READY`/`PRODUCTION_NOT_READY` (the real, informational-only, full-24-search completeness check — always `PRODUCTION_NOT_READY` for a 3-of-24 pilot, by design, and never used to block the pilot). Writes `reports/pilot_input_readiness_report.md`/`.csv` and, for every pilot file actually found, a read-only provenance record at `logs/pilot_raw_file_checksums.csv` (`source_file`, `file_size_bytes`, `sha256`, `database`, `search_id`, `imported_at`) — the original export files are never opened for writing. Exits non-zero on `PILOT_NOT_READY`. **Do not proceed past this step while the status is `PILOT_NOT_READY`.**
+
+**Step 2 — parse-only, no deduplication yet:**
+
+```bash
+python3 scripts/deduplicate_records.py \
+    --mode pilot --parse-only \
+    --search-log templates/search_log.csv \
+    --interim-dir data/interim
+```
+
+Parses only the real files present under `data/raw/`, writing `data/interim/pilot_parsed_records.csv`, `data/interim/pilot_parsing_quality_report.csv` (per file: `exported_records` from the search log, `records_parsed`, their difference, every `missing_*` field count, `conflicting_DOIs`, `unknown_fields` — any RIS/NBIB tag or CSV column the parser doesn't recognize — and `parser_warnings`), and `logs/pilot_parse_log.txt`. **Deliberately does not call `deduplicate()` at all** — running `--mode pilot` without `--parse-only` exits with an explanatory error, since pilot deduplication is a later, separate, human-gated step that requires this parsing-quality report and a manual spot-check against the real export files (not just an automated-test pass) to be reviewed first.
+
+Both commands are pure read/report operations: no script in this toolkit ever moves, renames, or overwrites the original export files placed under `data/raw/`. **Real bibliographic records, abstracts, and any file containing them must not be committed to this public repository** — only script code, anonymized synthetic regression fixtures (like `tests/case20_pilot_mode/`), summary reports free of copyrighted abstracts/sensitive bibliographic data, and empty templates may be pushed.
+
 ## 7. How to generate the screening tables
 
 `templates/title_abstract_screening.csv` and `templates/full_text_screening.csv` are empty templates with the required columns. After deduplication, copy `data/processed/master_records.csv`'s `record_id`, `title`, `abstract`, `year`, `journal`, and `DOI` columns into a fresh copy of `templates/title_abstract_screening.csv` (e.g., save as `data/processed/title_abstract_screening_YYYYMMDD.csv`) for reviewers to fill in. Do this with a spreadsheet tool or a short script — no script for this specific step is provided in this toolkit because the "how many reviewers, in what tool" decision is a human process choice this toolkit does not make for you.

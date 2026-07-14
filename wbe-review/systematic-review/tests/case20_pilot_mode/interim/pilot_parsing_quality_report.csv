@@ -1,0 +1,4 @@
+source_file,database,search_module,exported_records,records_parsed,diff_parsed_minus_exported,missing_title,missing_abstract,missing_authors,missing_year,missing_DOI,missing_PMID,conflicting_DOIs,unknown_fields,unknown_fields_count,parser_warnings
+tests/case20_pilot_mode/raw/pubmed/pubmed_core_case20_20260714.nbib,pubmed,core,2,2,0,0,0,0,0,0,0,0,,0,
+tests/case20_pilot_mode/raw/scopus/scopus_module05_case20_20260714.csv,scopus,module05,1,1,0,0,0,0,0,0,1,0,,0,
+tests/case20_pilot_mode/raw/wos/wos_module02_case20_20260714.ris,wos,module02,1,1,0,0,0,0,0,0,1,0,,0,

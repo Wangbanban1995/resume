@@ -258,10 +258,12 @@ def infer_module_from_filename(path: Path):
 # ---------------------------------------------------------------------------
 
 RIS_MULTILINE_TAGS = {"TI", "T1", "AB", "N2"}
+KNOWN_RIS_TAGS = {"TY", "ER", "TI", "T1", "AB", "N2", "AU", "A1", "A2", "A3",
+                   "PY", "Y1", "DA", "JO", "JF", "T2", "DO", "PMID", "PM", "AN"}
 
 
 def parse_ris(text: str, source_file: str, database: str, module: str, logger: logging.Logger,
-              warnings: list) -> list:
+              warnings: list, unknown_fields=None) -> list:
     """RIS parser. Supports continuation lines, multiple authors, multiple DO fields
     (resolved via resolve_doi_candidates at flush time, not "first wins"), TI/T1, AB/N2,
     JO/JF/T2, PY/Y1/DA, and a missing terminal ER (a new TY auto-flushes any pending
@@ -292,6 +294,9 @@ def parse_ris(text: str, source_file: str, database: str, module: str, logger: l
 
         tag, value = m.group(1), m.group(2).strip()
         last_tag = tag
+
+        if unknown_fields is not None and tag not in KNOWN_RIS_TAGS:
+            unknown_fields.add(tag)
 
         if tag == "TY":
             flush()
@@ -353,10 +358,11 @@ def _ris_record_to_unified(rec: dict, source_file: str, database: str, module: s
 
 
 NBIB_MULTILINE_TAGS = {"TI", "AB"}
+KNOWN_NBIB_TAGS = {"TI", "AB", "FAU", "AU", "DP", "DEP", "JT", "TA", "LID", "AID", "PMID"}
 
 
 def parse_nbib(text: str, source_file: str, database: str, module: str, logger: logging.Logger,
-               warnings: list) -> list:
+               warnings: list, unknown_fields=None) -> list:
     """PubMed NBIB parser. Supports continuation lines for TI/AB, FAU/AU, DP/DEP,
     JT/TA, and DOI recovery from multiple AID/LID "[doi]" values (resolved via
     resolve_doi_candidates, not "first wins")."""
@@ -385,6 +391,9 @@ def parse_nbib(text: str, source_file: str, database: str, module: str, logger: 
 
         tag, value = m.group(1), m.group(2).strip()
         last_tag = tag
+
+        if unknown_fields is not None and tag not in KNOWN_NBIB_TAGS:
+            unknown_fields.add(tag)
 
         if tag == "TI":
             current["TI"] = (current.get("TI", "") + (" " if current.get("TI") else "") + value).strip()
@@ -465,8 +474,14 @@ def parse_bibtex(text: str, source_file: str, database: str, module: str,
     return records
 
 
+CSV_KNOWN_COLUMNS = {"title", "article title", "ti", "abstract", "ab", "authors",
+                     "author full names", "au", "year", "publication year", "py",
+                     "source title", "journal", "so", "doi", "do", "pubmed id",
+                     "pmid", "eid"}
+
+
 def parse_csv_export(path: Path, text: str, source_file: str, database: str, module: str,
-                      logger: logging.Logger, warnings: list) -> list:
+                      logger: logging.Logger, warnings: list, unknown_fields=None) -> list:
     """Generic CSV parser (used for Scopus exports). Tries common column-name variants,
     including "EID" for the Scopus persistent record identifier."""
     records = []
@@ -474,6 +489,11 @@ def parse_csv_export(path: Path, text: str, source_file: str, database: str, mod
     if reader.fieldnames is None:
         logger.warning("CSV file %s has no header row; skipping", path)
         return records
+
+    if unknown_fields is not None:
+        for col in reader.fieldnames:
+            if col and col.strip().lower() not in CSV_KNOWN_COLUMNS:
+                unknown_fields.add(col.strip())
 
     def pick(row, *candidates):
         for c in candidates:
@@ -618,6 +638,156 @@ def write_parsing_quality_report(path: Path, quality_rows: list):
                   "missing_title", "missing_abstract", "missing_authors", "missing_year",
                   "missing_DOI", "missing_PMID", "multiple_conflicting_dois_count",
                   "unknown_database", "unknown_module", "parser_warnings", "parse_status"]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in quality_rows:
+            writer.writerow(row)
+
+
+# ---------------------------------------------------------------------------
+# Pilot mode: parse-only (Section 3 of the pilot import workflow)
+# ---------------------------------------------------------------------------
+
+def load_search_log_exported_records(search_log_path: Path) -> dict:
+    """Returns {export_filename: exported_records_int_or_None} straight from the search
+    log's own exported_records column. Never guesses or fabricates a count -- a filename
+    with no search log row, or a non-numeric exported_records value, maps to None."""
+    mapping = {}
+    if not search_log_path.exists():
+        return mapping
+    with open(search_log_path, "r", encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            fn = (row.get("export_filename") or "").strip()
+            er = (row.get("exported_records") or "").strip()
+            if fn:
+                mapping[fn] = int(er) if er.isdigit() else None
+    return mapping
+
+
+def run_pilot_parse_only(input_dir: Path, search_log_path: Path, logger: logging.Logger):
+    """--mode pilot --parse-only: parses whatever real export files are present under
+    input_dir and reports per-file parsing quality, WITHOUT running deduplicate() at
+    all. Per Section 3 of the pilot import workflow, automatic deduplication must not
+    run until this parsing-quality report has been reviewed by a human.
+
+    Returns (parsed_records, quality_rows, parse_log_lines). parsed_records carry a
+    record_id (same scheme as deduplicate()) so Section 4's manual spot-check and any
+    later re-parse can reference the same record consistently.
+    """
+    exported_map = load_search_log_exported_records(search_log_path)
+
+    files_found = [p for p in sorted(input_dir.rglob("*"))
+                    if p.is_file() and p.suffix.lower() in SUPPORTED_EXTENSIONS
+                    and p.name != ".gitkeep"]
+
+    parsed_records = []
+    quality_rows = []
+    parse_log_lines = [f"Pilot parse-only run: {datetime.now().isoformat()}",
+                       f"Input directory: {input_dir}",
+                       f"Search log: {search_log_path} "
+                       f"({'found' if search_log_path.exists() else 'NOT FOUND'})", ""]
+
+    if not files_found:
+        parse_log_lines.append(f"No export files (.ris/.csv/.nbib/.bib) found under {input_dir}.")
+        return parsed_records, quality_rows, parse_log_lines
+
+    for path in files_found:
+        database = infer_database_from_path(path) or "unknown"
+        module = infer_module_from_filename(path) or "unknown"
+        text = read_text_safely(path, logger)
+        source_file = str(path)
+        parser_warnings = []
+        unknown_fields = set()
+        parse_log_lines.append(f"--- {path} (database={database}, search_module={module}) ---")
+
+        try:
+            if path.suffix.lower() == ".ris":
+                recs = parse_ris(text, source_file, database, module, logger,
+                                 parser_warnings, unknown_fields)
+            elif path.suffix.lower() == ".nbib":
+                recs = parse_nbib(text, source_file, database, module, logger,
+                                  parser_warnings, unknown_fields)
+            elif path.suffix.lower() == ".bib":
+                recs = parse_bibtex(text, source_file, database, module, parser_warnings)
+            elif path.suffix.lower() == ".csv":
+                recs = parse_csv_export(path, text, source_file, database, module, logger,
+                                        parser_warnings, unknown_fields)
+            else:
+                continue
+        except Exception as exc:  # noqa: BLE001
+            logger.error("Failed to parse %s: %s", path, exc)
+            parse_log_lines.append(f"PARSE FAILED: {exc}")
+            quality_rows.append({
+                "source_file": source_file, "database": database, "search_module": module,
+                "exported_records": exported_map.get(path.name, ""),
+                "records_parsed": 0, "diff_parsed_minus_exported": "",
+                "missing_title": 0, "missing_abstract": 0, "missing_authors": 0,
+                "missing_year": 0, "missing_DOI": 0, "missing_PMID": 0,
+                "conflicting_DOIs": 0, "unknown_fields": "", "unknown_fields_count": 0,
+                "parser_warnings": f"PARSE FAILED: {exc}",
+            })
+            continue
+
+        for w in parser_warnings:
+            logger.warning(w)
+            parse_log_lines.append(f"WARNING: {w}")
+
+        for i, r in enumerate(recs, start=1):
+            raw_id = f"{database}|{module}|{source_file}|{i}"
+            r["record_id"] = hashlib.sha1(raw_id.encode("utf-8")).hexdigest()[:12]
+
+        n = len(recs)
+        missing_title = sum(1 for r in recs if not r.get("title"))
+        missing_abstract = sum(1 for r in recs if not r.get("abstract"))
+        missing_authors = sum(1 for r in recs if not r.get("authors"))
+        missing_year = sum(1 for r in recs if not r.get("year"))
+        missing_doi = sum(1 for r in recs if not r.get("DOI"))
+        missing_pmid = sum(1 for r in recs if not r.get("PMID"))
+        n_conflicting_doi = sum(1 for r in recs if r.get("multiple_conflicting_dois"))
+
+        exported_records = exported_map.get(path.name)
+        diff = (n - exported_records) if exported_records is not None else ""
+
+        quality_rows.append({
+            "source_file": source_file, "database": database, "search_module": module,
+            "exported_records": exported_records if exported_records is not None else "",
+            "records_parsed": n,
+            "diff_parsed_minus_exported": diff,
+            "missing_title": missing_title, "missing_abstract": missing_abstract,
+            "missing_authors": missing_authors, "missing_year": missing_year,
+            "missing_DOI": missing_doi, "missing_PMID": missing_pmid,
+            "conflicting_DOIs": n_conflicting_doi,
+            "unknown_fields": ";".join(sorted(unknown_fields)),
+            "unknown_fields_count": len(unknown_fields),
+            "parser_warnings": "; ".join(parser_warnings),
+        })
+
+        parse_log_lines.append(
+            f"Parsed {n} record(s). exported_records(search_log)="
+            f"{exported_records if exported_records is not None else 'N/A (no matching search_log row)'}; "
+            f"diff={diff if diff != '' else 'N/A'}; missing_title={missing_title}; "
+            f"missing_abstract={missing_abstract}; missing_authors={missing_authors}; "
+            f"missing_year={missing_year}; missing_DOI={missing_doi}; "
+            f"missing_PMID={missing_pmid}; conflicting_DOIs={n_conflicting_doi}; "
+            f"unknown_fields={sorted(unknown_fields) if unknown_fields else 'none'}")
+
+        parsed_records.extend(recs)
+
+    parse_log_lines.append("")
+    parse_log_lines.append(f"TOTAL: {len(parsed_records)} record(s) parsed across "
+                           f"{len(files_found)} file(s). NO DEDUPLICATION HAS BEEN RUN.")
+
+    return parsed_records, quality_rows, parse_log_lines
+
+
+def write_pilot_parsing_quality_report(path: Path, quality_rows: list):
+    fieldnames = ["source_file", "database", "search_module", "exported_records",
+                  "records_parsed", "diff_parsed_minus_exported", "missing_title",
+                  "missing_abstract", "missing_authors", "missing_year", "missing_DOI",
+                  "missing_PMID", "conflicting_DOIs", "unknown_fields",
+                  "unknown_fields_count", "parser_warnings"]
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -1028,11 +1198,68 @@ def main():
     parser.add_argument("--input-dir", type=Path, default=Path("data/raw"))
     parser.add_argument("--output-dir", type=Path, default=Path("data/processed"))
     parser.add_argument("--log-dir", type=Path, default=Path("logs"))
+    parser.add_argument("--mode", choices=["production", "pilot"], default="production",
+                         help="'production' is the unchanged default full-run behavior. "
+                              "'pilot' currently only supports --parse-only (Section 3 of "
+                              "the pilot import workflow) — parsing and per-file quality "
+                              "reporting with no deduplication run.")
+    parser.add_argument("--parse-only", action="store_true",
+                         help="Pilot mode only. Parse export files and write a per-file "
+                              "parsing-quality report; do NOT run deduplicate() at all.")
+    parser.add_argument("--search-log", type=Path, default=Path("templates/search_log.csv"),
+                         help="Pilot mode only. Used to cross-check records_parsed against "
+                              "the search log's own exported_records column.")
+    parser.add_argument("--interim-dir", type=Path, default=Path("data/interim"),
+                         help="Pilot mode only. Where pilot_parsed_records.csv and "
+                              "pilot_parsing_quality_report.csv are written.")
     args = parser.parse_args()
 
     logger = setup_logger(args.log_dir)
-    logger.info("deduplicate_records.py starting")
+    logger.info("deduplicate_records.py starting (mode=%s)", args.mode)
     logger.info("input-dir=%s output-dir=%s", args.input_dir, args.output_dir)
+
+    if args.mode == "pilot":
+        if not args.parse_only:
+            logger.error("--mode pilot currently only supports --parse-only (Section 3 "
+                          "of the pilot import workflow). Pilot deduplication is a "
+                          "separate, later, human-gated step (Section 6) that requires "
+                          "the parsing-quality report and manual spot-check to be "
+                          "reviewed first — it is not implemented by this flag.")
+            sys.exit(2)
+
+        if not args.input_dir.exists():
+            logger.error("Input directory %s does not exist. Nothing to do.", args.input_dir)
+            sys.exit(1)
+
+        parsed_records, quality_rows, parse_log_lines = run_pilot_parse_only(
+            args.input_dir, args.search_log, logger)
+
+        args.log_dir.mkdir(parents=True, exist_ok=True)
+        parse_log_path = args.log_dir / "pilot_parse_log.txt"
+        with open(parse_log_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(parse_log_lines) + "\n")
+
+        if not parsed_records:
+            logger.warning(
+                "No real export files (.ris/.csv/.nbib/.bib) were found under %s. This "
+                "script will not fabricate parsing results. Populate the pilot files "
+                "under data/raw/{wos,scopus,pubmed}/ and re-run. Wrote %s documenting "
+                "this (no other output produced).", args.input_dir, parse_log_path)
+            sys.exit(0)
+
+        write_csv(args.interim_dir / "pilot_parsed_records.csv", parsed_records, UNIFIED_FIELDS)
+        write_pilot_parsing_quality_report(
+            args.interim_dir / "pilot_parsing_quality_report.csv", quality_rows)
+
+        logger.info("Pilot parse-only complete: %d record(s) parsed from %d file(s). "
+                    "NO deduplication was run. Wrote %s, %s, %s. Review the parsing "
+                    "quality report and perform the Section 4 manual spot-check before "
+                    "proceeding to any further step.",
+                    len(parsed_records), len(quality_rows),
+                    args.interim_dir / "pilot_parsed_records.csv",
+                    args.interim_dir / "pilot_parsing_quality_report.csv",
+                    parse_log_path)
+        sys.exit(0)
 
     if not args.input_dir.exists():
         logger.error("Input directory %s does not exist. Nothing to do.", args.input_dir)
