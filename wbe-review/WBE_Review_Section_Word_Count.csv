@@ -1,0 +1,106 @@
+chapter,section,is_internal_note,body_words,heading_words,table_words,box_caption_words,citation_marker_count,paragraph_count,equation_count,section_total_words,pct_of_document_total
+FRONT_MATTER,Title and status note,True,317,0,0,0,0,3,0,317,0.71
+1. Introduction,(chapter preamble),False,1076,2,0,28,6,10,0,1106,2.47
+2. Review Methodology and Evidence Synthesis,(chapter preamble),False,0,6,0,0,0,0,0,6,0.01
+2. Review Methodology and Evidence Synthesis,2.1 Review type and scope,False,109,5,0,0,0,1,0,114,0.25
+2. Review Methodology and Evidence Synthesis,2.2 Search process used for this draft,False,238,7,0,0,0,2,0,245,0.55
+2. Review Methodology and Evidence Synthesis,2.3 Source verification procedure and its limitations — read before citing any number in this draft,False,311,16,0,0,0,4,0,327,0.73
+2. Review Methodology and Evidence Synthesis,2.4 Terminology and developmental background (compressed),False,290,6,70,0,6,3,0,366,0.82
+2. Review Methodology and Evidence Synthesis,"2.5 Application taxonomy, organized by inference goal",False,44,7,88,0,3,2,0,139,0.31
+2. Review Methodology and Evidence Synthesis,2.6 Scope boundaries,False,61,3,0,0,2,1,0,64,0.14
+3. WBE as an Inverse Problem: Source-to-Sample Signal Formation,(chapter preamble),False,0,9,0,0,0,0,0,9,0.02
+3. WBE as an Inverse Problem: Source-to-Sample Signal Formation,3.0 Formal problem statement,False,567,4,0,0,0,8,33,571,1.28
+3. WBE as an Inverse Problem: Source-to-Sample Signal Formation,3.1 Source-End Biological and Behavioral Variation,False,473,6,0,0,2,5,4,479,1.07
+3. WBE as an Inverse Problem: Source-to-Sample Signal Formation,3.2 Building and Local Drainage Processes,False,215,6,0,0,0,2,1,221,0.49
+4. Signal Distortion in Sewer Transport: From Transformation to Identifiability,(chapter preamble),False,97,10,0,0,0,1,0,107,0.24
+4. Signal Distortion in Sewer Transport: From Transformation to Identifiability,"4.1 Physical, Chemical, and Biological Transformation in Transit — Amplitude and Temporal Effects",False,389,13,0,0,2,4,2,402,0.90
+4. Signal Distortion in Sewer Transport: From Transformation to Identifiability,4.2 Rainfall- and Warm-Season-Induced Distortion — A Compound Perturbation,False,447,9,0,0,5,2,1,456,1.02
+4. Signal Distortion in Sewer Transport: From Transformation to Identifiability,4.3 Identifiability and the Case for Process-Informed Correction,False,441,8,0,0,3,4,8,449,1.00
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion",(chapter preamble),False,0,12,0,0,0,0,0,12,0.03
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion","5.0 Bridge from Chapters 1–4, Notation, and Two Observation Models",False,748,10,0,0,0,11,28,758,1.70
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion",5.1 Sampling Location — A Further Spatial-Distortion and Identifiability Choice,False,372,10,0,0,0,4,0,382,0.85
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion",5.2 Sampling Mode — Amplitude and Temporal Distortion at the Point of Collection,False,491,13,0,0,2,3,4,504,1.13
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion","5.3 Sample Matrix — Liquid, Particulate, Settled Solids, and Sludge",False,277,10,0,0,1,2,0,287,0.64
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion","5.4 Preservation, Pre-Treatment, Concentration, and Extraction",False,283,6,0,0,1,2,2,289,0.65
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion","5.5 Six Concepts That Should Not Be Collapsed Into One ""Uncertainty""",False,945,11,0,0,1,5,6,956,2.14
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion",5.6 Differential Behavior Across Target Classes: Applying the Two Observation Models,False,421,11,0,0,1,3,13,432,0.97
+"5. Sampling, Analytical Methods, and Quality Assurance: A Second Round of Distortion","5.7 Carrying Sampling and Analytical Uncertainty Forward: Bias, Random Error, and Information Loss",False,718,13,0,0,0,6,8,731,1.63
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,(chapter preamble),False,0,10,0,0,0,0,0,10,0.02
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.0 Normalization Within the Inverse-Problem Framework,False,450,6,0,88,0,7,26,544,1.22
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.1 What Is Normalization Intended to Correct?,False,519,7,0,0,0,4,0,526,1.18
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.2 Flow-Based Normalization,False,668,3,0,0,3,8,10,671,1.50
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.3 Census Population and Dynamic Population Estimates,False,621,7,0,0,2,6,5,628,1.40
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.4 Chemical Population Biomarkers,False,743,4,0,0,2,7,0,747,1.67
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.5 Microbial and Molecular Population Biomarkers,False,873,6,0,0,3,6,1,879,1.97
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.6 Ratio Normalization and Error Propagation,False,815,6,565,299,14,12,9,1685,3.77
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.7 Target- and Purpose-Specific Normalization,False,422,5,0,0,0,4,0,427,0.95
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.8 When Normalization Fails,False,646,4,0,0,0,3,3,650,1.45
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.9 Decision Framework for Selecting Normalization Strategies,False,444,7,0,0,3,5,1,451,1.01
+6. Normalization in Wastewater-Based Epidemiology: Causal Correction or Additional Uncertainty?,6.10 Link to Chapters 7 and 8,False,236,7,0,0,0,2,8,243,0.54
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",(chapter preamble),False,0,12,0,0,0,0,0,12,0.03
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation","7.0 Bridge from Chapter 6, and Five Distinctions This Chapter Insists On",False,884,12,0,28,1,6,5,924,2.07
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",7.1 Two Reconstruction Goals: Consumption/Exposure and Infection-Level,False,1957,7,0,0,4,7,24,1964,4.39
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",7.2 A Worked Illustration of Why the Five Distinctions Come Apart,False,679,11,0,0,1,6,35,690,1.54
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation","7.3 The Five Distinctions, Developed Formally",False,981,6,0,0,11,6,2,987,2.21
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",7.4 Evaluating Back-Calculation Method Families Against the Five-Way Framework,False,286,9,1140,0,19,4,4,1435,3.21
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation","7.5 Validation: What ""Validating"" a Back-Calculation Model Actually Requires",False,357,9,0,0,1,3,1,366,0.82
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",7.6 When State Observability Fails Regardless of Method,False,381,8,0,0,1,3,8,389,0.87
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",7.7 Reporting Framework for Back-Calculated Estimates,False,274,6,0,0,0,2,1,280,0.63
+"7. From Normalized Wastewater Signals to Population-Level Reconstruction: Back-Calculation, Identifiability, and Validation",7.8 Link to Chapter 8,False,189,5,0,0,0,1,1,194,0.43
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,(chapter preamble),False,71,12,0,0,0,1,0,83,0.19
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.0 Uncertainty Within the Complete Inverse Pipeline,False,313,7,0,0,0,6,23,320,0.72
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,"8.1 Variability, Uncertainty, Bias, and Information Loss — Kept Distinct",False,287,10,0,0,0,3,3,297,0.66
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.2 Source-End Uncertainty,False,488,3,0,0,0,2,2,491,1.10
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.3 Sewer-Process Uncertainty,False,425,3,0,0,1,3,1,428,0.96
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.4 Sampling and Analytical Uncertainty,False,423,5,0,0,1,3,4,428,0.96
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.5 Normalization Uncertainty,False,170,3,0,0,0,1,2,173,0.39
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.6 Analytical Error Propagation and the Delta Method,False,194,8,0,0,0,3,9,202,0.45
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.7 Monte Carlo Propagation,False,461,4,0,0,1,3,1,465,1.04
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.8 Global Sensitivity Analysis,False,265,4,0,0,0,2,0,269,0.60
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.9 Bayesian Hierarchical Uncertainty Propagation,False,343,5,0,0,1,2,0,348,0.78
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.10 Correlated and Dependent Uncertainties,False,375,5,0,0,0,4,0,380,0.85
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,"8.11 Censoring, Nondetects, and Missingness",False,464,5,0,0,0,3,1,469,1.05
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.12 Structural Uncertainty and Model Ensembles,False,329,6,0,0,1,2,0,335,0.75
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.13 Uncertainty Decomposition Across the WBE Chain,False,256,7,0,0,0,4,1,263,0.59
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.14 From Scientific Uncertainty to Decision Uncertainty,False,363,7,0,0,0,2,1,370,0.83
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.15 Minimum Reporting Requirements,False,215,4,0,0,0,1,1,219,0.49
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,8.16 Link to Validation and Public-Health Interpretation,False,285,7,0,0,0,1,0,292,0.65
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,Table 6. Uncertainty Source × Type × Distribution × Propagation Method × Mitigation × Residual Effect,False,42,16,516,0,4,1,4,574,1.28
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,Box — Why Monte Carlo Simulation Does Not Solve Model Misspecification,False,0,11,0,203,0,1,0,214,0.48
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,Box — How to Report Nondetects and Censored Wastewater Data,False,0,10,0,212,1,1,1,222,0.50
+8. Uncertainty Propagation in Wastewater-Based Epidemiology: From Source Variability to Decision Uncertainty,Figure 2 and Figure 3 (delivered as separate image files alongside this document),False,36,13,0,0,0,2,0,49,0.11
+9. Integration with Public-Health Surveillance and Decision-Making,(chapter preamble),False,318,7,0,0,2,1,0,325,0.73
+9. Integration with Public-Health Surveillance and Decision-Making,"9.0 What Chapter 8 Hands to Chapter 9, and What Chapter 9 Does With It",False,235,15,0,0,0,2,2,250,0.56
+9. Integration with Public-Health Surveillance and Decision-Making,"9.1 Three Surveillance Objectives, One Signal",False,595,6,0,0,0,3,0,601,1.34
+9. Integration with Public-Health Surveillance and Decision-Making,9.2 Alert-Threshold Design and the Asymmetric Cost of Being Wrong,False,683,10,0,0,1,4,3,693,1.55
+9. Integration with Public-Health Surveillance and Decision-Making,"9.3 Multi-Source Data Fusion: Clinical, Mobility, Weather, Pharmacy, and Hospital Data",False,522,11,0,0,2,3,0,533,1.19
+9. Integration with Public-Health Surveillance and Decision-Making,9.4 Why Fusion Is Not Free: Correlated Uncertainty Across Data Streams,False,434,11,0,0,0,4,0,445,1.00
+9. Integration with Public-Health Surveillance and Decision-Making,9.5 The Boundary: What Wastewater-Based Surveillance Cannot Replace,False,638,8,0,0,2,5,0,646,1.44
+9. Integration with Public-Health Surveillance and Decision-Making,"9.6 Small-Catchment and Building-Scale Monitoring: Privacy, Stigma, and Equity",False,623,9,0,0,2,4,0,632,1.41
+9. Integration with Public-Health Surveillance and Decision-Making,9.7 From Detectable Signal to Actionable Information,False,567,7,0,0,1,4,0,574,1.28
+9. Integration with Public-Health Surveillance and Decision-Making,9.8 Minimum Reporting Requirements for a Decision-Ready Wastewater Signal,False,354,9,0,0,2,2,0,363,0.81
+9. Integration with Public-Health Surveillance and Decision-Making,Table 7. Surveillance Objective × Decision Requirement × Primary Uncertainty Sensitivity × Representative Citation,False,124,14,172,0,10,1,0,310,0.69
+9. Integration with Public-Health Surveillance and Decision-Making,"Box — ""Detectable"" Is Not ""Actionable"": Why the Same Signal Can Be Both Real and Not Yet Decision-Ready",False,0,18,0,251,0,1,0,269,0.60
+9. Integration with Public-Health Surveillance and Decision-Making,9.9 Evidentiary Note: One Source Withdrawn From Citation This Round,False,208,10,0,0,2,1,0,218,0.49
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,(chapter preamble),False,248,10,0,0,0,1,0,258,0.58
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,"10.0 What Chapter 9 Hands to Chapter 10, and the Boundary Between Them",False,149,13,0,0,0,1,0,162,0.36
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.1 Distributed Sewer-Network Sensing,False,303,4,0,0,1,1,0,307,0.69
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.2 Near-Real-Time and Online Measurements,False,278,5,0,0,0,1,0,283,0.63
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.3 Sewer Digital Twins,False,334,4,0,0,0,1,0,338,0.76
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.4 Multi-Omics and Expanded Biomarker Panels,False,404,6,0,0,0,2,0,410,0.92
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.5 Process-Informed Artificial Intelligence,False,409,4,0,0,0,2,0,413,0.92
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.6 Standard Reference Materials and Interlaboratory Comparability,False,409,7,0,0,0,2,0,416,0.93
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.7 Interoperable Data Infrastructure,False,369,4,0,0,0,2,0,373,0.83
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.8 Privacy-Preserving and Equitable Analytics,False,368,5,0,0,2,2,0,373,0.83
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.9 Climate-Resilient WBE Infrastructure,False,312,4,0,0,0,2,0,316,0.71
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,10.10 A Technology-Readiness Framework for Process-Informed WBE,False,436,7,0,0,0,4,0,443,0.99
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,Table 8. Technology × Required Evidence × Failure Mode × Readiness Level (§10.10),False,55,13,402,0,16,1,0,470,1.05
+10. Enabling Technologies and Research Infrastructures for Process-Informed Wastewater-Based Epidemiology,Box — Why Analytical Innovation Does Not Guarantee Epidemiological Value,False,0,10,0,221,0,1,0,231,0.52
+Note on companion files,(chapter preamble),True,596,4,0,0,2,4,0,600,1.34
+Editorial self-check (author-requested audit),(chapter preamble),True,328,4,350,0,0,3,9,682,1.53
+Structural bridge from Chapters 1–4 to Chapter 5 (retained from previous delivery),(chapter preamble),True,174,12,0,0,0,1,8,186,0.42
+Structural bridge from Chapter 5 to Chapter 6 (new this round),(chapter preamble),True,163,11,0,0,0,1,4,174,0.39
+Structural bridge from Chapter 6 to Chapter 7 (new this round),(chapter preamble),True,119,11,0,0,0,1,3,130,0.29
+Structural bridge from Chapter 7 to Chapter 8 (new this round),(chapter preamble),True,370,11,0,0,0,1,7,381,0.85
+Structural bridge from Chapter 8 to Chapter 9 (new this round),(chapter preamble),True,301,11,0,0,0,1,3,312,0.70
+Structural bridge from Chapter 9 to Chapter 10 (new this round),(chapter preamble),True,267,11,0,0,0,1,0,278,0.62

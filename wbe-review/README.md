@@ -2,7 +2,9 @@
 
 **Beyond Detection in Wastewater-Based Epidemiology: Sewer Processes, Signal Distortion, Normalization, and Epidemiological Inference**
 
-## Current phase: conceptual chapter drafting continues (Chapters 1–10 drafted), formal evidence remediation still pending
+## Current phase: conceptual chapter drafting continues (Chapters 1–10 drafted), formal evidence remediation still pending; Water Research compression Phase 1 (structure/length audit only) added 2026-07-18
+
+**`WBE_Review_Ch1-10.md` / `.docx` is the full conceptual source draft — not the submission-length manuscript.** It is not being cut down in place. A separate, non-destructive compression-planning track has started (2026-07-18): `WBE_Review_Section_Word_Count.csv`, `WBE_Review_Word_Count_Method.md`, `WBE_Review_Overlap_Audit.csv`, `WBE_Review_Content_Priority_Audit.csv`, `WBE_Review_Compression_Map.md`, `WBE_Review_Target_Outline.md`, and `WBE_Review_Supplementary_Outline.md` together plan how a future, separate submission-length manuscript would be derived from this source draft. As of this round, only the plan exists — no submission-length manuscript has been written, and the source draft above is untouched other than this status note.
 
 This project is a working-draft academic review of wastewater-based epidemiology (WBE). **Status as of 2026-07-18: Chapters 1–10 are drafted as a conceptual working draft; Chapters 11–12 remain undrafted.** An earlier phase of this project (2026-07-13) paused chapter drafting for a systematic-review evidence-remediation effort; the user has since explicitly resumed chapter drafting, on the explicit condition that every chapter continues to carry this review's standing evidentiary discipline: web-search-derived sources only, no full-text reads, every specific number hedged as pending full-text verification or omitted where not corroborated, and formal PRISMA numbers never generated. **Do not read this README's earlier "frozen" language as still in force — it described a phase that ended when Chapter 9 drafting was authorized.**
 
@@ -21,6 +23,16 @@ This project is a working-draft academic review of wastewater-based epidemiology
 - `WBE_Review_Rename_Crossref_Log.md` — file-rename and cross-reference verification log
 - `WBE_Fig1_Normalization_Decision_Tree.png`, `WBE_Fig2_Uncertainty_Chain.png`, `WBE_Fig3_Uncertainty_Budget_Network.png` — the review's three original figures (no new figure added for Chapter 10 — see the Ch10 Evidence Note for why)
 
+### Water Research compression, Phase 1 (structure/length audit only — added 2026-07-18)
+
+- `WBE_Review_Section_Word_Count.csv` / `WBE_Review_Word_Count_Method.md` — reproducible, script-generated per-section word counts (`scripts/word_count.py`) for the full source draft; headline figures: 44,717 total words, 41,657 in Chapters 1–10 proper, 39,253 body prose.
+- `WBE_Review_Overlap_Audit.csv` — cross-chapter content-duplication audit (14 rows), covering the six chapter-pairs specifically named in this round's instruction plus the document's largest single redundancy (the 6 end-matter "Structural bridge" sections restating inline chapter-transition prose).
+- `WBE_Review_Content_Priority_Audit.csv` — all 105 sections classified by priority category, compressibility, and SI destination (script: `scripts/build_priority_audit.py`).
+- `WBE_Review_Compression_Map.md` / `.docx` — full section-level (not chapter-level) mapping of all 105 sections to the 8-part target submission structure, with computed per-section target words (script: `scripts/build_compression_map.py`).
+- `WBE_Review_Target_Outline.md` / `.docx` — level-3-heading target outline for the not-yet-written submission-length manuscript, including the four-original-contributions protection matrix and the figure/table disposition plan.
+- `WBE_Review_Supplementary_Outline.md` / `.docx` — planned Supplementary Information structure (10 sections) for the eventual submission.
+- **This track has produced planning documents only — no submission-length manuscript prose exists yet, and `WBE_Review_Ch1-10.md` is untouched other than the status-note addition at the top of this file's companion document.**
+
 ### The single most important fact about this project right now
 
 **0 of 67 active references have been read in full text. 67 of 67 are supported only by search-engine-summarized abstracts or metadata.** No Web of Science, Scopus, or PubMed search has been executed. This denominator changes every time a chapter adds references (51 through Ch8, 59 through Ch9, 67 as of Ch10) — the fact that stays constant is the numerator: 0. It is retested and reconfirmed every round this status changes, and it is documented, with the specific tested reason, in `WBE_Review_Ch8_Evidence_Freeze_Audit.md`. **Never quote a prior round's denominator (51 or 59) as current.**
@@ -33,13 +45,14 @@ This project is a working-draft academic review of wastewater-based epidemiology
 
 ### What happens next
 
-Two independent tracks exist in this project, and progress on one does not imply progress on the other:
+Three independent tracks exist in this project, and progress on one does not imply progress on another:
 
 1. **Conceptual chapter drafting** (Chapters 1–12) continues at the user's direction, each new chapter subject to this review's standing evidentiary discipline (hedged, web-search-derived, never claiming full-text verification). This is the track currently active — Chapters 1–10 are drafted; Chapters 11–12 remain.
 2. **Formal evidence remediation** — converting the review from search-engine-summary-driven to full-text-evidence-driven — is triggered only by **the user (or someone with institutional access) supplying real Web of Science, Scopus, and PubMed export files** into `systematic-review/data/raw/{wos,scopus,pubmed}/`, or a genuine pilot import (see `systematic-review/`'s pilot-mode tooling, built and tested but not yet run against real data as of this round). Until that happens:
    - No hypothetical PRISMA numbers, hit counts, or full-text-verification claims are generated
    - `WBE_Review_Ch8_Evidence_Freeze_Audit.md` continues to report the true, current state, recomputed as each new chapter's references are added
    - Every chapter, however many are eventually drafted, continues to carry the same "conceptual working draft, not submission-ready" status until this track closes it out
+3. **Water Research compression planning** (Phase 1 complete as of 2026-07-18, see above) — plans how a submission-length manuscript would be derived from the full source draft, without cutting the source draft itself. Phase 2 (actually writing the compressed manuscript) has not started and is not triggered automatically by Phase 1's completion — it requires explicit author direction, consistent with Phase 1's own closing recommendation.
 
 ### Files awaited from the user / a database-access holder
 
