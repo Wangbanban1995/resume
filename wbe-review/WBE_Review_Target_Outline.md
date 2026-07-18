@@ -1,18 +1,18 @@
 # Target Outline — Water Research Submission-Length Manuscript (Planning Document Only)
 
-**Round:** Water Research compression, Phase 2A. 2026-07-18. First built in Phase 1 (2026-07-18 earlier round); **revised this round to correct the total-length target**. Water Research's actual review-article guidance, as supplied this round, is: **"Review Paper length is comparatively flexible, but a typical review is under 12,000 words, including references."** The Phase 1 version of this file did not clearly cost references into its ~10,875-word estimate — this revision fixes that, lowering every body-part budget so that references (now explicitly counted) fit inside a safe total. **This remains a target outline for a manuscript that does not yet exist in full — Parts 1-4 now exist as actual condensed prose in `WBE_Review_WR_Condensed_Draft.md` (this round's deliverable); Parts 5-8 remain outline-only, not yet drafted.**
+**Round:** Water Research compression, Phase 2B. 2026-07-18. Built in Phase 1, revised in Phase 2A to correct the total-length target, revised again here in Phase 2B to confirm Parts 5-8's budgets. Water Research's actual review-article guidance, as supplied this round, is: **"Review Paper length is comparatively flexible, but a typical review is under 12,000 words, including references."** **All 8 parts now exist as actual condensed prose in `WBE_Review_WR_Condensed_Draft.md`** — this file remains the planning record, not the prose itself.
 
-## Corrected total-length budget (includes references — the Phase 1 error this revision fixes)
+## Corrected total-length budget (includes references)
 
 | Element | Target words |
 |---|---:|
-| 8-part prose body | 7,200–7,800 |
+| 8-part prose body | 7,200–7,600 |
 | In-text tables | 650–850 |
 | Abstract, figure captions, table captions | 350–500 |
 | References (current 67 active) | 1,800–2,200 |
-| **Estimated total** | **10,000–11,350** |
+| **Estimated total** | **10,000–11,150** |
 
-**Control rules:** ideal total ≤10,800 words; ≥11,300 is a warning threshold requiring a cut before proceeding further; the Phase 2 draft must never exceed 11,500 words; at least 500 words of headroom must be preserved below the ceiling for references a future formal database search will add beyond the current 67 active references. All word-count statistics in this file and in `WBE_Review_Compression_Log.md` include references. Highlights are a separate journal-required file, not counted against this budget, and are not produced this round (§15 of this round's instruction).
+**Control rules:** ideal total ≤10,800 words; ≥11,300 is a warning threshold requiring a cut before proceeding further; the Phase 2 draft must never exceed 11,500 words; at least 500 words of headroom must be preserved below the ceiling for references a future formal database search will add beyond the current 67 active references. All word-count statistics in this file and in `WBE_Review_Compression_Log.md` include references. Highlights are a separate journal-required file, not counted against this budget, and are not produced this round.
 
 **Reference-budget basis:** the current `WBE_Review_References.md` project file runs to ~6,500 words, but that figure includes verification annotations, evidence-type notes, and "pending full-text confirmation" flags that do not belong in a journal reference list — a plain, standard-format citation (author list, year, title, journal, volume/pages, DOI) for this document's 67 active references runs approximately 27-33 words each, giving the 1,800-2,200-word estimate above. This has not been mechanically re-typeset this round (the reference list itself is not part of this round's deliverables) but is a reasonable, checkable estimate.
 
@@ -20,30 +20,30 @@
 
 | # | Part | Budget | Status this round |
 |---|---|---:|---|
-| 1 | Introduction and review approach | 800 (750–850) | **Drafted this round** |
-| 2 | From population states to wastewater signals | 900 (850–950) | **Drafted this round** |
-| 3 | Sewers as information filters | 1,275 (1,200–1,350) | **Drafted this round** |
-| 4 | Observation and normalization | 1,175 (1,100–1,250) | **Drafted this round** |
-| 5 | Reconstruction, identifiability and uncertainty | 1,300 *(tentative)* | Title + placeholder only |
-| 6 | From wastewater signals to public-health action | 750 *(tentative)* | Title + placeholder only |
-| 7 | Enabling infrastructure and technology readiness | 600 *(tentative)* | Title + placeholder only |
-| 8 | Research priorities and conclusions | 700 *(unchanged)* | Title + placeholder only |
-| **Prose-body total** | | **7,500** | |
+| 1 | Introduction and review approach | 800 (750–850) | Drafted Phase 2A |
+| 2 | From population states to wastewater signals | 900 (850–950) | Drafted Phase 2A |
+| 3 | Sewers as information filters | 1,275 (1,200–1,350) | Drafted Phase 2A |
+| 4 | Observation and normalization | 1,175 (1,100–1,250) | Drafted Phase 2A |
+| 5 | Reconstruction, identifiability and uncertainty | 1,500 (1,450–1,550) | **Drafted this round** |
+| 6 | From wastewater signals to public-health action | 700 (650–750) | **Drafted this round** |
+| 7 | Enabling infrastructure and technology readiness | 500 (450–550) | **Drafted this round** |
+| 8 | Research priorities and conclusions | 550 (500–600) | **Drafted this round** |
+| **Prose-body total** | | **7,400** | |
 
-**Parts 5-8 budgets are tentative**, scaled down proportionally from their Phase 1 values so the 8-part sum lands on the new 7,500-word midpoint; they are not confirmed and should be revisited explicitly in Phase 2B once Parts 1-4's actual drafted density is known (Parts 1-4 came in close to, but not always exactly at, their targets — see `WBE_Review_Compression_Log.md` for the real numbers). Part 8's 700-word budget is unchanged from Phase 1 and remains bound by its own explicit caps (research priorities: 5-7 items; conclusions: 300-400 words), independent of proportional scaling.
+**Parts 5-8 budgets are now confirmed**, not tentative — set explicitly this round per instruction, informed by (though not mechanically derived from) Parts 1-4's actual drafted density. The 8-part sum (7,400) falls within the instructed 7,200-7,600 range.
 
 ## Non-body budget (costed independently)
 
 | Element | Budget | Basis |
 |---|---:|---|
-| Tables (4 in-text: see the Table 6 disposition below for how the former Table 6 is handled) | 650–850 words (~160-210 each) | Narrower per-table budget than Phase 1's estimate, reflecting this round's explicit instruction to keep in-text tables lean and move detailed evidence to SI tables instead. |
+| Tables (4 in-text: see the Table 6 disposition below for how the former Table 6 is handled) | 650–850 words (~160-210 each) | Unchanged from Phase 2A. |
 | Figures (4, captions only — images are not word-counted) | ~200 words (~50/caption) | Unchanged from Phase 1. |
-| References (current 67 active, plain citation format) | 1,800–2,200 words | See reference-budget basis above — this is the corrected figure that Phase 1 omitted from the length total. |
-| Abstract | 200–250 words | Water Research's stated abstract limit; **placeholder only this round, not drafted** (§15 of this round's instruction). |
+| References (current 67 active, plain citation format) | 1,800–2,200 words | See reference-budget basis above. |
+| Abstract | 200–250 words | Water Research's stated abstract limit; **placeholder only this round, not drafted** (per instruction to stop before Abstract/Highlights/cover letter). |
 | Highlights | 3–5 bullet points, ≤85 characters each | Separate file, not counted against body/table/reference budget; **not produced this round**. |
 | Graphical abstract | 1 image, ~20-word caption | **Not produced this round**. |
 
-**Estimated full submission length: 7,500 (body midpoint) + 750 (tables midpoint) + 425 (abstract/captions midpoint) + 2,000 (references midpoint) ≈ 10,675 words** — within the 10,000-11,350 target range and below the 10,800-word ideal ceiling, leaving roughly 825 words of headroom below the 11,500-word hard maximum, comfortably above the 500-word reserve this round's instruction requires for references a future formal search will add.
+**Estimated full submission length: 7,400 (body midpoint) + 750 (tables midpoint) + 425 (abstract/captions midpoint) + 2,000 (references midpoint) ≈ 10,575 words** — within the 10,000-11,150 target range and below the 10,800-word ideal ceiling, leaving roughly 925 words of headroom below the 11,500-word hard maximum, comfortably above the 500-word reserve this round's instruction requires for references a future formal search will add.
 
 ---
 
@@ -101,125 +101,62 @@ Core proposition, stated once and preserved verbatim: **"Normalization is a mech
 
 ---
 
-## Part 5. Reconstruction, identifiability and uncertainty (target 1,300, tentative — NOT drafted this round; title + placeholder only in the condensed draft)
+## Part 5. Reconstruction, identifiability and uncertainty (target 1,500, range 1,450–1,550 — **drafted this round**)
 
-**Budget revised down from Phase 1's 1,750 to a tentative 1,300** per this round's corrected total-length constraint (§68 of the task tracker; see the corrected total-length budget table above). The subsection plan below is retained from Phase 1 as a Phase 2B starting point, not a confirmed structure — it will need re-costing once Phase 2B actually drafts this part, and the **Table 6 disposition below is now finalized** (see "Table 6 disposition" note immediately following this header), which changes what 5.1-5.2 need to carry relative to the Phase 1 version.
+**Table 6 disposition (finalized in Phase 2A, executed this round):** the former Table 6 is not retained as an independent in-text table. Its full detail moved to **Table S5 (SI): "Uncertainty sources, propagation methods, validation requirements and residual limitations."** 4-6 items materially affecting model choice or interpretation are merged into the in-text **Table 3, "Model family, identifiability requirement, dominant uncertainty and minimum validation"**, six columns: model family; inferential target; principal identifiability requirement; dominant uncertainty; minimum validation; principal failure mode — 5-6 rows, ~170-220 table words. No uncertainty source is fully restated in both prose, Table 3, and Table S5.
 
-**Table 6 disposition (finalized this round, per §四 of this round's instruction):** the former Table 6 (Uncertainty Source × Type × Distribution × Propagation Method × Mitigation × Residual Effect) is **not retained as an independent in-text table**. Its full detail moves to **Table S5 (SI): "Uncertainty sources, propagation methods, validation requirements and residual limitations."** A maximum of 4-6 items that materially affect model choice or result interpretation are selected from it and merged into the in-text **Table 3, redesigned as "Model-identifiability-validation matrix"** (replacing the Phase 1 plan of merely merging former Tables 4-5), with exactly six columns: **model family; inferential target; principal identifiability requirement; dominant uncertainty; minimum validation; principal failure mode.** No uncertainty source may appear fully restated in main-text prose, Table 3, and Table S5 simultaneously — each uncertainty item has exactly one full-detail home (Table S5) and, where material to model choice, one compressed cross-reference (Table 3's "dominant uncertainty" column).
+### 5.1 Inferential targets and reconstruction models (~240 words)
+Distinguishes trend detection, relative change, anomaly detection, absolute load, and prevalence/incidence/consumption/exposure estimation as targets requiring different model complexity and evidence; briefly compares direct mass balance, convolution models, empirical regression, mechanistic models, Bayesian/state-space models, and hybrid process-informed models without a per-model textbook listing.
 
-### 5.1 Five distinctions: association, predictive performance, identifiability, observability, structural adequacy (450 words)
-- **Core question:** Why is "the back-calculated series correlates with clinical cases" the weakest, not the only, form of evidence a reconstruction claim needs?
-- **Must-retain arguments:** The full five-way distinction (§7.0, §7.3) — Original Contribution #4's conceptual core, and the parameter-identifiability/state-observability split specifically, which the source draft revises most substantially from earlier framings; the boxed central-sentence proposition.
-- **Source chapters:** Current §7.0, §7.3 (compressed from ~2,500 to 450 words — this is a steep cut for genuinely core material, largely achieved by moving the general, non-WBE-specific epidemic-modeling-identifiability literature discussion to SI).
-- **Suggested figures/tables:** **Figure 3 (Process-informed reconstruction and uncertainty framework)** belongs at this subsection's opening.
-- **Duplication to remove:** None (canonical location).
-- **Evidence needing full-text verification:** Liyanage et al. (2025), Deva et al. (2021) — both general (non-WBE) epidemic-modeling-identifiability sources, currently abstract-level.
+### 5.2 Identifiability and observability (~320 words)
+Distinguishes structural identifiability, practical identifiability, parameter uncertainty, state observability, equifinality, and informative data design. Retains, argued once in the whole manuscript: "A model may fit the observations while the target state remains non-identifiable," and that a narrow posterior does not automatically equal true certainty (canonical location, per the Phase 1 Overlap Audit — not re-argued in Part 6).
 
-### 5.2 Reconstruction method families and the evidence for each (450 words)
-- **Core question:** Against the five-way framework, what does each major WBE reconstruction method family (mass-balance, regression, deconvolution, Bayesian/state-space, compartmental, ML, ensemble) actually demonstrate, and what does it not?
-- **Must-retain arguments:** The headline finding that no method family achieves all five criteria in the surveyed evidence base — stated once, clearly, rather than re-derived per family in prose.
-- **Source chapters:** Current §7.1-§7.2, §7.4, heavily compressed (from ~4,900 to 450 words) — per-study narrative (Zuccato, Ramin, Huisman, Dai, McMahan, Ai, Alhassan) moves almost entirely into **Table 3 (Model-identifiability-validation matrix, consolidating current Tables 4-5)**.
-- **Suggested figures/tables:** Table 3 does most of this subsection's evidentiary work; §7.2's worked conceptual illustration compresses to 1-2 sentences or moves to a supplementary box.
-- **Duplication to remove:** The Dai et al. (2024) "narrow posterior ≠ identifiability" point currently appears in both the Table 5 cell and in full in §8.9 (Part 5.4 below) — per the Overlap Audit, state it once in 5.4, reference briefly from the table.
-- **Evidence needing full-text verification:** Every named study in this subsection (Zuccato et al. 2008, Ramin et al. 2017, Huisman et al. 2022, Schoen et al. 2022, Dai et al. 2024, McMahan et al. 2021, Ai et al. 2022, Alhassan et al. 2025) — currently abstract/metadata-level only; this is the second-highest concentration of pending-verification claims after Part 4.3.
+### 5.3 Validation according to inferential purpose (~280 words)
+Distinguishes internal fit, temporal holdout, external site validation, event-based validation, synthetic-state recovery, and decision-value validation. Retains: transferability cannot be shown by a single-point fit; validation must match the inferential target; predictive performance does not equal source-state recovery.
 
-### 5.3 Validation levels and hard reconstruction failure modes (250 words)
-- **Core question:** What does "validating" a back-calculation model actually require, and when does no amount of methodological sophistication fix a reconstruction problem?
-- **Must-retain arguments:** The internal/external/mechanistic three-level validation distinction (§7.5) merged with §8.16's coverage/posterior-predictive-check validation discussion, per the Overlap Audit's explicit merge recommendation — this pairing should become one subsection, not two; the hard-failure catalog (§7.6) compressed to a short list.
-- **Source chapters:** Current §7.5-§7.6 + §8.16 (merged), compressed from ~1,050 to 250 words.
-- **Suggested figures/tables:** None additional.
-- **Duplication to remove:** This is itself the Overlap Audit's flagged §7.5/§8.16 merge point, executed here.
-- **Evidence needing full-text verification:** None beyond what 5.2 already flags.
+### 5.4 Uncertainty propagation (~320 words)
+Covers input uncertainty, correlated parameters, ratio uncertainty, censoring/LOD, temporal dependence, structural uncertainty, scenario uncertainty, and propagation methods (Monte Carlo, Bayesian, ensemble) named by what problem each solves, not their technical mechanics.
 
-### 5.4 Uncertainty propagation framework: sources, correlation, structural uncertainty (450 words)
-- **Core question:** How does uncertainty enter at each pipeline stage, interact rather than add independently, and propagate to a final confidence statement?
-- **Must-retain arguments:** The marginalization-integral formalization and "propagation ≠ bias correction ≠ identifiability restoration" distinction (§8.0) — Original Contribution #4's formal core; the correlated-uncertainty argument (§8.10, explicitly named the chapter's "most consequential subsection"); the narrow-posterior-≠-certainty critique (§8.9, canonical location per the Overlap Audit merge with 5.2); the structural-uncertainty/Monte-Carlo-does-not-fix-misspecification point (§8.12, box).
-- **Source chapters:** Current §8.0-§8.3, §8.5, §8.9-§8.13 (compressed from ~4,800 to 450 words) — §8.4's six-concept re-listing is cut entirely per the Overlap Audit (cross-reference Part 4.1 instead); §8.6-§8.8, §8.11 (delta method, Monte Carlo mechanics, sensitivity analysis, censoring methods) move to Supplementary Methods as largely standard technique exposition.
-- **Suggested figures/tables:** **Table 4 (Minimum reporting and decision-readiness framework)** could absorb Table 6's uncertainty-source breakdown if space allows, otherwise Table 6 itself is retained in redesigned form as one of the four target tables (see disposition plan — this creates a 5-table tension the author must resolve, flagged explicitly below).
-- **Duplication to remove:** §8.4's near-total restatement of §5.5's six concepts (per Overlap Audit) — removed here by construction (not drafted in the first place, only cross-referenced).
-- **Evidence needing full-text verification:** Jones et al. (2014) MCMC framework findings; Pei et al. (2016) and Croft et al. (2020) Monte Carlo consumption-estimate figures; Safford et al. (2022) censoring-method comparison.
-
-### 5.5 From scientific to decision uncertainty; minimum reporting (150 words)
-- **Core question:** How does a propagated uncertainty distribution become a decision-relevant probability?
-- **Must-retain arguments:** The exceedance-probability/asymmetric-cost vocabulary (§8.14) — canonical location per the Overlap Audit (Part 6.1's alert-threshold discussion should reference this rather than re-explain it); a 1-2 sentence compressed reporting-standard statement (§8.15), full checklist to SI.
-- **Source chapters:** Current §8.14-§8.15, compressed from ~590 to 150 words.
-- **Suggested figures/tables:** None additional.
-- **Duplication to remove:** None (canonical location; Part 6.1 is the one that should shorten).
-- **Evidence needing full-text verification:** None (this subsection is decision theory, not an evidence-dependent empirical claim).
+### 5.5 From uncertainty intervals to defensible inference (~240 words)
+Covers calibrated coverage, sensitivity analysis, value of information, uncertainty communication, decision thresholds, and residual irreducible uncertainty — a natural transition into Part 6, without a standalone "structural bridge" section.
 
 ---
 
-## Part 6. From wastewater signals to public-health action (target 750, tentative — NOT drafted this round; title + placeholder only in the condensed draft)
+## Part 6. From wastewater signals to public-health action (target 700, range 650–750 — **drafted this round**)
 
-**Budget revised down from Phase 1's 1,000 to a tentative 750** per this round's corrected total-length constraint. Subsection plan below retained from Phase 1 as a Phase 2B starting point only.
+### 6.1 Surveillance objectives and decision thresholds
+Trend, anomaly, absolute magnitude; false alarm; missed detection; threshold transportability.
 
-### 6.1 Three surveillance objectives and alert-threshold design under asymmetric cost (350 words)
-- **Core question:** Why do trend monitoring, anomaly detection, and absolute-magnitude estimation require genuinely different evidentiary standards, and how should an asymmetric false-alarm/missed-detection cost structure set a threshold?
-- **Must-retain arguments:** The three-objective distinction (§9.1); a compressed version of the asymmetric-cost point that references Part 5.5 rather than re-explaining exceedance probability and decision thresholds from scratch (per the Overlap Audit); the Link/Garrido 281-county detection-performance example, compressed to its headline sensitivity/PPV comparison and its transfer-validation caveat.
-- **Source chapters:** Current §9.1-§9.2, compressed from ~1,290 to 350 words.
-- **Suggested figures/tables:** **Table 4 (Minimum reporting and decision-readiness framework)** could absorb a compressed version of Table 7 here.
-- **Duplication to remove:** The asymmetric-cost re-explanation (per Overlap Audit, §8.14/§9.2 pairing) — reference Part 5.5, do not restate.
-- **Evidence needing full-text verification:** Assoum et al. (2023) early-warning field-study findings; Link, Garrido et al. (2026) 281-county sensitivity/PPV figures.
+### 6.2 Multi-source interpretation
+Clinical surveillance, hospital/pharmacy data, mobility, weather, demographic context; data fusion does not automatically remove shared confounding, time lag, or selection bias.
 
-### 6.2 Multi-source data fusion and its limits (200 words)
-- **Core question:** Why is naive averaging across wastewater, clinical, mobility, weather, and pharmacy data streams risky rather than merely suboptimal?
-- **Must-retain arguments:** Weather's double role (confounder needing correction AND corroborating stream) — an original, non-obvious point worth keeping explicitly; the shared-external-driver and differential-lag-structure fusion failure mechanisms, compressed to one sentence each.
-- **Source chapters:** Current §9.3-§9.4, compressed from ~980 to 200 words.
-- **Suggested figures/tables:** None additional.
-- **Duplication to remove:** None significant.
-- **Evidence needing full-text verification:** Zhang et al. (2025) four-system fusion comparison.
-
-### 6.3 The boundary: what WBE cannot replace, and equity/privacy at fine spatial resolution (300 words)
-- **Core question:** What are WBE's structural (not merely practical) limits, and what changes ethically as spatial resolution narrows toward a single building?
-- **Must-retain arguments:** The individual-diagnosis-impossibility point; the non-sewered-population structural-exclusion finding (Yu et al.) — a required focus area, must survive compression; the three-way privacy/stigma/equity distinction (§9.6) — re-identification risk, group-level stigmatization, and structural equity-in-who-is-monitored are three different problems requiring different mitigations, and this three-way split must not collapse into one undifferentiated "privacy" sentence even under compression.
-- **Source chapters:** Current §9.5-§9.6, compressed from ~1,280 to 300 words.
-- **Suggested figures/tables:** None additional (this content is argument-dense, not table-friendly).
-- **Duplication to remove:** None significant.
-- **Evidence needing full-text verification:** Yu et al. (2024) ~80% sewer-connectivity figure and demographic associations; Moallef et al. (2025) 68/145 health-equity-consideration count; Kwiatkowska et al. (2022) and Thompson et al. (2024) group-stigmatization framing.
-
-### 6.4 From detectable to actionable; minimum reporting (150 words)
-- **Core question:** Under what conditions does a scientifically valid signal become institutionally actionable?
-- **Must-retain arguments:** The four detectable-to-actionable conditions (§9.7) — a named, explicitly protected original framework (uncertainty translated to decision-relevant terms; institutional response protocol exists; detection-to-action timescale adequate; threshold validated against the specific deployment's cost structure) must be retained as a numbered list even under maximum compression, not paraphrased into prose that loses the four-way structure.
-- **Source chapters:** Current §9.7-§9.8, compressed from ~940 to 150 words — §9.8's minimum-reporting list compresses to a cross-reference to the consolidated Table 4.
-- **Suggested figures/tables:** Table 4.
-- **Duplication to remove:** None (canonical location for this framework).
-- **Evidence needing full-text verification:** National strategy guidance's ~1-week reporting-timeliness figure (currently flagged as illustrative order-of-magnitude only, not an established standard).
+### 6.3 Actionability, limits and ethics
+Merges: detectable-to-actionable conditions; WBE cannot provide individual diagnosis; non-sewered populations; small-catchment privacy; stigma; equity; minimum decision-readiness reporting. Does not repeat Part 5's mathematical uncertainty-propagation content.
 
 ---
 
-## Part 7. Enabling infrastructure and technology readiness (target 600, tentative — NOT drafted this round; title + placeholder only in the condensed draft)
+## Part 7. Enabling infrastructure and technology readiness (target 500, range 450–550 — **drafted this round**)
 
-**Budget revised down from Phase 1's 800 to a tentative 600** per this round's corrected total-length constraint. Subsection plan below retained from Phase 1 as a Phase 2B starting point only.
+Organized around three capability groups, not a technology-by-technology list:
 
-### 7.1 Sensing, measurement, and modeling infrastructure (300 words)
-- **Core question:** What infrastructural capabilities determine whether a finer-resolution, lower-latency, mechanistically-grounded signal can be produced at all?
-- **Must-retain arguments:** The spatial-resolution/signal-stability trade-off (§10.1, an original framing); the explicit TRL-1-2 classification of near-real-time biosensor results (§10.2) as a demonstration of this chapter's evidentiary discipline; the digital twin as "process-constraint-generating tool, not automatic source-signal validator" distinction (§10.3).
-- **Source chapters:** Current §10.1-§10.4, compressed from ~1,460 to 300 words.
-- **Suggested figures/tables:** Table 5 rows (Technology-required-evidence-failure-mode-readiness-level matrix, retained/redesigned from current Table 8).
-- **Duplication to remove:** None significant.
-- **Evidence needing full-text verification:** Schang et al. (2021) low-prevalence detection-floor figures; Sharma et al. (2024) turnaround-time figures; Bam et al. (2025) 147-study digital-twin synthesis.
+### 7.1 Process-resolving infrastructure
+Distributed sampling, online covariates, digital twins, event-responsive monitoring.
 
-### 7.2 Process-informed AI, standards, and data interoperability (200 words)
-- **Core question:** What distinguishes process-informed AI from purely statistical ML, and what infrastructural gaps (reference materials, data schemas) currently limit cross-study comparability?
-- **Must-retain arguments:** Temporal leakage and cross-population validation failure as the two named AI-specific failure modes (§10.5), compressed to one sentence each and referencing Part 3.3's transfer-validation principle rather than re-explaining it (per the Overlap Audit); the standardization-as-precondition argument (§10.6).
-- **Source chapters:** Current §10.5-§10.7, compressed from ~1,200 to 200 words.
-- **Suggested figures/tables:** Table 5 rows.
-- **Duplication to remove:** The transfer-validation re-explanation (per Overlap Audit, argued fully at §9.2/§10.5/§10.9) — reference Part 3.3 or 6.1, do not restate.
-- **Evidence needing full-text verification:** Pagsuyoin et al. (2025); Keenum et al. (2024, flagged author-list inconsistency); Therrien et al. (2026) adoption-count claims.
+### 7.2 Process-informed analytics
+Hybrid mechanistic-statistical models, physics-informed machine learning, interoperable metadata, standard reference materials, interlaboratory comparability.
 
-### 7.3 Privacy-preserving analytics, climate resilience, and a technology-readiness framework (300 words)
-- **Core question:** What technical (not just policy) responses exist to the privacy/equity tension named in Part 6.3, and how should this review's own evidence base be read for technology maturity?
-- **Must-retain arguments:** The federated-analysis-vs-differential-privacy distinction and "technical privacy ≠ governance/equity" point (§10.8); the six-level technology-readiness framework and the analytical-novelty/field-demonstration/operational-readiness three-way distinction (§10.10) — this chapter's principal original deliverable and Original-Contribution-#4-adjacent (applies the same identifiability/evidence discipline to infrastructure rather than statistical models), must be retained in full structure even under compression.
-- **Source chapters:** Current §10.8-§10.10, compressed from ~1,130 to 300 words.
-- **Suggested figures/tables:** **Figure 4 (Detection-to-decision readiness pathway)** and Table 5 both anchor here.
-- **Duplication to remove:** The third transfer-validation instance (§10.9, per Overlap Audit) — shorten to one sentence pointing back to Part 3.3.
-- **Evidence needing full-text verification:** Wang et al. (2025) federated-learning water-quality (non-epidemiological) demonstration.
+### 7.3 Readiness and equitable deployment
+Retains the readiness hierarchy (analytical detection → field validation → cross-site validation → operational integration → demonstrated decision value) and the proposition: "Analytical novelty is not equivalent to epidemiological validity, operational readiness, or demonstrated decision value." Multi-omics, sensor-type, and AI-algorithm lists moved to SI.
 
 ---
 
-## Part 8. Research priorities and conclusions (700 words, unchanged — NOT drafted this round; title + placeholder only in the condensed draft)
+## Part 8. Research priorities and conclusions (target 550, range 500–600 — **drafted this round**)
 
-**This part does not exist in the current source draft** (Chapters 11-12 have not been written). The structure below is a target plan for future drafting, not a compression of existing text — no current-draft words map to Part 8 (see Compression Map's explicit note on this).
+### 8.1 Testable research priorities
+Six priorities, ~40-50 words each, each naming an unresolved question, required design, and expected inferential gain — no "more research is needed" boilerplate.
+
+### 8.2 Conclusions
+260-320 words, no citations, organized as 4-6 take-home implications in full-paragraph form; recovers the four original contributions; introduces no new claim not already discussed in the body.
 
 ### 8.1 Research priorities (350 words; capped at 5-7 testable tasks, per instruction — NOT an independent Chapter 11)
 - **Core question:** What are the highest-priority, independently testable research tasks this review's evidence base points to?

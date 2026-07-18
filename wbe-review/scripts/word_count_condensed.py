@@ -98,13 +98,13 @@ def main():
         t = part_totals[p]
         print(f"{p[:58]:60s} {t['body']:6d} {t['heading']:8d} {t['table']:6d} {t['total']:7d}")
         grand_total += t["total"]
-        if p.split(".")[0].strip().isdigit() and int(p.split(".")[0].strip()) <= 4:
+        if p.split(".")[0].strip().isdigit() and int(p.split(".")[0].strip()) <= 8:
             drafted_total += t["total"]
         elif p == "FRONT_MATTER":
             pass
 
     print(f"\nGrand total (all parts + front matter, incl. placeholders' brief text): {grand_total}")
-    print(f"Drafted Parts 1-4 total (body+heading+table): {drafted_total}")
+    print(f"Drafted Parts 1-8 total (body+heading+table): {drafted_total}")
 
     out_csv = BASE / "WBE_Review_Condensed_Draft_Word_Count.csv"
     with open(out_csv, "w", newline="", encoding="utf-8") as f:

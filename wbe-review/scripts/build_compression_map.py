@@ -41,10 +41,10 @@ TARGET_PARTS = {
     2: ("From population states to wastewater signals", 900),
     3: ("Sewers as information filters", 1275),
     4: ("Observation and normalization", 1175),
-    5: ("Reconstruction, identifiability and uncertainty", 1300),   # tentative, Phase 2B
-    6: ("From wastewater signals to public-health action", 750),    # tentative, Phase 2B
-    7: ("Enabling infrastructure and technology readiness", 600),   # tentative, Phase 2B
-    8: ("Research priorities and conclusions", 700),                # unchanged, not drafted
+    5: ("Reconstruction, identifiability and uncertainty", 1500),   # Phase 2B confirmed target (range 1450-1550)
+    6: ("From wastewater signals to public-health action", 700),    # Phase 2B confirmed target (range 650-750)
+    7: ("Enabling infrastructure and technology readiness", 500),   # Phase 2B confirmed target (range 450-550)
+    8: ("Research priorities and conclusions", 550),                # Phase 2B confirmed target (range 500-600)
 }
 
 # (chapter_substring, section_substring) -> target part number
@@ -94,21 +94,20 @@ def main():
     lines = []
     lines.append("# Compression Map — Full Source Draft to Target 8-Part Submission Structure\n")
     lines.append(
-        "**Round:** Water Research compression, Phase 2A (2026-07-18). This file was first built in Phase 1 and is "
-        "revised here to correct the total-length target: Water Research's actual review-article guidance is "
-        "\"typically fewer than 12,000 words, including references\" — the Phase 1 estimate did not clearly cost "
-        "references into the total, which this revision fixes. Body-part budgets below are accordingly lower than "
-        "the Phase 1 version. This remains a mapping/planning file — Phase 2A's actual condensed prose lives in "
-        "`WBE_Review_WR_Condensed_Draft.md` (Parts 1-4 only this round).\n"
+        "**Round:** Water Research compression, Phase 2B (2026-07-18). First built in Phase 1, revised in Phase 2A "
+        "to correct the total-length target (Water Research review guidance: \"typically fewer than 12,000 words, "
+        "including references\"), and revised again here in Phase 2B to confirm Parts 5-8's budgets (previously "
+        "tentative placeholders) now that Parts 1-4's actual drafted density is known. This remains a mapping/"
+        "planning file — the actual condensed prose for all 8 parts lives in `WBE_Review_WR_Condensed_Draft.md`.\n"
     )
     lines.append("## Corrected total-length budget (includes references, per Water Research's stated guidance)\n")
     lines.append("| Element | Target words |")
     lines.append("|---|---:|")
-    lines.append("| 8-part prose body | 7,200–7,800 |")
+    lines.append("| 8-part prose body | 7,200–7,600 |")
     lines.append("| In-text tables | 650–850 |")
     lines.append("| Abstract, figure captions, table captions | 350–500 |")
     lines.append("| References (current 67 active) | 1,800–2,200 |")
-    lines.append("| **Estimated total** | **10,000–11,350** |")
+    lines.append("| **Estimated total** | **10,000–11,150** |")
     lines.append("")
     lines.append(
         "**Control thresholds:** ideal total ≤10,800 words; ≥11,300 is a warning threshold; the Phase 2 draft must "

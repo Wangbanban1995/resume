@@ -31,7 +31,11 @@
 
 ### S6. Normalization Evidence
 **Source:** Current §6.2-§6.3 (flow-based and population-based normalization evidence), Table 3's full current form.
-**Content:** The full comparative-study narrative currently in §6.2 (Langeveld et al., Rainey et al., Darling et al.) and §6.3 (Been et al., Baz-Lomba et al., Thomas et al.), and the current, non-redesigned version of Table 3 at full density (before the main-text redesign compresses it for Table 2).
+**Content:** The full comparative-study narrative currently in §6.2 (Langeveld et al., Rainey et al., Darling et al.) and §6.3 (Been et al., Baz-Lomba et al., Thomas et al.), and the current, non-redesigned version of Table 3 at full density (before the main-text redesign compresses it for Table 2) — including every candidate normalizer's full applicability-condition and performance detail (site counts, correlation-improvement percentages, which studies found improvement vs. no improvement vs. deterioration), none of which is restated at that resolution in the condensed main text.
+
+### S6a. Normalization Failure Modes, Full Catalog (confirmed Phase 2B, 2026-07-18)
+**Source:** Current §6.8 (When Normalization Fails), all 8 failure-mode bullets, unabridged.
+**Content:** The complete 8-item catalog — irreversible degradation, combined-sewer overflow/mass-loss pathways, sediment sequestration/delayed release, unknown non-human sources, severe censoring below LOD/LOQ, spatial mixing causing source non-identifiability, target/normalizer structurally different fate and transport, and structural model misspecification — each with its full explanation, exactly as in the source draft. The condensed main-text draft (§4.4) names only the 3 most consequential of these 8 explicitly as "three particularly consequential failure modes," with an explicit pointer to this SI section for the complete list; this SI section is that pointer's target and must not be dropped.
 
 ### S7. Reconstruction-Model Evidence
 **Source:** Current §7.1-§7.2, §7.4 full text; current Table 4 and Table 5 at full, non-merged density.
