@@ -36,3 +36,21 @@
 ## Summary
 
 All five Phase 2A risk points and the status-note wording issue are resolved this round. None required reversing a compression decision — all five were addressed by adding precise, bounded clarifying language (the six-concept clause, the "three of eight" framing, the propositional reframing of Part 1.3) or by confirming/extending SI coverage that was already substantively planned but not yet explicitly cross-referenced. No word-count target was missed as a result of these fixes; see `WBE_Review_Compression_Log.md` for the final per-part word counts.
+
+---
+
+## Phase 3A addendum (2026-07-18)
+
+### Roadmap-language correction
+
+Fixed a genuine risk this round: `README.md`'s "Water Research compression, Phase 1" section and its "What happens next" track 3 both dated from before the condensed manuscript existed, and read as though planning documents were the end state. Both were rewritten to state the full correct sequence explicitly — condensed manuscript → critical-claim evidence recovery → formal database search → full-text verification → claim revision and evidence freeze → Abstract/Highlights/cover letter — and to state directly that a complete, within-budget condensed manuscript does not imply readiness for the later steps. `WBE_Review_Compression_Log.md` received a matching note. No file in this project stated "next: write the Abstract" outright, but the absence of an explicit correct-sequence statement was itself a gap, now closed.
+
+### Chat-summary vs. Claim-Map discrepancy on the Critical-claim list
+
+**Per this round's explicit instruction, the authoritative Critical-claim list is whatever `WBE_Review_Condensed_Claim_Map.csv`'s `evidence_gap_priority` column actually contains, not the prior round's chat-summary sentence.** Checked directly: the CSV contains exactly **9** rows tagged `Critical` and **7** rows tagged `High`. The prior chat summary's closing list named 10 items and implicitly treated all 10 as equally top-priority; cross-checking against the CSV finds:
+
+- **7 of the chat summary's 10 items map cleanly to actual Critical rows**: Part 4 Table 2 normalizer performance (P4-10), Part 4 biomarker-performance pattern (P4-6), Part 3 cross-hydrologic-condition conclusion (P3-9), Part 3 rainfall-correction basis (P3-7), Part 3 biofilm-decay mechanism (P3-3), Part 5 Table 3 model rows (P5-10), Part 6 281-county threshold-transfer conclusion (P6-1).
+- **3 of the chat summary's 10 items ("Part 5 validation-tier conclusions," "Part 6 ethics/equity conclusions," "Part 7 standardization conclusion") are actually tagged High in the CSV, not Critical** (P5-4/P5-6, P6-4, P7-2 respectively) — the chat summary's prose blurred the Critical/High distinction when narrating the finding.
+- **2 genuine Critical rows were omitted from the chat summary's list entirely**: P4-5 (rainfall/infiltration/industrial-discharge limits on flow normalization) and P3-6 (the "rainfall is not merely dilution" mechanism paragraph itself, as distinct from P3-7's evidence-anchored follow-up).
+
+**Resolution: this round's Critical-Claim Verification Queue and all downstream Phase 3A deliverables use the CSV's actual 9 Critical + 7 High rows (16 total), not the chat summary's 10-item list.** This is not a change to Phase 2B's own findings — the CSV was correct at the time it was written; the discrepancy was introduced only in how the chat summary subsequently narrated it. No CSV row's priority tag was changed to produce this reconciliation.

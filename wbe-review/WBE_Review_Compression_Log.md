@@ -2,6 +2,8 @@
 
 **Round:** 2026-07-18 (Phase 2A: Parts 1–4; Phase 2B: Parts 5–8, plus five risk-point fixes to Parts 1–4). Records what was actually done in producing `WBE_Review_WR_Condensed_Draft.md`'s Parts 1–8, per-part, against the source draft (`WBE_Review_Ch1-10.md`) and against the confirmed Phase 2B targets in `WBE_Review_Target_Outline.md`. All word counts below are computed by `scripts/word_count.py` (source) and `scripts/word_count_condensed.py` (condensed draft), not estimated. Parts 1–4's word counts below reflect the final Phase 2B state (after risk-point fixes), not the original Phase 2A numbers — small deltas from the Phase 2A report are expected and are the direct result of §90–92's fixes, not drift.
 
+**This document's role in the project sequence:** a fully-drafted, within-budget condensed manuscript (recorded here) is the *first* step of the compression track, not the last. The correct sequence is: condensed manuscript (this document) → critical-claim evidence recovery (Phase 3A, see `WBE_Review_Evidence_Recovery_Plan.md`) → formal database search → full-text verification → claim revision and evidence freeze → Abstract/Highlights/cover letter. Nothing in this log should be read as implying the manuscript is ready for the last step merely because it is complete and within its word budget.
+
 ## Part-by-part accounting
 
 ### Part 1. Introduction and review approach
