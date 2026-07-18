@@ -38,8 +38,12 @@
 **Content:** The complete per-method-family, per-study narrative (Zuccato et al. 2008 through Alhassan et al. 2025) currently in §7.1.1-7.1.2, the full worked conceptual illustration currently in §7.2, and Tables 4 and 5 in their current, separate, full-detail form (before the main-text merge into Table 3).
 
 ### S8. Uncertainty Methods and Evidence
-**Source:** Current §8.2-§8.5 (source/sewer/sampling/normalization uncertainty detail), current Table 6 at full density, the two current uncertainty boxes.
-**Content:** The full distributional/evidentiary detail currently in §8.2-§8.5 (Jones et al. 2014, Pei et al. 2016, Croft et al. 2020, Yang et al. 2024, Safford et al. 2022), and Table 6 in its current, full-density, non-redesigned form.
+**Source:** Current §8.2-§8.5 (source/sewer/sampling/normalization uncertainty detail), the two current uncertainty boxes.
+**Content:** The full distributional/evidentiary detail currently in §8.2-§8.5 (Jones et al. 2014, Pei et al. 2016, Croft et al. 2020, Yang et al. 2024, Safford et al. 2022).
+
+### S8a. Table S5 — Uncertainty Sources, Propagation Methods, Validation Requirements and Residual Limitations (added Phase 2A, 2026-07-18)
+**Source:** Current Table 6 (Uncertainty Source × Type × Distribution × Propagation Method × Mitigation × Residual Effect), full density, unredesigned.
+**Content:** The complete current Table 6, unabridged. **Disposition decided this round (Phase 2A):** Table 6 is no longer planned as an independent in-text table for the condensed manuscript — only 4-6 items materially affecting model choice or interpretation move into the redesigned in-text Table 3 (Model-identifiability-validation matrix); the remaining full detail lives here, as Table S5, so no uncertainty source is dropped, only relocated. See `WBE_Review_Target_Outline.md`'s "Table 6 disposition" note and Part 5's header for the full reasoning.
 
 ### S9. Technology-Readiness Evidence
 **Source:** Current §10.1-§10.9 full text; current Table 8 at full density.

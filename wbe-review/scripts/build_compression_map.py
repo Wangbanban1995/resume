@@ -27,15 +27,24 @@ BASE = Path(__file__).resolve().parent.parent
 AUDIT = BASE / "WBE_Review_Content_Priority_Audit.csv"
 OUT_MD = BASE / "WBE_Review_Compression_Map.md"
 
+# Revised 2026-07-18 (Phase 2A round) per corrected Water Research length
+# constraint: "typically fewer than 12,000 words including references."
+# Body budget total lowered from 8,850 to a 7,200-7,800 range (midpoints
+# below sum to 7,500) so that tables (~750), abstract/captions (~425), and
+# references (~2,000) can be added without exceeding the ~10,800-word ideal
+# ceiling. Parts 1-4 midpoints are fixed by this round's explicit
+# instruction; Parts 5-8 midpoints are tentative, scaled proportionally
+# from their Phase 1 values to preserve the new total, and are explicitly
+# flagged for confirmation in Phase 2B (not drafted this round).
 TARGET_PARTS = {
-    1: ("Introduction and review approach", 900),
-    2: ("From population states to wastewater signals", 1000),
-    3: ("Sewers as information filters", 1400),
-    4: ("Observation and normalization", 1300),
-    5: ("Reconstruction, identifiability and uncertainty", 1750),
-    6: ("From wastewater signals to public-health action", 1000),
-    7: ("Enabling infrastructure and technology readiness", 800),
-    8: ("Research priorities and conclusions", 700),
+    1: ("Introduction and review approach", 800),
+    2: ("From population states to wastewater signals", 900),
+    3: ("Sewers as information filters", 1275),
+    4: ("Observation and normalization", 1175),
+    5: ("Reconstruction, identifiability and uncertainty", 1300),   # tentative, Phase 2B
+    6: ("From wastewater signals to public-health action", 750),    # tentative, Phase 2B
+    7: ("Enabling infrastructure and technology readiness", 600),   # tentative, Phase 2B
+    8: ("Research priorities and conclusions", 700),                # unchanged, not drafted
 }
 
 # (chapter_substring, section_substring) -> target part number
@@ -83,8 +92,30 @@ def main():
                 r["final_target_words"] = 0
 
     lines = []
-    lines.append("# Compression Map — Current Draft (Chapters 1–10) to Target 8-Part Submission Structure\n")
-    lines.append("**Round:** Water Research compression, Phase 1 (mapping only — this file plans the cut, it does not perform it). 2026-07-18.\n")
+    lines.append("# Compression Map — Full Source Draft to Target 8-Part Submission Structure\n")
+    lines.append(
+        "**Round:** Water Research compression, Phase 2A (2026-07-18). This file was first built in Phase 1 and is "
+        "revised here to correct the total-length target: Water Research's actual review-article guidance is "
+        "\"typically fewer than 12,000 words, including references\" — the Phase 1 estimate did not clearly cost "
+        "references into the total, which this revision fixes. Body-part budgets below are accordingly lower than "
+        "the Phase 1 version. This remains a mapping/planning file — Phase 2A's actual condensed prose lives in "
+        "`WBE_Review_WR_Condensed_Draft.md` (Parts 1-4 only this round).\n"
+    )
+    lines.append("## Corrected total-length budget (includes references, per Water Research's stated guidance)\n")
+    lines.append("| Element | Target words |")
+    lines.append("|---|---:|")
+    lines.append("| 8-part prose body | 7,200–7,800 |")
+    lines.append("| In-text tables | 650–850 |")
+    lines.append("| Abstract, figure captions, table captions | 350–500 |")
+    lines.append("| References (current 67 active) | 1,800–2,200 |")
+    lines.append("| **Estimated total** | **10,000–11,350** |")
+    lines.append("")
+    lines.append(
+        "**Control thresholds:** ideal total ≤10,800 words; ≥11,300 is a warning threshold; the Phase 2 draft must "
+        "not exceed 11,500 words under any circumstance; at least 500 words of headroom below the ceiling must be "
+        "preserved for references that a future formal database search will add beyond the current 67. Highlights "
+        "are a separate journal-required file, not counted against this budget, and are not produced this round.\n"
+    )
     lines.append("## Method\n")
     lines.append(
         "Every one of the 105 sections tracked in `WBE_Review_Content_Priority_Audit.csv` is assigned to exactly one "

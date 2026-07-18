@@ -1,145 +1,111 @@
 # Target Outline — Water Research Submission-Length Manuscript (Planning Document Only)
 
-**Round:** Water Research compression, Phase 1. 2026-07-18. **This is a target outline for a manuscript that does not yet exist as prose — no submission-length text has been written.** It refines `WBE_Review_Compression_Map.md`'s 105-section, 8-part mapping down to level-3 headings, with per-heading word budgets, and adds the four-original-contribution protection matrix and figure/table disposition plan the compression-planning brief separately requested.
+**Round:** Water Research compression, Phase 2A. 2026-07-18. First built in Phase 1 (2026-07-18 earlier round); **revised this round to correct the total-length target**. Water Research's actual review-article guidance, as supplied this round, is: **"Review Paper length is comparatively flexible, but a typical review is under 12,000 words, including references."** The Phase 1 version of this file did not clearly cost references into its ~10,875-word estimate — this revision fixes that, lowering every body-part budget so that references (now explicitly counted) fit inside a safe total. **This remains a target outline for a manuscript that does not yet exist in full — Parts 1-4 now exist as actual condensed prose in `WBE_Review_WR_Condensed_Draft.md` (this round's deliverable); Parts 5-8 remain outline-only, not yet drafted.**
 
-**Word budgets below are hand-set at the subsection level, chosen to sum exactly to each part's task-specified target range midpoint** (per `WBE_Review_Compression_Map.md`'s part-level rescaling, reproduced here); they are informed by, but not mechanically derived from, the compression map's finer 105-row allocation — that file remains the audit trail for the underlying per-current-section arithmetic, this file is the human-organized subsection structure built from it.
+## Corrected total-length budget (includes references — the Phase 1 error this revision fixes)
 
-## Prose-body budget (8 parts, matches Compression Map exactly)
+| Element | Target words |
+|---|---:|
+| 8-part prose body | 7,200–7,800 |
+| In-text tables | 650–850 |
+| Abstract, figure captions, table captions | 350–500 |
+| References (current 67 active) | 1,800–2,200 |
+| **Estimated total** | **10,000–11,350** |
 
-| # | Part | Budget |
-|---|---|---:|
-| 1 | Introduction and review approach | 900 |
-| 2 | From population states to wastewater signals | 1,000 |
-| 3 | Sewers as information filters | 1,400 |
-| 4 | Observation and normalization | 1,300 |
-| 5 | Reconstruction, identifiability and uncertainty | 1,750 |
-| 6 | From wastewater signals to public-health action | 1,000 |
-| 7 | Enabling infrastructure and technology readiness | 800 |
-| 8 | Research priorities and conclusions | 700 |
-| **Prose-body total** | | **8,850** |
+**Control rules:** ideal total ≤10,800 words; ≥11,300 is a warning threshold requiring a cut before proceeding further; the Phase 2 draft must never exceed 11,500 words; at least 500 words of headroom must be preserved below the ceiling for references a future formal database search will add beyond the current 67 active references. All word-count statistics in this file and in `WBE_Review_Compression_Log.md` include references. Highlights are a separate journal-required file, not counted against this budget, and are not produced this round (§15 of this round's instruction).
 
-## Non-body budget (costed independently, per task §7)
+**Reference-budget basis:** the current `WBE_Review_References.md` project file runs to ~6,500 words, but that figure includes verification annotations, evidence-type notes, and "pending full-text confirmation" flags that do not belong in a journal reference list — a plain, standard-format citation (author list, year, title, journal, volume/pages, DOI) for this document's 67 active references runs approximately 27-33 words each, giving the 1,800-2,200-word estimate above. This has not been mechanically re-typeset this round (the reference list itself is not part of this round's deliverables) but is a reasonable, checkable estimate.
+
+## Prose-body budget (8 parts)
+
+| # | Part | Budget | Status this round |
+|---|---|---:|---|
+| 1 | Introduction and review approach | 800 (750–850) | **Drafted this round** |
+| 2 | From population states to wastewater signals | 900 (850–950) | **Drafted this round** |
+| 3 | Sewers as information filters | 1,275 (1,200–1,350) | **Drafted this round** |
+| 4 | Observation and normalization | 1,175 (1,100–1,250) | **Drafted this round** |
+| 5 | Reconstruction, identifiability and uncertainty | 1,300 *(tentative)* | Title + placeholder only |
+| 6 | From wastewater signals to public-health action | 750 *(tentative)* | Title + placeholder only |
+| 7 | Enabling infrastructure and technology readiness | 600 *(tentative)* | Title + placeholder only |
+| 8 | Research priorities and conclusions | 700 *(unchanged)* | Title + placeholder only |
+| **Prose-body total** | | **7,500** | |
+
+**Parts 5-8 budgets are tentative**, scaled down proportionally from their Phase 1 values so the 8-part sum lands on the new 7,500-word midpoint; they are not confirmed and should be revisited explicitly in Phase 2B once Parts 1-4's actual drafted density is known (Parts 1-4 came in close to, but not always exactly at, their targets — see `WBE_Review_Compression_Log.md` for the real numbers). Part 8's 700-word budget is unchanged from Phase 1 and remains bound by its own explicit caps (research priorities: 5-7 items; conclusions: 300-400 words), independent of proportional scaling.
+
+## Non-body budget (costed independently)
 
 | Element | Budget | Basis |
 |---|---:|---|
-| Tables (4 retained/redesigned, see disposition plan below) | ~1,600 words (~400 each) | Current Tables 3-8 average ~500-700 words each in the source draft; 4 consolidated tables at a submission-typical density (shorter cell text, more rows) estimated at ~400 words apiece |
-| Figures (4, captions only — images are not word-counted) | ~200 words (~50/caption) | Current figure captions in the source draft run 15-30 words; a submission-quality caption with a 1-sentence interpretive note runs longer, budgeted at 50 words each |
-| References (list only, not prose) | not word-counted for length purposes (journal reference lists are typically excluded from a Water Research word limit) | 67 active references currently; a full systematic search (not yet run) would likely raise this count — no target ceiling is set here since this is a citation-count, not a word-count, planning question |
-| Abstract | 200-250 words | Water Research's stated abstract limit |
-| Highlights | 3-5 bullet points, ≤85 characters each | Water Research's stated Highlights format (not prose paragraphs) |
-| Graphical abstract | 1 image, no body word count; a 1-sentence caption (~20 words) | Standard Elsevier graphical-abstract requirement |
+| Tables (4 in-text: see the Table 6 disposition below for how the former Table 6 is handled) | 650–850 words (~160-210 each) | Narrower per-table budget than Phase 1's estimate, reflecting this round's explicit instruction to keep in-text tables lean and move detailed evidence to SI tables instead. |
+| Figures (4, captions only — images are not word-counted) | ~200 words (~50/caption) | Unchanged from Phase 1. |
+| References (current 67 active, plain citation format) | 1,800–2,200 words | See reference-budget basis above — this is the corrected figure that Phase 1 omitted from the length total. |
+| Abstract | 200–250 words | Water Research's stated abstract limit; **placeholder only this round, not drafted** (§15 of this round's instruction). |
+| Highlights | 3–5 bullet points, ≤85 characters each | Separate file, not counted against body/table/reference budget; **not produced this round**. |
+| Graphical abstract | 1 image, ~20-word caption | **Not produced this round**. |
 
-**Estimated full submission length: ~8,850 (body) + ~1,600 (tables) + ~200 (figure captions) + ~225 (abstract) ≈ 10,875 words, plus references and a graphical abstract**, against Water Research's typical ~8,000-12,000 all-in review-article guidance (author-guidelines figure, not independently verified this session against a current Elsevier source — **flagged as pending verification**, since Water Research's exact current word-limit policy was not confirmed via primary-source lookup this round). This estimate is within a plausible submission range but should not be read as a confirmed compliance guarantee until the actual journal guidelines are checked directly.
-
----
-
-## Part 1. Introduction and review approach (900 words)
-
-### 1.1 WBE as an inverse problem: motivation and the three organizing arguments (600 words)
-- **Core question:** Why should a concentration measured at a treatment-plant inlet be treated as the output of a formal inverse problem rather than a direct public-health indicator?
-- **Must-retain arguments:** The three organizing arguments from current §1 (object of monitoring is the encoded information, not the concentration itself; the signal is a joint product requiring process-informed correction; the field's next advance requires identifiability-aware, not just accuracy-aware, inference); the amplitude/temporal/spatial distortion taxonomy definitions (currently §1, formally §3.0).
-- **Source chapters:** Current §1 (Introduction), condensed.
-- **Suggested figures/tables:** None here — Figure 1 (source-to-inference signal chain, see disposition plan) belongs at the Part 2 opening, not here.
-- **Duplication to remove:** The distortion-taxonomy definitions currently appear in both §1 and §3.0 verbatim; state once, here, and do not repeat in Part 2.
-- **Evidence needing full-text verification before submission:** Institutional figures cited in current §1 (EU dashboard measurement counts, China's national system description) — currently abstract/metadata-level only.
-
-### 1.2 Review approach and evidence status (300 words)
-- **Core question:** What kind of review is this (narrative synthesis vs. systematic), and what is its current evidentiary status?
-- **Must-retain arguments:** The narrative-synthesis-not-yet-systematic distinction (current §2.1); a compressed, single-paragraph version of the full-text-verification-status disclosure (current §2.3) — a journal reviewer needs this, in some form, in the main text, not only in supplementary methods.
-- **Source chapters:** Current §2.1, §2.3 (compressed); §2.2, §2.4-2.6 move to Supplementary Methods per the Content Priority Audit.
-- **Suggested figures/tables:** None (Table 1's developmental-phase history and Table 2's application taxonomy move to SI).
-- **Duplication to remove:** None specific to this subsection.
-- **Evidence needing full-text verification:** The evidence-status statement itself should reference whatever the Evidence Freeze Audit's then-current denominator is at the time of actual compression (not a number frozen at Phase 1 time).
+**Estimated full submission length: 7,500 (body midpoint) + 750 (tables midpoint) + 425 (abstract/captions midpoint) + 2,000 (references midpoint) ≈ 10,675 words** — within the 10,000-11,350 target range and below the 10,800-word ideal ceiling, leaving roughly 825 words of headroom below the 11,500-word hard maximum, comfortably above the 500-word reserve this round's instruction requires for references a future formal search will add.
 
 ---
 
-## Part 2. From population states to wastewater signals (1,000 words)
+## Part 1. Introduction and review approach (target 800; drafted this round — see `WBE_Review_WR_Condensed_Draft.md`)
 
-### 2.1 Formal problem statement: source signal, distortion operators, identifiability (550 words)
-- **Core question:** What does it mean, formally, for a wastewater sample to be a distorted observation of a true source-end signal?
-- **Must-retain arguments:** The $Y(t) \approx A(t)[K(t,\tau)\ast X(\tau)] + \varepsilon(t)$ formalization and the amplitude/temporal/spatial distortion definitions (current §3.0) — this is Original Contribution #2 in its entirety and must survive compression almost intact; the identifiability and process-informed-correction definitions.
-- **Source chapters:** Current §3.0.
-- **Suggested figures/tables:** **Figure 1 (Source-to-inference signal chain)** belongs here — the single most important figure for orienting a reader to the review's whole framework.
-- **Duplication to remove:** The "conceptual scaffold, not a validated quantitative model" disclaimer (repeated at §3.0/§5.0/§6.0/§8.0 in the source draft, per the Overlap Audit) should be centralized as one standing-convention sentence stated once here, not repeated at every later equation.
-- **Evidence needing full-text verification:** None specific — this subsection is the review's own formal framework, not an evidence-dependent claim.
-
-### 2.2 Source-end biological and behavioral variation; building and local drainage (450 words)
-- **Core question:** What actually drives the source-end signal away from a simple, proportional copy of the epidemiological or consumption quantity of interest?
-- **Must-retain arguments:** Shedding heterogeneity as temporal distortion; the asymptomatic/undiagnosed-shedding point as an identifiability (not distortion) issue — this is WBE's core comparative advantage and must survive compression; the pharmacokinetic correction-factor point for chemical targets (parent-compound feed into Part 5's $CF$ discussion).
-- **Source chapters:** Current §3.1-§3.2, heavily compressed (from 700 to 450 words) — the building/local-drainage material (§3.2) compresses hardest, retaining only the institutional-source and spatial-distortion point.
-- **Suggested figures/tables:** Consider folding the source-end row of the new **Table 1 (Process-distortion-observable-correction matrix, see disposition plan)** here as the only table content this subsection needs; no standalone figure.
-- **Duplication to remove:** None significant — this pair was checked specifically in the Overlap Audit and found to have low duplication with later chapters.
-- **Evidence needing full-text verification:** Miura, Kitajima & Omori (2021) shedding-duration figures (already flagged internally-inconsistent, pending resolution); Boogaerts et al. (2024) pharmacokinetic correction-factor claims.
+**Final structure (per this round's explicit instruction, superseding Phase 1's 1.1/1.2 split):**
+- **1.1 The measurement-inference gap** — WBE does not observe the target population state directly; concentration/load is the output of multiple superimposed processes; this review reframes WBE as an inverse problem.
+- **1.2 Scope and critical-review approach** — review scope, evidence-identification approach, process-based synthesis, stated briefly; the full systematic-search/full-text-verification status is pointed at the internal evidence-audit files rather than restated in prose (per this round's explicit instruction not to repeat "pending full-text verification" through the body text).
+- **1.3 Conceptual contributions** — the four original contributions stated together as this review's thesis: (1) WBE as an inverse problem; (2) amplitude-temporal-spatial distortion; (3) normalization as mechanism-specific causal correction; (4) identifiability- and uncertainty-aware reconstruction from detection to decision.
+- **Removed this round, per explicit instruction:** the developmental-history narrative, the multi-disease/multi-target application list, the chapter-by-chapter roadmap restatement, structural-bridge-style prose, and the repeated "conceptual scaffold" disclaimer (now stated once, in Part 2).
+- **Evidence needing full-text verification:** institutional figures (EU dashboard, China's national system) — carried as a single evidence-status pointer, not restated per-claim.
 
 ---
 
-## Part 3. Sewers as information filters (1,400 words)
+## Part 2. From population states to wastewater signals (target 900; drafted this round)
 
-### 3.1 Physical, chemical, and biological transformation in transit (450 words, includes chapter-opening framing)
-- **Core question:** What does the sewer network itself do to the signal between excretion and sampling?
-- **Must-retain arguments:** The sewer-as-active-reactor framing; the biofilm-mediated RNA decay finding (Zhang et al., Jung et al.) as this section's clearest piece of direct mechanistic evidence; the amplitude-loss-is-spatially-heterogeneous point (decay coupled to retention time).
-- **Source chapters:** Current §4 preamble + §4.1, compressed from ~490 to 450 words.
-- **Suggested figures/tables:** Row(s) of **Table 1 (Process-distortion-observable-correction matrix)**.
-- **Duplication to remove:** None significant.
-- **Evidence needing full-text verification:** Zhang et al. (2023) 90%-in-2-hours biofilm decay figure; Jung et al. (2026) rate-constant comparisons.
+**Final structure (per this round's explicit instruction — a single continuous argument, not further subdivided into named subsections):** infection/consumption/exposure states; metabolism and excretion; inter-individual variability; shedding/excretion distributions; dynamic contributing population; building drainage; non-human sources; the source-state-vs-sewer-entry-load distinction. The formal $Y(t) \approx A(t)[K(t,\tau)\ast X(\tau)]+\varepsilon(t)$ statement and the amplitude/temporal/spatial taxonomy (Original Contribution #2, stated in full here — its canonical, single location in the condensed draft) anchor this part.
 
-### 3.2 Rainfall- and warm-season-induced distortion as a compound, correctable perturbation (460 words)
-- **Core question:** Is weather-driven distortion unstructured noise, or a correctable, structured bias?
-- **Must-retain arguments:** The Janssens et al. (2022) rainfall-correction finding — this review's clearest single piece of evidence that distortion is a *correctable* structured bias, and the direct empirical anchor for the process-informed-correction thesis (Original Contribution #3's foundation). This is one of the highest-priority individual findings in the entire document and should not be cut for space.
-- **Source chapters:** Current §4.2, compressed from 456 to 460 words (essentially unchanged — flagged in the Content Priority Audit as only 25% compressible).
-- **Suggested figures/tables:** Row(s) of Table 1.
-- **Duplication to remove:** None.
-- **Evidence needing full-text verification:** Guo et al. (2023) 26°C decay-acceleration threshold; the specific Belgian program's rain-correction improvement magnitude (Janssens et al.).
+**Removed this round, per explicit instruction:** per-biomarker listing, repeated mass-balance explanation, any anticipation of sewer-transport decay or back-calculation content (reserved for Parts 3 and 5), excess textbook background.
 
-### 3.3 Identifiability and the case for process-informed correction (490 words)
-- **Core question:** Why can't a single fixed correction ratio restore identifiability once amplitude, temporal, and spatial distortion are shown to be coupled?
-- **Must-retain arguments:** The full identifiability argument (current §4.3) — this is Original Contribution #2/#3's connective tissue and should survive compression nearly verbatim; the Rainey-et-al.-vs-Darling-et-al. "not in tension, evidence of no universally identifiable fixed correction factor" synthesis.
-- **Source chapters:** Current §4.3.
-- **Suggested figures/tables:** None additional — this subsection is argument, not evidence catalog.
-- **Duplication to remove:** None.
-- **Evidence needing full-text verification:** None beyond what §3.2/§4.1 already flag.
+**Evidence needing full-text verification:** Miura, Kitajima & Omori (2021) shedding-duration figures (flagged internally inconsistent); Boogaerts et al. (2024) pharmacokinetic correction-factor claims.
 
 ---
 
-## Part 4. Observation and normalization (1,300 words)
+## Part 3. Sewers as information filters (target 1,275; drafted this round)
 
-**Explicit compression-risk note:** this part compresses ~11,800 current words (Chapters 5+6 combined) down to 1,300 — an ~89% reduction, the most aggressive of any target part. This is only achievable by (a) moving nearly all per-biomarker narrative detail into the redesigned Table 2 (Normalization-assumption-residual-uncertainty matrix, replacing current Table 3) rather than prose, and (b) accepting that Chapters 5 and 6's current per-target, per-study evidentiary walkthroughs cannot survive in prose form at all. This is flagged here explicitly as a judgment call the author should confirm before Phase 2, not assumed.
+**Final structure (per this round's explicit 5-subsection instruction, replacing Phase 1's 3-subsection version):**
+- **3.1 Hydraulic transport and residence-time distributions**
+- **3.2 Transformation, partitioning and biological interactions**
+- **3.3 Sedimentation, resuspension and memory effects**
+- **3.4 Rainfall, infiltration, overflow and warm-season forcing**
+- **3.5 Amplitude, temporal and spatial distortion**
 
-### 4.1 Two observation models and the six-concept sampling/analytical taxonomy (500 words)
-- **Core question:** What separates the molecular-target and chemical-biomarker observation models, and why must recovery, precision, sensitivity, censoring, representativeness, and replicate-type be kept as six distinct concepts rather than one "uncertainty"?
-- **Must-retain arguments:** The two observation-model equations (§5.0); the six-concept taxonomy itself (§5.5) — used repeatedly downstream (Part 5), a genuinely original organizing contribution that must be kept even though its supporting per-study evidence (Pecson et al., Ahmed et al.) compresses into the table.
-- **Source chapters:** Current §5.0, §5.5-§5.7, heavily compressed (from ~2,400 to 500 words); §5.1-§5.4, §5.6 detail folds into the table or is cut.
-- **Suggested figures/tables:** Table 2 rows.
-- **Duplication to remove:** None here (this is the taxonomy's canonical, first-use location).
-- **Evidence needing full-text verification:** Pecson et al. (2021) 36-SOP interlaboratory spread figures; Ahmed et al. (2022) process-LOD platform-comparison figures.
+Organized around one core conclusion, stated once and not re-derived per subsection: **the sewer network is an active information filter, not a passive conduit.** "Rainfall is not merely dilution" is argued fully once (3.4) and referenced, not re-argued, wherever else it matters.
 
-### 4.2 Normalization as conditional statistical adjustment, not source-state reconstruction (300 words)
-- **Core question:** What is normalization actually correcting, and why is "Normalization ≠ reconstruction of the true source state" the chapter's central proposition?
-- **Must-retain arguments:** The $Z(t)=\mathcal{N}[\ldots]$ formalization; the "Normalization ≠ reconstruction" boxed proposition (current §6.0) — this is a direct, quotable statement of Original Contribution #3 and should be retained essentially verbatim; the five-goal taxonomy (§6.1) compressed to a short list.
-- **Source chapters:** Current §6.0-§6.1.
-- **Suggested figures/tables:** None additional.
-- **Duplication to remove:** The equation's "conceptual scaffold" disclaimer — cross-reference Part 2.1's standing convention instead of restating.
-- **Evidence needing full-text verification:** Ahmed, Philo et al. (2026) 247-article systematic-review finding (normalization goals frequently unspecified) — keep the qualitative finding, flag the specific article count as pending verification.
+**Removed this round, per explicit instruction:** the repeated process-list structure from the source draft's §4.1-§4.2 (each process named once here, not enumerated by amplitude/temporal/spatial tag every time); the repeated temperature caveat; the repeated residence-time warning; reconstruction-model technical detail reserved for Part 5; end-of-section structural-bridge prose.
 
-### 4.3 Evidence on flow-, population-, and biomarker-based normalization (300 words)
-- **Core question:** Does the evidence support any single normalizer as generally superior, or is normalizer performance conditional on hydraulic/population/target-specific context?
-- **Must-retain arguments:** The core, load-bearing finding across §6.2-§6.5: normalizer performance is consistently mixed and context-dependent (flow outperforms in one large multi-site study, fails under high I&I in another; PMMoV improves correlation at only 2/12 sites and worsens it at others) — the *pattern*, not the individual-study narrative, is what must survive.
-- **Source chapters:** Current §6.2-§6.5, compressed from ~2,900 to 300 words — nearly all per-biomarker narrative moves into Table 2.
-- **Suggested figures/tables:** Table 2 (the redesigned, consolidated version of current Table 3) does almost all of this subsection's evidentiary work.
-- **Duplication to remove:** None (already the most compressed subsection in the document by design).
-- **Evidence needing full-text verification:** Nearly every specific finding in this subsection is currently abstract/metadata-level only (Rainey et al., Darling et al., Maal-Bared et al., Dhiyebi et al., Hsu et al., Chen et al., Chettleburgh et al.) — this subsection carries the highest concentration of pending-verification claims of any part in the target outline, and should be flagged as such in the submission manuscript's own evidence-status statement.
-
-### 4.4 Ratio normalization, the decision framework, and hard failure modes (200 words)
-- **Core question:** When does dividing one noisy signal by another help, and when does it actively add uncertainty?
-- **Must-retain arguments:** The joint-condition proposition (§6.6) — explicitly named in the source draft as "this chapter's principal original contribution" and must be retained as a standalone, quotable statement even under maximum compression; the eight-question decision framework (§6.9) can be represented almost entirely by its figure rather than by prose.
-- **Source chapters:** Current §6.6-§6.9, compressed from ~3,800 to 200 words.
-- **Suggested figures/tables:** **Figure 2** could carry the decision-tree content (redesigned/merged from current Figure 1) if the four-figure budget accommodates it — see disposition plan; otherwise reference Table 2's "applicability condition" column.
-- **Duplication to remove:** §6.8's failure-mode catalog folds into Table 2's "residual/introduced uncertainty" column rather than standing as separate prose.
-- **Evidence needing full-text verification:** None beyond what §4.3 already flags (the joint-condition proposition itself is this review's own original claim, not sourced).
+**Evidence needing full-text verification:** Zhang et al. (2023) biofilm-decay figure; Jung et al. (2026) rate-constant comparisons; Guo et al. (2023) temperature threshold; Janssens et al. (2022) rain-correction improvement magnitude.
 
 ---
 
-## Part 5. Reconstruction, identifiability and uncertainty (1,750 words)
+## Part 4. Observation and normalization (target 1,175; drafted this round)
+
+**Final structure (per §5 of this round's instruction, replacing Phase 1's differently-scoped 4-subsection version):**
+- **4.1 Sampling and analytical observation** (target 250-300)
+- **4.2 Flow and population normalization** (target 300-350)
+- **4.3 Biomarker normalization and fate matching** (target 300-350)
+- **4.4 When normalization fails** (target 250-300)
+
+Core proposition, stated once and preserved verbatim: **"Normalization is a mechanism-specific correction, not reconstruction of the source state."** Only one in-text table is retained here — **Table 2. Normalization strategy, corrected mechanism, required assumption and residual uncertainty** — with all per-biomarker narrative evidence, extended candidate-normalizer comparisons, and the full method-assumption-limitation matrix moved to SI (per §5's explicit SI-destination list).
+
+**Compression-risk note (unchanged in substance from Phase 1, now sharper):** this part compresses source Chapters 5+6 (~11,800 words) into ~1,175 words — a ~90% reduction. This is achievable only because nearly all per-study evidentiary detail moves to SI (Table 2 in-text carries the pattern-level finding, not the individual-study narrative) — flagged for author confirmation, not silently assumed.
+
+**Evidence needing full-text verification:** the highest concentration of pending-verification claims of any part (Rainey et al., Darling et al., Maal-Bared et al., Dhiyebi et al., Hsu et al., Chen et al., Chettleburgh et al., Langeveld et al., Baz-Lomba et al.) — carried as a single evidence-status pointer in the condensed draft rather than repeated after each claim, per this round's explicit instruction against repeating "pending full-text verification" throughout the body text.
+
+---
+
+## Part 5. Reconstruction, identifiability and uncertainty (target 1,300, tentative — NOT drafted this round; title + placeholder only in the condensed draft)
+
+**Budget revised down from Phase 1's 1,750 to a tentative 1,300** per this round's corrected total-length constraint (§68 of the task tracker; see the corrected total-length budget table above). The subsection plan below is retained from Phase 1 as a Phase 2B starting point, not a confirmed structure — it will need re-costing once Phase 2B actually drafts this part, and the **Table 6 disposition below is now finalized** (see "Table 6 disposition" note immediately following this header), which changes what 5.1-5.2 need to carry relative to the Phase 1 version.
+
+**Table 6 disposition (finalized this round, per §四 of this round's instruction):** the former Table 6 (Uncertainty Source × Type × Distribution × Propagation Method × Mitigation × Residual Effect) is **not retained as an independent in-text table**. Its full detail moves to **Table S5 (SI): "Uncertainty sources, propagation methods, validation requirements and residual limitations."** A maximum of 4-6 items that materially affect model choice or result interpretation are selected from it and merged into the in-text **Table 3, redesigned as "Model-identifiability-validation matrix"** (replacing the Phase 1 plan of merely merging former Tables 4-5), with exactly six columns: **model family; inferential target; principal identifiability requirement; dominant uncertainty; minimum validation; principal failure mode.** No uncertainty source may appear fully restated in main-text prose, Table 3, and Table S5 simultaneously — each uncertainty item has exactly one full-detail home (Table S5) and, where material to model choice, one compressed cross-reference (Table 3's "dominant uncertainty" column).
 
 ### 5.1 Five distinctions: association, predictive performance, identifiability, observability, structural adequacy (450 words)
 - **Core question:** Why is "the back-calculated series correlates with clinical cases" the weakest, not the only, form of evidence a reconstruction claim needs?
@@ -183,7 +149,9 @@
 
 ---
 
-## Part 6. From wastewater signals to public-health action (1,000 words)
+## Part 6. From wastewater signals to public-health action (target 750, tentative — NOT drafted this round; title + placeholder only in the condensed draft)
+
+**Budget revised down from Phase 1's 1,000 to a tentative 750** per this round's corrected total-length constraint. Subsection plan below retained from Phase 1 as a Phase 2B starting point only.
 
 ### 6.1 Three surveillance objectives and alert-threshold design under asymmetric cost (350 words)
 - **Core question:** Why do trend monitoring, anomaly detection, and absolute-magnitude estimation require genuinely different evidentiary standards, and how should an asymmetric false-alarm/missed-detection cost structure set a threshold?
@@ -219,7 +187,9 @@
 
 ---
 
-## Part 7. Enabling infrastructure and technology readiness (800 words)
+## Part 7. Enabling infrastructure and technology readiness (target 600, tentative — NOT drafted this round; title + placeholder only in the condensed draft)
+
+**Budget revised down from Phase 1's 800 to a tentative 600** per this round's corrected total-length constraint. Subsection plan below retained from Phase 1 as a Phase 2B starting point only.
 
 ### 7.1 Sensing, measurement, and modeling infrastructure (300 words)
 - **Core question:** What infrastructural capabilities determine whether a finer-resolution, lower-latency, mechanistically-grounded signal can be produced at all?
@@ -247,7 +217,7 @@
 
 ---
 
-## Part 8. Research priorities and conclusions (700 words) — NOT YET DRAFTED
+## Part 8. Research priorities and conclusions (700 words, unchanged — NOT drafted this round; title + placeholder only in the condensed draft)
 
 **This part does not exist in the current source draft** (Chapters 11-12 have not been written). The structure below is a target plan for future drafting, not a compression of existing text — no current-draft words map to Part 8 (see Compression Map's explicit note on this).
 
@@ -300,13 +270,13 @@
 | Table 1 (developmental phases) | move to SI | — | Background scene-setting, not part of the four contributions. |
 | Table 2 (application taxonomy) | move to SI | — | Same reasoning as Table 1. |
 | Table 3 (normalization matrix) | retain/redesign | **Table 2. Normalization-assumption-residual-uncertainty matrix** | Already close to the target form; redesign for density (shorter cells, since it must absorb §6.4-6.5's per-biomarker narrative that is being cut from prose). |
-| Table 4 (back-calculation method families) + Table 5 (per-study audit) | merge | **Table 3. Model-identifiability-validation matrix** | Both tables already assess the same method families against overlapping criteria; a submission version should merge them into one wider table rather than two, consolidating the five-way-framework columns with the per-study evidentiary columns. |
-| Table 6 (uncertainty source matrix) | retain/redesign, tension flagged | *(see note below)* | Table 6 is dense and valuable but creates a 5th-table pressure against the 4-table cap — see the explicit flag below. |
+| Table 4 (back-calculation method families) + Table 5 (per-study audit) + up to 4-6 selected items from Table 6 (uncertainty source matrix) | merge | **Table 3. Model-identifiability-validation matrix** — exactly six columns: model family; inferential target; principal identifiability requirement; dominant uncertainty; minimum validation; principal failure mode | **RESOLVED this round (Phase 2A), closing the tension Phase 1 flagged.** Table 6 is not retained as an independent in-text table. Its full detail moves to Table S5 (SI); only the 4-6 uncertainty items that materially affect model choice or result interpretation are pulled into Table 3's "dominant uncertainty" column, merged with the method-family/evidentiary content Tables 4-5 already carried. No uncertainty item may appear fully restated in main-text prose, Table 3, and Table S5 simultaneously (§四 of this round's instruction). |
+| Table 6 (uncertainty source matrix), full detail | move to SI | **Table S5. Uncertainty sources, propagation methods, validation requirements and residual limitations** | Full density preserved for a reader who wants the complete uncertainty-source breakdown; this is where Table 6's content that does NOT make Table 3's 4-6-item cut still lives, not deleted. |
 | Table 7 (surveillance matrix) + Table 8 (technology-readiness matrix) + the five scattered minimum-reporting-requirement boxes (§5.7, §6.9, §7.7, §8.15, §9.8) | merge | **Table 4. Minimum reporting and decision-readiness framework** | Consolidates two source tables and five scattered "minimum reporting requirements" prose blocks (currently repeated in similar form at the end of five different chapters) into one framework table — this is simultaneously a figure-count reduction and one of the larger word-count savings in the whole compression plan. |
 | Boxes (4 total) | 1-2 retained as in-text callouts (not counted against the figure/table cap), rest cut or merged into table footnotes | — | Boxes are cheap in word count and high in clarity; the "Why Monte Carlo does not solve model misspecification" and "Why analytical innovation does not guarantee epidemiological value" boxes are the two strongest candidates to retain as short callouts given they state Original Contribution #4's core caution in its sharpest form. |
 | Editorial self-check concept-threading table | delete | — | Pure internal QA device, not submission content. |
 
-**Explicit tension flagged for author decision:** the disposition plan above already merges 8 tables into 4 and 3 figures into 4 (net: figures grow by one, tables shrink by half), but Table 6 (uncertainty source matrix) does not have an obvious merge partner without either (a) folding it into Table 3, producing one very large, dense table that may itself need SI-level expansion, or (b) accepting a 5th table and asking the author whether Water Research's typical table allowance can absorb it. **This is not resolved in Phase 1** — it is named here as one of the "问题需要作者人工决定" items in the final findings summary, consistent with the instruction that Phase 1 plans the cut without performing it.
+**Table 6 tension: resolved this round (was open in Phase 1).** The 4-table in-text cap is preserved (Table 1 Process-distortion-observable-correction, Table 2 Normalization strategy, Table 3 Model-identifiability-validation [now 6 columns, absorbing up to 6 Table-6-sourced items], Table 4 Minimum reporting/decision-readiness) with Table 6's remaining detail in a new SI table (Table S5) rather than forcing a 5th in-text table or an oversized Table 3. This is now a closed decision, not an open question for Phase 2B.
 
 ---
 
