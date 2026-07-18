@@ -1,6 +1,6 @@
 # Chapter 7 Model-Family Audit Tables (standalone extract)
 
-Extracted from `WBE_Review_Ch1-8.md` §7.4 for standalone review. These are the same two tables embedded in the main chapter text, provided here as a separate file per request. Reference numbers and evidence-type classifications match `WBE_Review_Citation_Verification_Table.md`.
+Extracted from `WBE_Review_Ch1-10.md` §7.4 for standalone review. These are the same two tables embedded in the main chapter text, provided here as a separate file per request. Reference numbers and evidence-type classifications match `WBE_Review_Citation_Verification_Table.md`.
 
 ---
 

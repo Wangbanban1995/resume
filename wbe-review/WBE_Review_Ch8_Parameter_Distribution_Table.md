@@ -1,6 +1,6 @@
 # Chapter 8 Parameter–Distribution–Source–Correlation Summary Table (standalone extract)
 
-Extracted from `WBE_Review_Ch1-8.md` §8.13 (Table 6) for standalone review. This is the same table embedded in the main chapter text, provided here as a separate file per request. "Typically correlated with" records the §8.10 dependencies documented in this review; entries marked "shape not established in this evidence base" reflect a documented evidence gap, not an assumption of normality.
+Extracted from `WBE_Review_Ch1-10.md` §8.13 (Table 6) for standalone review. This is the same table embedded in the main chapter text, provided here as a separate file per request. "Typically correlated with" records the §8.10 dependencies documented in this review; entries marked "shape not established in this evidence base" reflect a documented evidence gap, not an assumption of normality.
 
 ---
 
