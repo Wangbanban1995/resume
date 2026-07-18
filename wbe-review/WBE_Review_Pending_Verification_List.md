@@ -1,4 +1,4 @@
-# Consolidated Pending-Verification List — WBE Review, Chapters 1–8
+# Consolidated Pending-Verification List — WBE Review, Chapters 1–9
 
 Every number, coefficient, percentage, or ranking below is currently supported only by search-engine-summarized snippets, not by full-text reading (WebFetch returned HTTP 403 for every publisher/PMC/DOI-resolver/Crossref domain attempted across this entire project — see §2.3 of the main document). **None of these should be quoted in a submission-facing document without independent full-text confirmation.** Organized by chapter; reference numbers match `WBE_Review_References.md` and `WBE_Review_Citation_Verification_Table.md`.
 
@@ -63,6 +63,19 @@ No specific numeric probability-distribution parameters (means, standard deviati
 - Jung et al. (2026) rate-constant range, cross-referenced again in §8.3 — see the existing Chapters 3–4 pending item above [9]
 - Dai et al. (2024) specific predictive-accuracy figures, cross-referenced again in §8.9 — see the existing Chapter 7 pending item above [44]
 
+## Chapter 9 (public-health integration and decision-making)
+
+- Moallef et al. (2025): the "68 of 145 full-text-screened articles" health-equity count, and the specific content of the proposed 5-consideration conceptual framework beyond the general categories named in-text (§9.6) [51]
+- Yu, Olesen, Duvallet, & Grad (2024): the specific ~80% national sewer-connectivity figure and detailed demographic-association statistics (which household characteristics associate with lower connectivity, and by how much) — the qualitative "systematically, not randomly, distributed" finding is treated as comparatively better-supported and is the claim actually relied upon in §9.5–9.6 [52]
+- Thompson et al. (2024): full author list beyond the lead author; the specific legal/enforceability argument's detailed content beyond the general "obligations, not just ethics" framing (§9.6) [53]
+- Kwiatkowska et al. (2022): **publication venue and peer-review status, not just a specific number** — this is a more fundamental gap than the usual "which figure is unconfirmed" pending item, and the source should be treated with corresponding extra caution until resolved (§9.6) [54]
+- Assoum et al. (2023): specific lead-time or detection-sensitivity figures for the low-incidence-setting early-warning finding — no such figure is currently asserted in the main text, deliberately (§9.1, §9.2) [55]
+- Demir et al. (2026, medRxiv preprint): **the existence and identity of any co-author beyond the lead author is itself unconfirmed**, not merely a specific numeric claim — treat any future reference to a "Demir et al." author list as requiring independent verification from scratch, not as building on a settled base (§9.1, §9.2) [56]
+- Link, Garrido, et al. (2026, medRxiv preprint): full author list beyond the two named authors; **and, independently of author-list completeness, whether the reported sensitivity 0.82/PPV 0.64 detection-performance figures generalize beyond the 281-county calibration set this preprint reports them on** — this second caveat is a transferability question, not merely a confirmation-pending one, and should be treated as a standing limitation even if the figures themselves are later confirmed against full text (§9.2, Table 7) [57]
+- Zhang et al. (2025): specific correlation magnitudes and per-system lead/lag relationships from the 4-system (hospital/wastewater/meteorological/internet-search) data-fusion analysis — the qualitative "fused variables correlate significantly with case counts" finding is treated as the better-supported claim (§9.3, Table 7) [58]
+- The "detection-to-action timescale of about a week" reporting-timeliness figure referenced in §9.7's third actionability condition — stated explicitly in the main text as an illustrative order of magnitude from the search-derived evidence base, not a precisely established universal standard, and not attributed to a single specific numbered reference
+- **No specific numeric claim in Chapter 9's Table 7 or Box is asserted as verified** — Table 7 is a structural/organizational summary of §9.1–9.2's argument, not a data table, and the Box is a purely conceptual, hypothetical illustration containing no borrowed statistics from any source
+
 ---
 
 ## Sources with unresolved or incomplete author attribution (across all chapters)
@@ -78,6 +91,10 @@ No specific numeric probability-distribution parameters (means, standard deviati
 - [46] Jones et al. (2014) — 6-author list retained from an earlier retrieval this session, not re-confirmed via a second independent search
 - [47] Yang et al. (2024) — 8-author list retained from an earlier retrieval this session, not re-confirmed via a second independent search
 - [49] Pei et al. (2016) — first 6 of 7 authors confirmed across 2 searches; final author name not fully confirmed
+- [53] Thompson et al. (2024) — only lead author confirmed, full list not obtained
+- [54] Kwiatkowska et al. (2022) — full 8-author list found, but from only a single search, not cross-checked; **and, more fundamentally, the venue itself (journal vs. conference proceeding vs. preprint) is unconfirmed**
+- [56] Demir et al. (2026, medRxiv preprint) — **weakest author attribution in the entire review to date, exceeding even [32]'s previous record**: only the lead author's institutional affiliation is corroborated; a possible co-author's name appeared in exactly one synthesized search result and was not independently confirmed by any second source
+- [57] Link, Garrido, et al. (2026, medRxiv preprint) — two named authors confirmed, full list (likely longer, given the scale of a 281-county analysis) not obtained
 
 ## Sources considered and explicitly excluded (not cited anywhere in Chapters 1–7)
 
@@ -87,7 +104,7 @@ No specific numeric probability-distribution parameters (means, standard deviati
 
 - ~~PubMed 41260128 — "From wastewater to epidemiological insights: A systematic..."~~ — **RESOLVED**: identified and cited as [40] Wang, Amarasiri, Oishi, & Sano (2025), *Water Research*, in §7.1.2.
 - arXiv 2506.14331 — sampler placement optimization — relevant to §5.1; this review's sampling-location argument was developed independently without drawing on this source, and cross-checking for consistency is recommended once accessible
-- PMC12005304 — wastewater-based epidemiology health equity — relevant to the not-yet-drafted §9 (public health translation/equity)
+- ~~PMC12005304 — wastewater-based epidemiology health equity — relevant to the not-yet-drafted §9~~ — **RESOLVED 2026-07-14**: identified and cited as [51] Moallef et al. (2025) in §9.6; see the new Chapter 9 section above for what remains pending about this specific source
 
 ---
 
