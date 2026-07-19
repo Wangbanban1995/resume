@@ -4,12 +4,19 @@
 
 **Internal-audit-file boundary, stated explicitly per instruction:** this project's internal claim audits (`WBE_Review_Ch9_Claim_Audit.md`, `WBE_Review_Table7_Evidence_Audit.md`), the Citation Verification Table, the Evidence Freeze Audit, the Pending Verification List, the Ch10 Evidence Note, and the Rename/Crossref Log remain **project-internal working documents** and are **not** listed as SI sections below. They serve this project's own evidence-discipline process, not a journal's supplementary-material requirements — a submission's SI should contain finished, reader-facing supplementary content, not this project's internal audit trail. Where an internal audit file's *findings* are relevant to SI content (e.g., which claims still need full-text verification), that information feeds into SI section content rather than the audit file itself being attached.
 
+**Phase 3C structural addendum (2026-07-19):** two structural additions this round, fields and cross-references only, no new performance data or PRISMA numbers added anywhere in this file. (1) Each SI section below that the condensed main text actually points to now carries a **"Referenced from condensed main text"** field, so a future edit to either the manuscript or this outline can be checked for drift in one place, rather than relying on a separate audit each time (see `WBE_Review_Cross_Reference_Audit.csv`, which caught and this round's manuscript edit fixed one such drift: §4.4 previously pointed to a non-existent "Supplementary Table S4"; the correct target is §S6a, and both the manuscript and this file now agree). (2) A new **"SI table-numbering scheme"** subsection is added directly below this note, stating explicitly which SI sections contain a formally numbered "Table S_" element and which do not, to prevent a future in-text pointer from citing a table number this outline never assigned.
+
+### SI table-numbering scheme (added Phase 3C, 2026-07-19)
+
+Only one SI section currently has a formally numbered table: **§S8a is "Table S5"** (Uncertainty Sources, Propagation Methods, Validation Requirements and Residual Limitations). No other SI section in this outline is currently assigned a "Table S1," "S2," "S3," or "S4" label — sections S1-S7, S6a, S9, and S10 are prose/catalog sections without an assigned table number, even where their content could in principle be presented as a table at drafting time. **Any future in-text manuscript pointer to a specific "Supplementary Table S_" number must be checked against this list before being written** — a pointer to an unassigned number (as happened this round with a stray "Table S4" reference, now corrected) will not resolve to real content.
+
 ## SI Table of Contents
 
 ### S1. Supplementary Methods
 **Source:** Current §2.2 (search process), §2.4 (terminology/developmental background), §2.6 (scope boundaries); §5.1-§5.4 (sampling location/mode/matrix/preservation detail cut from Part 4.1); §8.6-§8.8, §8.11 (delta method, Monte Carlo mechanics, sensitivity-analysis method taxonomy, censoring-method detail cut from Part 5.4).
 **Content:** The full search-process narrative (queries issued, sources prioritized, known under-sampling risks); standard sampling/analytical methods background not specific to this review's original contributions; formal uncertainty-propagation method exposition (delta method derivation, Monte Carlo procedure, sensitivity-analysis method comparison, censored-data-handling methods) at full technical depth, for a reader who wants the mechanics the main text only references.
 **Note:** This section should NOT include the full source-verification-limitation narrative (§2.3) beyond what the main text's compressed version already states — the *fact* that 0/N references are full-text verified belongs in the main text (Part 1.2), not buried in SI where a reviewer might miss it.
+**Referenced from condensed main text (added Phase 3C):** §1.2, "The full search strategy and source-verification procedure are given in Supplementary Methods." Verified current as of 2026-07-19.
 
 ### S2. Full Search Strategies
 **Source:** `WBE_Review_Systematic_Search_Strategy.md` (existing project file, one directory up from `wbe-review/`).
@@ -36,6 +43,7 @@
 ### S6a. Normalization Failure Modes, Full Catalog (confirmed Phase 2B, 2026-07-18)
 **Source:** Current §6.8 (When Normalization Fails), all 8 failure-mode bullets, unabridged.
 **Content:** The complete 8-item catalog — irreversible degradation, combined-sewer overflow/mass-loss pathways, sediment sequestration/delayed release, unknown non-human sources, severe censoring below LOD/LOQ, spatial mixing causing source non-identifiability, target/normalizer structurally different fate and transport, and structural model misspecification — each with its full explanation, exactly as in the source draft. The condensed main-text draft (§4.4) names only the 3 most consequential of these 8 explicitly as "three particularly consequential failure modes," with an explicit pointer to this SI section for the complete list; this SI section is that pointer's target and must not be dropped.
+**Referenced from condensed main text (added Phase 3C):** §4.4, "...given in Supplementary Section S6a." Corrected 2026-07-19 from a stale "Supplementary Table S4" pointer that predated this section's final S6a numbering — see `WBE_Review_Cross_Reference_Audit.csv`.
 
 ### S7. Reconstruction-Model Evidence
 **Source:** Current §7.1-§7.2, §7.4 full text; current Table 4 and Table 5 at full, non-merged density.

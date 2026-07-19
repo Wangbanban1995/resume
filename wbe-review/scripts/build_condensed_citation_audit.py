@@ -16,7 +16,20 @@ BASE = Path(__file__).resolve().parent.parent
 OUT = BASE / "WBE_Review_Condensed_Citation_Audit.csv"
 
 FIELDS = ["reference_number", "active_or_withdrawn", "cited_in_condensed_draft", "cited_section",
-          "claim_supported", "evidence_level", "possible_overextension", "full_text_priority"]
+          "claim_supported", "evidence_level", "possible_overextension", "full_text_priority",
+          "phase3c_technical_check"]
+
+# Phase 3C (2026-07-19): technical citation-consistency check only -- confirms every in-text
+# citation exists in References.md with matching author/year, no duplicate reference numbering,
+# [56] absent from the main text, and [57] still hedged as an active preprint. Does NOT re-verify
+# evidentiary support (that is a full-text-verification task, tracked separately) -- citation
+# existence is not claim verification.
+PHASE3C_CHECK_USED = ("Confirmed 2026-07-19: author-year citation in condensed draft matches this "
+                       "reference's entry in References.md; no duplicate reference numbering found "
+                       "in References.md; this is a technical-consistency check only, not a "
+                       "re-verification of evidentiary support")
+PHASE3C_CHECK_WITHDRAWN = "Confirmed 2026-07-19: [56] does not appear anywhere in the condensed draft body"
+PHASE3C_CHECK_UNUSED = "N/A -- not cited in the condensed draft, no in-text citation to check"
 
 # All 68 issued reference numbers (from References.md), withdrawn status.
 ALL_REFS = [str(i) for i in range(1, 68)] + ["32b"]
@@ -60,6 +73,7 @@ def main():
                 "cited_section": u["section"], "claim_supported": u["claim"],
                 "evidence_level": u["evidence"], "possible_overextension": u["overext"],
                 "full_text_priority": "See WBE_Review_Condensed_Claim_Map.csv evidence_gap_priority for the specific paragraph(s)",
+                "phase3c_technical_check": PHASE3C_CHECK_USED,
             })
         elif status == "WITHDRAWN":
             rows.append({
@@ -69,6 +83,7 @@ def main():
                 "claim_supported": "N/A", "evidence_level": "N/A",
                 "possible_overextension": "N/A -- confirmed absent from condensed draft body (see grep check in Compression Log)",
                 "full_text_priority": "N/A -- do not cite until metadata resolved, per standing project rule",
+                "phase3c_technical_check": PHASE3C_CHECK_WITHDRAWN,
             })
         else:
             rows.append({
@@ -79,6 +94,7 @@ def main():
                 "evidence_level": "N/A (active, available for future use)",
                 "possible_overextension": "N/A",
                 "full_text_priority": "Low priority for this round; available if Phase 2C prose expansion needs it",
+                "phase3c_technical_check": PHASE3C_CHECK_UNUSED,
             })
 
     with open(OUT, "w", newline="", encoding="utf-8") as f:
