@@ -15,13 +15,13 @@ FRONT_MATTER,(preamble),13,0,0,13
 4. Observation and normalization,4.1 Sampling and analytical observation,351,5,0,356
 4. Observation and normalization,4.2 Flow and population normalization,271,5,0,276
 4. Observation and normalization,4.3 Biomarker normalization and fate matching,289,6,0,295
-4. Observation and normalization,4.4 When normalization fails,305,4,129,438
+4. Observation and normalization,4.4 When normalization fails,331,4,129,464
 "5. Reconstruction, identifiability and uncertainty",(preamble),0,5,0,5
 "5. Reconstruction, identifiability and uncertainty",5.1 Inferential targets and reconstruction models,286,6,0,292
 "5. Reconstruction, identifiability and uncertainty",5.2 Identifiability and observability,342,4,0,346
 "5. Reconstruction, identifiability and uncertainty",5.3 Validation according to inferential purpose,266,6,0,272
 "5. Reconstruction, identifiability and uncertainty",5.4 Uncertainty propagation,292,3,0,295
-"5. Reconstruction, identifiability and uncertainty",5.5 From uncertainty intervals to defensible inference,240,7,170,417
+"5. Reconstruction, identifiability and uncertainty",5.5 From uncertainty intervals to defensible inference,281,7,170,458
 6. From wastewater signals to public-health action,(preamble),0,7,0,7
 6. From wastewater signals to public-health action,6.1 Surveillance objectives and decision thresholds,184,6,0,190
 6. From wastewater signals to public-health action,6.2 Multi-source interpretation,226,3,0,229

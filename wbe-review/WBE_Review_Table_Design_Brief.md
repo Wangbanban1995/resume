@@ -27,6 +27,15 @@ The Target Outline's 4-table plan (`WBE_Review_Target_Outline.md`, "Figure and t
 
 **This is not a defect introduced this round** — both were always "planned" rather than "drafted" per the Target Outline's own status language, and Phase 2A/2B's word-budget accounting never assumed their word cost. This brief simply makes their current undrafted status explicit and auditable, rather than leaving it implicit in a planning document a reader might not cross-check against the actual manuscript.
 
-## Summary of changes made this round
+## Summary of changes made in Phase 3C
 
 Two caption edits applied to `WBE_Review_WR_Condensed_Draft.md` (Table 2 and Table 3 captions, appending "— synthesized by this review"). No table content, row, column, or cell value was changed. No new table was drafted. No unverifiable comparative language was found or needed removal — both existing tables were already correctly hedged.
+
+## Addendum — post-Phase 3C non-evidence work (2026-07-19)
+
+Two further, purely presentational additions this round, per `WBE_Review_Table_Format_Standard.md` (new this round, defining the full formatting standard both tables now follow):
+
+- **Table 2**: an italic footnote was added immediately below the table, naming the "Residual/introduced uncertainty" column specifically and stating that its performance/cross-scenario content (e.g., "unreliable under high inflow/infiltration," "fails outright when fate is mismatched") is pending full-text evidence verification. **Note on a fix made during drafting:** the footnote's first draft also cited `WBE_Review_Critical_Claim_Verification_Queue.csv` row P4-10 by name inline in the manuscript; this was caught and removed before finalizing, since a filename/internal-tracking-ID citation inside the submission manuscript body violates this project's standing Phase 2B discipline against project-management language in the manuscript text. The row mapping (Table 2 ↔ queue row P4-10) is preserved here and in `WBE_Review_Table_Format_Standard.md` instead.
+- **Table 3**: an italic footnote was added below the table, naming the "Dominant uncertainty," "Minimum validation," and "Principal failure mode" columns, with the same plain-language pending-verification statement and the same internal-citation removal (Table 3 ↔ queue row P5-10, tracked in `WBE_Review_Table_Format_Standard.md`, not inline).
+
+These footnotes make explicit, at the point a reader encounters the table, exactly what this brief's "unverifiable comparatives" check already established in Phase 3C (no cell uses an unqualified superlative) — that even the *qualified*, conditional statements in these columns are not yet full-text-confirmed. No cell content changed; this is a labeling addition only. See `WBE_Review_Table_Format_Standard.md` for the full formatting rationale, including one deferred cosmetic item (header-casing consistency) intentionally not touched this round.

@@ -113,6 +113,8 @@ These are not failures of a poorly chosen normalizer; they are conditions under 
 | Dynamic population (mobile-device or chemical proxy) | Population size (time-varying) | The proxy tracks the true contributing population in real time | Adds the proxy's own measurement error; re-identification risk at small spatial scale |
 | Chemical or microbial biomarker ratio | Population size and/or dilution, jointly with the target | Target and normalizer share persistence, partitioning, and temperature sensitivity (fate matching) | Ratio variance amplified near the normalizer's detection limit; fails outright when fate is mismatched |
 
+*Performance, cross-scenario, and mechanism-direction statements in the "Residual/introduced uncertainty" column (e.g., "unreliable under high inflow/infiltration," "fails outright when fate is mismatched") are pending full-text evidence verification.*
+
 ---
 
 ## 5. Reconstruction, identifiability and uncertainty
@@ -155,6 +157,8 @@ A reported interval is itself a claim requiring its own check, not a self-certif
 | Mechanistic transport-decay | Absolute load | Structural adequacy of the process representation | Structural/model-form uncertainty | Event-based validation | Confidently wrong output under an unmodeled process |
 | Bayesian/state-space | Prevalence, incidence | Practical identifiability under the chosen prior | Narrow-posterior-as-false-certainty risk | Posterior predictive check, prior sensitivity analysis | Overconfident interval from an informative prior |
 | Hybrid process-informed | Absolute load, prevalence | Cross-site generalization of the learned component | Temporal leakage; structural uncertainty of the learned part | External site and decision-value validation | Inflated apparent skill from temporal leakage |
+
+*Every "Dominant uncertainty," "Minimum validation," and "Principal failure mode" entry in this table is this review's own proposed classification and is pending full-text evidence verification against each model family's underlying studies. No cell should be read as an independently confirmed finding.*
 
 ---
 
