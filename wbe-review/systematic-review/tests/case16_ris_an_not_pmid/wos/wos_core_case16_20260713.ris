@@ -1,0 +1,31 @@
+TY  - JOUR
+TI  - Synthetic AN Accession Test Paper
+AU  - Antest, Q.
+PY  - 2012
+JO  - Journal of Synthetic Test Data
+AN  - 12345678
+ER  -
+
+TY  - JOUR
+TI  - Synthetic PM Tag Test Paper
+AU  - Pmidtagtest, R.
+PY  - 2012
+JO  - Journal of Synthetic Test Data
+PM  - 87654321
+ER  -
+
+TY  - JOUR
+TI  - Synthetic WoS Accession Test Paper
+AU  - Wostest, S.
+PY  - 2012
+JO  - Journal of Synthetic Test Data
+AN  - WOS:000123456789
+ER  -
+
+TY  - JOUR
+TI  - Synthetic AN With PMID Prefix Test Paper
+AU  - Anprefixtest, T.
+PY  - 2012
+JO  - Journal of Synthetic Test Data
+AN  - PMID:99999999
+ER  -

@@ -1,0 +1,35 @@
+part,section,body_words,heading_words,table_words,section_total
+FRONT_MATTER,(preamble),13,0,0,13
+1. Introduction and review approach,(preamble),0,5,0,5
+1. Introduction and review approach,1.1 The measurement-inference gap,357,4,0,361
+1. Introduction and review approach,1.2 Scope and critical-review approach,201,5,0,206
+1. Introduction and review approach,1.3 Conceptual contributions,244,3,0,247
+2. From population states to wastewater signals,(preamble),877,7,0,884
+3. Sewers as information filters,(preamble),0,5,0,5
+3. Sewers as information filters,3.1 Hydraulic transport and residence-time distributions,212,6,0,218
+3. Sewers as information filters,"3.2 Transformation, partitioning and biological interactions",303,6,0,309
+3. Sewers as information filters,"3.3 Sedimentation, resuspension and memory effects",170,6,0,176
+3. Sewers as information filters,"3.4 Rainfall, infiltration, overflow and warm-season forcing",243,7,0,250
+3. Sewers as information filters,"3.5 Amplitude, temporal and spatial distortion",319,6,0,325
+4. Observation and normalization,(preamble),0,4,0,4
+4. Observation and normalization,4.1 Sampling and analytical observation,351,5,0,356
+4. Observation and normalization,4.2 Flow and population normalization,271,5,0,276
+4. Observation and normalization,4.3 Biomarker normalization and fate matching,289,6,0,295
+4. Observation and normalization,4.4 When normalization fails,331,4,129,464
+"5. Reconstruction, identifiability and uncertainty",(preamble),0,5,0,5
+"5. Reconstruction, identifiability and uncertainty",5.1 Inferential targets and reconstruction models,286,6,0,292
+"5. Reconstruction, identifiability and uncertainty",5.2 Identifiability and observability,342,4,0,346
+"5. Reconstruction, identifiability and uncertainty",5.3 Validation according to inferential purpose,266,6,0,272
+"5. Reconstruction, identifiability and uncertainty",5.4 Uncertainty propagation,292,3,0,295
+"5. Reconstruction, identifiability and uncertainty",5.5 From uncertainty intervals to defensible inference,281,7,170,458
+6. From wastewater signals to public-health action,(preamble),0,7,0,7
+6. From wastewater signals to public-health action,6.1 Surveillance objectives and decision thresholds,184,6,0,190
+6. From wastewater signals to public-health action,6.2 Multi-source interpretation,226,3,0,229
+6. From wastewater signals to public-health action,"6.3 Actionability, limits and ethics",267,5,0,272
+7. Enabling infrastructure and technology readiness,(preamble),0,6,0,6
+7. Enabling infrastructure and technology readiness,7.1 Process-resolving infrastructure,172,3,0,175
+7. Enabling infrastructure and technology readiness,7.2 Process-informed analytics,135,3,0,138
+7. Enabling infrastructure and technology readiness,7.3 Readiness and equitable deployment,134,5,0,139
+8. Research priorities and conclusions,(preamble),0,5,0,5
+8. Research priorities and conclusions,8.1 Testable research priorities,221,4,0,225
+8. Research priorities and conclusions,8.2 Conclusions,333,2,0,335

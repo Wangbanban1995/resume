@@ -1,0 +1,4 @@
+source_file,database,search_module,records_parsed,missing_title,missing_abstract,missing_authors,missing_year,missing_DOI,missing_PMID,multiple_conflicting_dois_count,unknown_database,unknown_module,parser_warnings,parse_status
+tests/case04_three_db_aggregation/pubmed/pubmed_module07_case04_20260713.nbib,pubmed,module07,1,0,0,0,0,0,0,0,False,False,,ok
+tests/case04_three_db_aggregation/scopus/scopus_module05_case04_20260713.csv,scopus,module05,1,0,0,0,0,0,1,0,False,False,,ok
+tests/case04_three_db_aggregation/wos/wos_core_case04_20260713.ris,wos,core,1,0,0,0,0,0,1,0,False,False,,ok

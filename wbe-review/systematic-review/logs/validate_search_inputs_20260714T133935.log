@@ -1,0 +1,6 @@
+2026-07-14 13:39:35,300 [INFO] Log file: logs/validate_search_inputs_20260714T133935.log
+2026-07-14 13:39:35,300 [INFO] validate_search_inputs.py starting (mode=pilot)
+2026-07-14 13:39:35,301 [INFO] Wrote 0 checksum row(s) to logs/pilot_raw_file_checksums.csv
+2026-07-14 13:39:35,301 [INFO] Wrote pilot_input_readiness_report.md/.csv to reports
+2026-07-14 13:39:35,301 [INFO] PILOT STATUS: PILOT_NOT_READY (4 blocking, 0 warnings) | PRODUCTION STATUS: PRODUCTION_NOT_READY
+2026-07-14 13:39:35,301 [INFO] validate_search_inputs.py finished

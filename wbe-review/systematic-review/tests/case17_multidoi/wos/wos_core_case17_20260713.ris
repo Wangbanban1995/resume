@@ -1,0 +1,17 @@
+TY  - JOUR
+TI  - Synthetic Identical Multi-DOI Test Paper
+AU  - Identdoi, U.
+PY  - 2011
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.case17
+DO  - https://doi.org/10.9999/synthetic.test.case17
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Conflicting Multi-DOI Test Paper
+AU  - Conflictdoi, V.
+PY  - 2011
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.case17conflictA
+DO  - 10.9999/synthetic.test.case17conflictB
+ER  -

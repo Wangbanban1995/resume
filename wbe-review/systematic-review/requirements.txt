@@ -1,0 +1,11 @@
+# No third-party packages required. All scripts in scripts/ use only the Python
+# standard library (argparse, csv, re, json, logging, hashlib, collections, pathlib,
+# datetime) so that they run in any environment with Python >= 3.8 and no network access
+# or pip install step, which matters since this toolkit's own execution environment has
+# no reliable outbound package-index access.
+#
+# Minimum Python version: 3.8 (uses pathlib, f-strings, argparse.ArgumentDefaultsHelpFormatter)
+#
+# This file is intentionally present (per instruction) even though it lists no pinned
+# packages, so that `pip install -r requirements.txt` is a safe, valid no-op rather than
+# an error for anyone following standard Python-project conventions.

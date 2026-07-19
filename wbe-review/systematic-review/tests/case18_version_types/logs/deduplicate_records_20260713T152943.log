@@ -1,0 +1,12 @@
+2026-07-13 15:29:43,968 [INFO] Log file: tests/case18_version_types/logs/deduplicate_records_20260713T152943.log
+2026-07-13 15:29:43,968 [INFO] deduplicate_records.py starting
+2026-07-13 15:29:43,968 [INFO] input-dir=tests/case18_version_types output-dir=tests/case18_version_types/output
+2026-07-13 15:29:43,969 [INFO] Parsed 5 record(s) from tests/case18_version_types/wos/wos_core_case18_20260713.ris (database=wos, module=core)
+2026-07-13 15:29:43,969 [INFO] Deduplication complete: 5 input records -> 5 master, 0 confirmed duplicates merged, 3 flagged possible duplicates (retained as separate master entries, NOT auto-merged)
+2026-07-13 15:29:43,970 [INFO] Integrity check status: PASS (0 fail, 0 warning)
+2026-07-13 15:29:43,970 [INFO] Wrote outputs to tests/case18_version_types/output
+2026-07-13 15:29:43,970 [INFO] master_records.csv: 5 rows
+2026-07-13 15:29:43,970 [INFO] confirmed_duplicates.csv: 0 rows
+2026-07-13 15:29:43,970 [INFO] possible_duplicates.csv: 3 rows (flagged only, retained, not auto-merged)
+2026-07-13 15:29:43,970 [INFO] parsing_quality_report.csv written for 1 source file(s)
+2026-07-13 15:29:43,970 [INFO] deduplicate_records.py finished successfully

@@ -1,0 +1,29 @@
+TY  - JOUR
+TI  - Statistical and computational methods for the analysis of COVID-19 wastewater surveillance data: A comparative case study of censored-data methods
+AU  - Safford, H. R.
+AU  - Zuniga-Montanez, R.
+AB  - SYNTHETIC TEST RECORD. This record intentionally matches the DOI of real reference [48] (Safford et al. 2022) so the seed-recall test can exercise its "RECALLED" code path. Not a real search result.
+PY  - 2022
+JO  - ACS ES&T Water
+DO  - 10.1021/acsestwater.2c00053
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Example Study of Sewer Biofilm Decay Kinetics for Testing Purposes Only
+AU  - Testauthor, A.
+AU  - Fixtureperson, B.
+AB  - SYNTHETIC TEST RECORD. Fictitious paper created only to test the deduplication script's DOI-matching logic. Does not describe a real study.
+PY  - 2021
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.0001
+ER  -
+
+TY  - JOUR
+TI  - Synthetic Example Study of Sewer Biofilm Decay Kinetics for Testing Purposes Only
+AU  - Testauthor, A.
+AU  - Fixtureperson, B.
+AB  - SYNTHETIC TEST RECORD, duplicate of the previous record (same DOI) — used to test confirmed_duplicates detection.
+PY  - 2021
+JO  - Journal of Synthetic Test Data
+DO  - 10.9999/synthetic.test.0001
+ER  -

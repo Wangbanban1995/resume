@@ -1,0 +1,1 @@
+candidate_group_id,record_id_a,record_id_b,title_a,title_b,year_a,year_b,first_author_a,first_author_b,DOI_a,DOI_b,PMID_a,PMID_b,publication_version_a,publication_version_b,match_basis,similarity_score,conflict_reason,reviewer_1_decision,reviewer_2_decision,conflict,final_decision,preferred_record_id,decision_reason,review_date

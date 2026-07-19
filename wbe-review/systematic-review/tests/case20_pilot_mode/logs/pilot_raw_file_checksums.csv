@@ -1,0 +1,4 @@
+source_file,file_size_bytes,sha256,database,search_id,imported_at
+tests/case20_pilot_mode/raw/pubmed/pubmed_core_case20_20260714.nbib,695,f7de64a90f7221255ad74da5fbb1b7eb62988f5e36ad6676e38cadfdb40793e7,pubmed,core,2026-07-14T13:34:47.591924
+tests/case20_pilot_mode/raw/wos/wos_module02_case20_20260714.ris,424,9a72962643932de5479fe1a26097e145c24c977bdbc8e9fb9b878499fa6b2989,wos,module02,2026-07-14T13:34:47.592574
+tests/case20_pilot_mode/raw/scopus/scopus_module05_case20_20260714.csv,395,abb31ebfe12c8f07131f086012dc85cc5f43f894a7376ebd45768ebf27d700d5,scopus,module05,2026-07-14T13:34:47.592760

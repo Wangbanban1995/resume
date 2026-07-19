@@ -1,0 +1,2 @@
+database,search_id,search_name,search_date,complete_search_string,field,date_range,language_limit,document_type_limit,raw_hits,exported_records,export_filename,operator,notes
+wos,core,WBE core,2026-07-13,SYNTHETIC TEST STRING,TS,2000-2026,English,Article,5,5,wos_core_case07_20260713.ris,test-operator,SYNTHETIC - file intentionally not created to test missing-file detection

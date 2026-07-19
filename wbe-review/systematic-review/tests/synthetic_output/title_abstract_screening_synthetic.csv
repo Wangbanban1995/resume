@@ -1,0 +1,4 @@
+record_id,title,abstract,year,journal,DOI,reviewer_1_decision,reviewer_2_decision,conflict,final_decision,exclusion_reason,notes
+dd3f7aa3f89f,Synthetic Example Study,SYNTHETIC,2021,Journal of Synthetic Test Data,10.9999/synthetic.test.0001,include,include,FALSE,include,,SYNTHETIC TEST ROW
+838c620ea4d3,Statistical and computational methods,SYNTHETIC,2022,ACS ES&T Water,10.1021/acsestwater.2c00053,include,include,FALSE,include,,SYNTHETIC TEST ROW
+4de78a44f5a8,A Completely Different Synthetic Study,SYNTHETIC,2020,Journal of Synthetic Test Data,,exclude,exclude,FALSE,exclude,not_WBE,SYNTHETIC TEST ROW

@@ -1,0 +1,3 @@
+database,search_id,search_name,search_date,complete_search_string,field,date_range,language_limit,document_type_limit,raw_hits,exported_records,export_filename,operator,notes
+pubmed,core,WBE core search (SYNTHETIC),2026-07-14,SYNTHETIC TEST STRING,Title/Abstract,2000-2026,English,Article,2,2,pubmed_core_case20_20260714.nbib,test-operator,SYNTHETIC - pilot-mode readiness test fixture
+scopus,module05,Normalization (SYNTHETIC),2026-07-14,SYNTHETIC TEST STRING,TITLE-ABS-KEY,2000-2026,English,Article,1,1,scopus_module05_case20_20260714.csv,test-operator,SYNTHETIC - pilot-mode readiness test fixture

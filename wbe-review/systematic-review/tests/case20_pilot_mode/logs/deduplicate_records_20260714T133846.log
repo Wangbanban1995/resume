@@ -1,0 +1,4 @@
+2026-07-14 13:38:46,033 [INFO] Log file: tests/case20_pilot_mode/logs/deduplicate_records_20260714T133846.log
+2026-07-14 13:38:46,034 [INFO] deduplicate_records.py starting (mode=pilot)
+2026-07-14 13:38:46,034 [INFO] input-dir=tests/case20_pilot_mode/raw output-dir=tests/case20_pilot_mode/output_unused
+2026-07-14 13:38:46,036 [INFO] Pilot parse-only complete: 4 record(s) parsed from 3 file(s). NO deduplication was run. Wrote tests/case20_pilot_mode/interim/pilot_parsed_records.csv, tests/case20_pilot_mode/interim/pilot_parsing_quality_report.csv, tests/case20_pilot_mode/logs/pilot_parse_log.txt. Review the parsing quality report and perform the Section 4 manual spot-check before proceeding to any further step.

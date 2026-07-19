@@ -1,0 +1,7 @@
+Deduplication run: 2026-07-13T15:30:08.984438
+Input directory: tests/synthetic_fixtures
+Total input records parsed: 9
+Master (unique) records: 6
+Confirmed duplicates merged into master: 3
+Possible duplicates flagged (retained as separate master entries, NOT auto-merged): 0
+Master records confirmed present in more than one source file/database: 2

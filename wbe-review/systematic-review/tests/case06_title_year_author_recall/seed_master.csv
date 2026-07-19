@@ -1,0 +1,2 @@
+record_id,title,abstract,authors,year,journal,DOI,PMID,database_source,search_module,source_file,database_sources,search_modules,source_files,duplicate_record_ids,occurrence_count,publication_version,possible_duplicate_of_record_id,possible_version_relation,duplicate_match_basis,manual_duplicate_decision
+m001,Estimating community drug abuse by wastewater analysis,SYNTHETIC,"Zuccato, E.; Chiabrando, C.",2008,Environmental Health Perspectives,,,wos,module06,synthetic,wos,module06,synthetic,,1,primary_or_unclassified,,,,

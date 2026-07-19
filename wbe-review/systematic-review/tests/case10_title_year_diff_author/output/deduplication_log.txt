@@ -1,0 +1,7 @@
+Deduplication run: 2026-07-13T15:29:43.507602
+Input directory: tests/case10_title_year_diff_author
+Total input records parsed: 2
+Master (unique) records: 2
+Confirmed duplicates merged into master: 0
+Possible duplicates flagged (retained as separate master entries, NOT auto-merged): 1
+Master records confirmed present in more than one source file/database: 0

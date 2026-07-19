@@ -1,0 +1,2 @@
+Title,Authors,Year,Source title,DOI,Abstract,PubMed ID
+"Synthetic Pilot-Mode Test Record for Scopus Module 5 (Normalization)","Normtest, E.",2021,Journal of Synthetic Pilot Test Data,10.9999/synthetic.pilot.0004,"SYNTHETIC TEST RECORD. Fictitious record created only to test --mode pilot readiness checking for validate_search_inputs.py against a Scopus Module 5 CSV export. Not a real study.",

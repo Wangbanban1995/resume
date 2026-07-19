@@ -1,0 +1,5 @@
+2026-07-13 15:29:53,283 [INFO] Log file: tests/case09_wrong_module/logs/validate_search_inputs_20260713T152953.log
+2026-07-13 15:29:53,283 [INFO] validate_search_inputs.py starting
+2026-07-13 15:29:53,285 [INFO] Wrote input_readiness_report.md/.csv to tests/case09_wrong_module/reports
+2026-07-13 15:29:53,285 [INFO] STATUS: NOT_READY (24 blocking, 2 warnings)
+2026-07-13 15:29:53,285 [INFO] validate_search_inputs.py finished

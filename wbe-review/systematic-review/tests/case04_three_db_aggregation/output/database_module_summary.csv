@@ -1,0 +1,4 @@
+database,search_module,records_in_master,records_as_duplicates
+pubmed,module07,1,0
+scopus,module05,0,1
+wos,core,0,1

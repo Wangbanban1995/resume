@@ -1,0 +1,17 @@
+PMID- 77777771
+TI  - Synthetic Pilot-Mode Test Record One for PubMed Core Search
+FAU - Pilottest, A.
+AB  - SYNTHETIC TEST RECORD. Fictitious PubMed-format record created only to test
+      --mode pilot readiness checking for validate_search_inputs.py. Not a real study.
+DP  - 2024
+JT  - Journal of Synthetic Pilot Test Data
+AID - 10.9999/synthetic.pilot.0001 [doi]
+
+PMID- 77777772
+TI  - Synthetic Pilot-Mode Test Record Two for PubMed Core Search
+FAU - Pilottest, B.
+AB  - SYNTHETIC TEST RECORD, second fixture record, used only to give the pilot
+      readiness check more than one record to count.
+DP  - 2023
+JT  - Journal of Synthetic Pilot Test Data
+AID - 10.9999/synthetic.pilot.0002 [doi]

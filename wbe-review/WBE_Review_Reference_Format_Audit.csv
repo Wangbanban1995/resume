@@ -1,0 +1,22 @@
+reference_number,author_list_style_consistent,journal_name_italicized,doi_or_identifier_format,identifier_hedge_note_present_if_needed,punctuation_consistent,notes,fix_applied_this_round
+2,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+3,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+6,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+8,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+9,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+11,Check manually,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+13,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+16,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+35,Yes,Yes,Non-standard (explained),Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",PMID used instead of DOI link,N/A -- no fix needed
+38,Yes,Yes,Non-standard (explained),Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed","DOI pattern-inferred, explicitly flagged unconfirmed",N/A -- no fix needed
+44,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+46,Yes,Yes,Non-standard (explained),Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",DOI explicitly flagged as not independently confirmed,N/A -- no fix needed
+51,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+52,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+55,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+57,Yes,Yes,Non-standard (explained),Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",medRxiv preprint URL used instead of a formal DOI (no formal DOI exists yet),N/A -- no fix needed
+58,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+60,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+61,Yes,Yes,Non-standard (explanatory hedge note added this round),Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",MDPI page URL used instead of a doi.org link,"Yes -- added 'DOI not independently confirmed this session; the MDPI page URL is cited directly instead, consistent with the hedge convention used for [35], [38], and [46]' to References.md [61]"
+63,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed
+64,Yes,Yes,Standard https://doi.org/ link,Yes,"Yes -- Author, F. M. (Year). Title. *Journal*, vol(issue), pages. pattern followed",Standard https://doi.org/ DOI link present.,N/A -- no fix needed

@@ -1,0 +1,2 @@
+source_file,database,search_module,records_parsed,missing_title,missing_abstract,missing_authors,missing_year,missing_DOI,missing_PMID,multiple_conflicting_dois_count,unknown_database,unknown_module,parser_warnings,parse_status
+tests/case11_title_author_diff_year/wos/wos_core_case11_20260713.ris,wos,core,2,0,2,0,0,2,2,0,False,False,,ok

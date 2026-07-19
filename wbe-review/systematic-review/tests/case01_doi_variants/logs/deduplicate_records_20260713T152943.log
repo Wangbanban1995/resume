@@ -1,0 +1,14 @@
+2026-07-13 15:29:43,218 [INFO] Log file: tests/case01_doi_variants/logs/deduplicate_records_20260713T152943.log
+2026-07-13 15:29:43,218 [INFO] deduplicate_records.py starting
+2026-07-13 15:29:43,218 [INFO] input-dir=tests/case01_doi_variants output-dir=tests/case01_doi_variants/output
+2026-07-13 15:29:43,219 [INFO] Parsed 3 record(s) from tests/case01_doi_variants/wos/wos_core_case01_20260713.ris (database=wos, module=core)
+2026-07-13 15:29:43,219 [WARNING] Metadata discrepancy: merged via DOI but titles differ — master='Synthetic Case 1 Record A - Bare DOI' vs incoming='Synthetic Case 1 Record B - Full URL DOI' (record 407e58ab5fd4 into 5dffca4f787b)
+2026-07-13 15:29:43,219 [WARNING] Metadata discrepancy: merged via DOI but titles differ — master='Synthetic Case 1 Record A - Bare DOI' vs incoming='Synthetic Case 1 Record C - DOI Prefix With Trailing Period' (record a0f501f941b4 into 5dffca4f787b)
+2026-07-13 15:29:43,219 [INFO] Deduplication complete: 3 input records -> 1 master, 2 confirmed duplicates merged, 0 flagged possible duplicates (retained as separate master entries, NOT auto-merged)
+2026-07-13 15:29:43,220 [INFO] Integrity check status: PASS (0 fail, 0 warning)
+2026-07-13 15:29:43,220 [INFO] Wrote outputs to tests/case01_doi_variants/output
+2026-07-13 15:29:43,220 [INFO] master_records.csv: 1 rows
+2026-07-13 15:29:43,220 [INFO] confirmed_duplicates.csv: 2 rows
+2026-07-13 15:29:43,220 [INFO] possible_duplicates.csv: 0 rows (flagged only, retained, not auto-merged)
+2026-07-13 15:29:43,220 [INFO] parsing_quality_report.csv written for 1 source file(s)
+2026-07-13 15:29:43,220 [INFO] deduplicate_records.py finished successfully

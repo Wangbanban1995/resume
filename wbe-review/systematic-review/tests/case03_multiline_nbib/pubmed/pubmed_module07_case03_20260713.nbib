@@ -1,0 +1,13 @@
+PMID- 77777777
+TI  - A Synthetic PubMed Record With a Wrapped Title That
+      Continues Onto an Indented Line As PubMed NBIB Exports
+      Actually Do
+FAU - Nbibwrap, B.
+AB  - This synthetic abstract deliberately spans several indented
+      continuation lines, and also includes a second logical
+      paragraph within the same AB-tagged block, both of which
+      must be concatenated by the parser rather than truncated
+      at the first physical line.
+DP  - 2023
+JT  - Journal of Synthetic Test Data
+AID - 10.9999/synthetic.test.case03 [doi]

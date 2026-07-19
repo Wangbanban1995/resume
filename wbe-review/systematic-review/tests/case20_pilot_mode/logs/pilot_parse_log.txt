@@ -1,0 +1,12 @@
+Pilot parse-only run: 2026-07-14T13:38:46.034838
+Input directory: tests/case20_pilot_mode/raw
+Search log: tests/case20_pilot_mode/search_log.csv (found)
+
+--- tests/case20_pilot_mode/raw/pubmed/pubmed_core_case20_20260714.nbib (database=pubmed, search_module=core) ---
+Parsed 2 record(s). exported_records(search_log)=2; diff=0; missing_title=0; missing_abstract=0; missing_authors=0; missing_year=0; missing_DOI=0; missing_PMID=0; conflicting_DOIs=0; unknown_fields=none
+--- tests/case20_pilot_mode/raw/scopus/scopus_module05_case20_20260714.csv (database=scopus, search_module=module05) ---
+Parsed 1 record(s). exported_records(search_log)=1; diff=0; missing_title=0; missing_abstract=0; missing_authors=0; missing_year=0; missing_DOI=0; missing_PMID=1; conflicting_DOIs=0; unknown_fields=none
+--- tests/case20_pilot_mode/raw/wos/wos_module02_case20_20260714.ris (database=wos, search_module=module02) ---
+Parsed 1 record(s). exported_records(search_log)=1; diff=0; missing_title=0; missing_abstract=0; missing_authors=0; missing_year=0; missing_DOI=0; missing_PMID=1; conflicting_DOIs=0; unknown_fields=none
+
+TOTAL: 4 record(s) parsed across 3 file(s). NO DEDUPLICATION HAS BEEN RUN.
